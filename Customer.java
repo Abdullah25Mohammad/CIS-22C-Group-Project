@@ -8,7 +8,6 @@ public class Customer extends User{
 	private LinkedList<Order> shippedOrders;
 	private LinkedList<Order> unshippedOrders;
 
-  //note user is an abstract class containing first name, last name, login, and password
 	public Customer(String firstName, String lastName, String login, String password, String address, String city, String state, String zip) {
 		setFirstName(firstName);
 		setLastName(lastName);
@@ -16,11 +15,11 @@ public class Customer extends User{
 		setPassword(password);
 
 		this.address = address;
-    this.city = city;
-    this.state = state;
-    this.zip = zip;
-    this.shippedOrders = new LinkedList<>(); // LinkedList I guess?
-    this.unshippedOrders = new LinkedList<>(); // LinkedList I guess?
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.shippedOrders = new LinkedList<>(); // LinkedList I guess?
+		this.unshippedOrders = new LinkedList<>(); // LinkedList I guess?
 	}
 	
 	// Getters
