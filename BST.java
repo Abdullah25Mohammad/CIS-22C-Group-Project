@@ -2,7 +2,7 @@
  * BST.java
  * @author Abdullah Mohammad
  * @author Chahid Bagdouri
- * CIS 22C Lab 1
+ * CIS 22C Lab 12
  */
 import java.util.Comparator;
 import java.util.NoSuchElementException;
