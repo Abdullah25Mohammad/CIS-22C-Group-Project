@@ -16,6 +16,22 @@ public class Customer extends User {
 
 	/**
 	 * Constructs a Customer object with the specified details.
+	 * 
+	 * @param firstName
+	 * @param lastName
+	 * @param login
+	 * @param password
+	 * @postcondition a new Customer object is created with the given values
+	 */
+	public Customer(String firstName, String lastName, String login, String password) {
+		super(firstName, lastName, login, password);
+
+		this.shippedOrders = new LinkedList<>();
+		this.unshippedOrders = new LinkedList<>();
+	}
+
+	/**
+	 * Constructs a Customer object with the specified details.
 	 *
 	 * @param firstName the first name of the customer
 	 * @param lastName  the last name of the customer
@@ -28,17 +44,12 @@ public class Customer extends User {
 	 * @postcondition a new Customer object is created with the given values
 	 */
 	public Customer(String firstName, String lastName, String login, String password, String address, String city, String state, String zip) {
-		setFirstName(firstName);
-		setLastName(lastName);
-		setLogin(login);
-		setPassword(password);
+		super(firstName, lastName, login, password);
 
 		this.address = address;
 		this.city = city;
 		this.state = state;
 		this.zip = zip;
-		this.shippedOrders = new LinkedList<>();
-		this.unshippedOrders = new LinkedList<>();
 	}
 
 	/**** ACCESSORS ****/
@@ -212,5 +223,17 @@ public class Customer extends User {
 		} else {
 			throw new NoSuchElementException("removeUnshippedOrder(): Order not found");
 		}
+	}
+
+	/**** ADDITIONAL METHODS ****/
+
+	/**
+	 * Returns a string representation of the Customer.
+	 *
+	 * @return a string representation of the Customer
+	 */
+	@Override
+	public String toString() {
+		return super.toString() + "Customer" + "\n";
 	}
 }
