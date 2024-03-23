@@ -261,20 +261,6 @@ public class Game {
             );
         }
     }
-
-    /**
-     * Returns a consistent hash code for each Game object
-     * 
-     * @return the hash code for the Game object
-     */
-    @Override
-    public int hashCode() {
-        int sum = 0;
-        for (int i = 0; i < id.length(); i++) {
-            sum += id.charAt(i);
-        }
-        return sum;
-    }
 } // end class Game
 
 class TitleComparator implements Comparator<Game> {
