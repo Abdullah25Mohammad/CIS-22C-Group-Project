@@ -85,4 +85,20 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    /**** Additional Operations ****/
+
+    /**
+     * Returns a consistent hash code for each User.
+     * 
+     * @return the hash code for the User
+     */
+    @Override
+    public int hashCode() {
+        int sum = 0;
+        for (int i = 0; i < login.length(); i++) {
+            sum += login.charAt(i);
+        }
+        return sum;
+    }
 }
