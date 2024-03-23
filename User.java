@@ -93,6 +93,16 @@ public class User {
     /**** Additional Operations ****/
 
     /**
+     * Returns a string representation of the User.
+     * 
+     * @return a string representation of the User
+     */
+    @Override
+    public String toString() {
+        return "Name: " + firstName + " " + lastName + "\nLogin: " + login;
+    }
+
+    /**
      * Returns a consistent hash code for each User.
      * 
      * @return the hash code for the User
