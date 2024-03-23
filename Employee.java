@@ -1,11 +1,14 @@
 public class Employee extends User {
+    private boolean isManager;
+
+
     public Employee(String firstName, String lastName, String login, String password, boolean isManager) {
         setFirstName(firstName);
         setLastName(lastName);
         setLogin(login);
         setPassword(password);
 
-        this.isManager = isManager; // ??
+        this.isManager = isManager;
     }
 
     public boolean isManager() {
@@ -14,9 +17,5 @@ public class Employee extends User {
 
     public void setManager(boolean isManager) {
         this.isManager = isManager;
-    }
-
-    public void setFirstName(String firstName) {
-
     }
 }
