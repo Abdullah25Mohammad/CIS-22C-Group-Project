@@ -54,6 +54,7 @@ public class User {
      * Sets the first name of the user.
      *
      * @param firstName the first name of the user
+     * @postcondition the first name of the user is set
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -63,6 +64,7 @@ public class User {
      * Sets the last name of the user.
      *
      * @param lastName the last name of the user
+     * @postcondition the last name of the user is set
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -72,6 +74,7 @@ public class User {
      * Sets the login of the user.
      *
      * @param login the login of the user
+     * @postcondition the login of the user is set
      */
     public void setLogin(String login) {
         this.login = login;
@@ -81,6 +84,7 @@ public class User {
      * Sets the password of the user.
      *
      * @param password the password of the user
+     * @postcondition the password of the user is set
      */
     public void setPassword(String password) {
         this.password = password;
