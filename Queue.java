@@ -1,9 +1,11 @@
 /**
  * The Queue class definition
- * @author Abdullah Mohammad
+ *
+ * @author Michael
  * CIS 22C, Lab 5
  * @param <T> the generic data stored in the Queue
  */
+
 import java.util.NoSuchElementException;
 
 public class Queue<T> implements Q<T> {
@@ -39,14 +41,10 @@ public class Queue<T> implements Q<T> {
      * the Queue
      */
     public Queue(T[] array) {
-        front = end = null;
-        size = 0;
-
-        if (array == null) {
+        if (array == null)
             return;
-        }
-        for (T element : array) {
-            enqueue(element);
+        for (T i : array) {
+            enqueue(i);
         }
     }
 
@@ -54,20 +52,15 @@ public class Queue<T> implements Q<T> {
      * Copy constructor for the Queue class
      * Makes a deep copy of the parameter
      * @param original the Queue to copy
-     * @postcondition a new Queue object which is identical
+     * @postcondition a new copy of original Queue
      */
     public Queue(Queue<T> original) {
-        front = end = null;
-        size = 0;
-
-        if (original == null) {
+        if (original == null)
             return;
-        }
-
-        Node temp = original.front;
-        while (temp != null) {
-            enqueue(temp.data);
-            temp = temp.next;
+        if (!original.isEmpty()) {
+            front = original.front;
+            end = original.end;
+            size = original.size;
         }
     }
 
@@ -82,9 +75,8 @@ public class Queue<T> implements Q<T> {
      * precondition is violated
      */
     public T getFront() throws NoSuchElementException {
-        if (size == 0) {
-            throw new NoSuchElementException("getFront(): Queue is empty. Cannot getFront.");
-        }
+        if (isEmpty())
+            throw new NoSuchElementException("getFront(): Queue is empty.");
         return front.data;
     }
 
@@ -101,7 +93,7 @@ public class Queue<T> implements Q<T> {
      * @return whether the Queue contains no elements
      */
     public boolean isEmpty() {
-        return (size == 0);
+        return size == 0;
     }
 
     /****MUTATORS****/
@@ -110,34 +102,39 @@ public class Queue<T> implements Q<T> {
      * Inserts a new value at the end of the Queue
      *
      * @param data the new data to insert
-     * @postcondition first element is equal to data
+     * @postcondition add a value to the end of the queue
      */
     public void enqueue(T data) {
+
         if (size == 0) {
             front = end = new Node(data);
-        } else {
-            end.next = new Node(data);
-            end = end.next;
+            size++;
+            return;
         }
         size++;
+        end.next = new Node(data);
+        end = end.next;
     }
 
     /**
      * Removes the front element in the Queue
-     * @precondition queue must not empty
+     * @precondition queue is not empty
      * @throws NoSuchElementException when
      * the precondition is violated
-     * @postcondition front element has been removed
+     * @postcondition removes the first element in the queue
      */
     public void dequeue() throws NoSuchElementException {
-        if (size == 0) {
-            throw new NoSuchElementException("dequeue(): Queue is empty. Cannot dequeue.");
-        } else if (size == 1) {
+        if (isEmpty())
+            throw new NoSuchElementException("dequeue(): Queue is empty.");
+        if (size == 1) {
             front = end = null;
-        } else {
-            front = front.next;
+            size = 0;
+            return;
         }
+
+        front = front.next;
         size--;
+        return;
     }
 
     /****ADDITONAL OPERATIONS****/
@@ -148,14 +145,15 @@ public class Queue<T> implements Q<T> {
      * with a new line character at the end
      * @return a String of Queue values
      */
-    @Override public String toString() {
-        StringBuilder result = new StringBuilder();
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
         Node temp = front;
-        while (temp != null) {
-            result.append(temp.data + " ");
+        for (int i = 0; i < size; i++) {
+            sb.append(temp.data + " ");
             temp = temp.next;
         }
-        return result.toString() + "\n";
+        return sb.toString() + "\n";
     }
 
     /**
@@ -164,30 +162,24 @@ public class Queue<T> implements Q<T> {
      * @param obj the Object to compare to this
      * @return whether obj and this are equal
      */
-    @SuppressWarnings("unchecked") // good practice to remove warning here
-    @Override public boolean equals(Object obj)  {
-        if (obj == null) {
-            return false;
-        } else if (this == obj) {
-            return true;
-        } else if (!(obj instanceof Queue)) {
-            return false;
-        } else if (((Queue<T>)obj).size != this.size) {
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof Queue)) {
             return false;
         }
+        Queue<T> object = (Queue<T>) obj;
 
-        Node temp1 = front;
-        Node temp2 = ((Queue<T>)obj).front;
+        if (object.size != size)
+            return false;
 
-        while (temp1 != null && temp2 != null) {
-            if (!temp1.data.equals(temp2.data)) {
+        Node temp = front;
+        Node temp1 = object.front;
+        while (temp != null) {
+            if (!temp.data.equals(temp1.data))
                 return false;
-            }
+            temp = temp.next;
             temp1 = temp1.next;
-            temp2 = temp2.next;
         }
-
         return true;
-        
     }
 }
