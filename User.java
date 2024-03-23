@@ -10,6 +10,22 @@ public class User {
     String login;
     String password;
 
+    /**
+     * Constructs a User object with the specified details.
+     * 
+     * @param firstName the first name of the user
+     * @param lastName  the last name of the user
+     * @param login     the login of the user
+     * @param password  the password of the user
+     * @postcondition a new User object is created with the given values
+     */
+    public User(String firstName, String lastName, String login, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.login = login;
+        this.password = password;
+    }
+
     /**** ACCESSORS ****/
 
     /**
@@ -99,7 +115,10 @@ public class User {
      */
     @Override
     public String toString() {
-        return "Name: " + firstName + " " + lastName + "\nLogin: " + login;
+        return (
+            "Name: " + firstName + " " + lastName + "\n" + 
+            "Login: " + login + "\n"
+            );
     }
 
     /**
