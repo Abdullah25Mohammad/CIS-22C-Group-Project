@@ -6,7 +6,7 @@ Employee
 Hari Prakash
 HariP
 123abc!
-Customer
+Employee
 
 Jacob Johnston
 jacob_
@@ -21,4 +21,19 @@ Customer
 Michael Chen
 MChen
 michael123
+Customer
+
+Bob Smith
+bobbob2
+b2b3b0
+Customer
+
+Steve Jobs
+sjobs
+@pplePark
+Customer
+
+Jeffrey White
+JEFFw
+mynamejeff
 Customer
