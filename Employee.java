@@ -19,21 +19,31 @@ public class Employee extends User {
      * @postcondition a new Employee object is created with the given values
      */
     public Employee(String firstName, String lastName, String login, String password, boolean isManager) {
-        setFirstName(firstName);
-        setLastName(lastName);
-        setLogin(login);
-        setPassword(password);
+        super(firstName, lastName, login, password);
 
         this.isManager = isManager;
     }
+
+    /**** ACCESSORS ****/
 
     public boolean isManager() {
         return isManager;
     }
 
+    /**** MUTATORS ****/
+
     public void setManager(boolean isManager) {
         this.isManager = isManager;
     }
+
+
+    /**** ADDITIONAL METHODS ****/
+
+    @Override
+    public String toString() {
+        return super.toString() + "Manager: " + isManager + "\n";
+    }
+
 
 
 }
