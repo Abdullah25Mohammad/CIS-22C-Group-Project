@@ -1,9 +1,11 @@
+/**
+ * Customer.java
+ * Customer class that represents a customer in the system.
+ * 
+ * @author Abdullah Mohammad
+ */
 import java.util.NoSuchElementException;
 
-/**
- * Represents a customer who is a user of the system.
- * Inherits from the User class.
- */
 public class Customer extends User {
 	private String address;
 	private String city;
