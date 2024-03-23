@@ -1,0 +1,23 @@
+Abdullah Mohammad
+amohammad
+P@$$word!
+Employee
+
+Hari Prakash
+HariP
+123abc!
+Customer
+
+Jacob Johnston
+jacob_
+J@cobJac0b
+Manager
+
+Chahid Bagdouri
+peregrinef
+iLoveDataStructures
+Customer
+
+Michael Chen
+MChen
+michael123
