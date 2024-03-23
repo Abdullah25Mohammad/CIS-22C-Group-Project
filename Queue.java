@@ -57,10 +57,11 @@ public class Queue<T> implements Q<T> {
     public Queue(Queue<T> original) {
         if (original == null)
             return;
-        if (!original.isEmpty()) {
-            front = original.front;
-            end = original.end;
-            size = original.size;
+        
+        Node temp = original.front;
+        while (temp != null) {
+            enqueue(temp.data);
+            temp = temp.next;
         }
     }
 
