@@ -1,39 +1,39 @@
 Abdullah Mohammad
 amohammad
 P@$$word!
-Employee
+employee
 
 Hari Prakash
 HariP
 123abc!
-Employee
+employee
 
 Jacob Johnston
 jacob_
 J@cobJac0b
-Manager
+manager
 
 Chahid Bagdouri
 peregrinef
 iLoveDataStructures
-Customer
+customer
 
 Michael Chen
 MChen
 michael123
-Customer
+customer
 
 Bob Smith
 bobbob2
 b2b3b0
-Customer
+customer
 
 Steve Jobs
 sjobs
 @pplePark
-Customer
+customer
 
 Jeffrey White
 JEFFw
 mynamejeff
-Customer
+customer
