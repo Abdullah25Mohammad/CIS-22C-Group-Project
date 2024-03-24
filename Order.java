@@ -4,6 +4,9 @@
  * 
  * @author Abdullah Mohammad
  */
+
+import java.util.Comparator;
+
 public class Order {
     private int orderID;
     private Customer customer;
@@ -152,4 +155,29 @@ public class Order {
         this.priority = priority;
     }
 
-}
+} // end of Order class
+
+class priorityComparator implements Comparator<Order> {
+    @Override
+    public int compare(Order o1, Order o2) {
+        return Integer.compare(o1.getPriority(), o2.getPriority());
+    }
+} // end of OrderComparator class
+
+class orderPlacedComparator implements Comparator<Order> {
+    @Override
+    public int compare(Order o1, Order o2) {
+        return o1.getDate().compareTo(o2.getDate());
+    }
+} // end of OrderComparator class
+
+
+/*
+ * Possible other comparators:
+ * 
+ * - orderIDComparator: compares two orders by their order ID
+ * - customerComparator: compares two orders by their customer
+ * - orderContentsComparator: compares two orders by their contents
+ * - shippingSpeedComparator: compares two orders by their shipping speed
+ * - orderTotalComparator: compares two orders by their total price
+ */
