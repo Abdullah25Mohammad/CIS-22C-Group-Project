@@ -1,10 +1,17 @@
-import java.util.Comparator;
+/**
+ * Date class
+ * Represents a date with a month, day, and year
+ * 
+ * @author Michael
+ */
+
+// import java.util.Comparator;
 
 public class Date {
     final int month;
     final int day;
     final int year;
-    
+
     // Comparator<Date> dateComparator = (d1, d2) ->
     //     Integer.compare(d1.year, d2.year) != 0 ? Integer.compare(d1.year, d2.year) :
     //     Integer.compare(d1.month, d2.month) != 0 ? Integer.compare(d1.month, d2.month) :
