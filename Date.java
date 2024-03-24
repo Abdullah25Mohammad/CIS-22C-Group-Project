@@ -1,13 +1,7 @@
-import java.util.Comparator;
-
 public class Date {
     final int month;
     final int day;
     final int year;
-    Comparator<Date> dateComparator = (d1, d2) ->
-        Integer.compare(d1.year, d2.year) != 0 ? Integer.compare(d1.year, d2.year) :
-        Integer.compare(d1.month, d2.month) != 0 ? Integer.compare(d1.month, d2.month) :
-        Integer.compare(d1.day, d2.day);
 
     public Date(int month, int day, int year) {
         this.month = month;
@@ -15,18 +9,42 @@ public class Date {
         this.year = year;
     }
 
-    public Comparator<Date> getDateComparator()
-    {
-        return dateComparator;
-    }
-
     @Override
     public String toString() {
         return String.format("%02d/%02d/%4d", month, day, year);
     }
 
-    public static void main(String[] args) {
-        Date k = new Date(5,3,2000);
-        System.out.println(k);
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Date) {
+            Date other = (Date) obj;
+            return month == other.month && day == other.day && year == other.year;
+        } else {
+            return false;
+        }
     }
-}
+
+    public int compareTo(Date other) {
+        if (year != other.year) {
+            return Integer.compare(year, other.year);
+        } else if (month != other.month) {
+            return Integer.compare(month, other.month);
+        } else {
+            return Integer.compare(day, other.day);
+        }
+    }
+
+} // end of Date class
+
+// class dateComparator implements Comparator<Date> {
+//     @Override
+//     public int compare(Date d1, Date d2) {
+//         if (d1.year != d2.year) {
+//             return Integer.compare(d1.year, d2.year);
+//         } else if (d1.month != d2.month) {
+//             return Integer.compare(d1.month, d2.month);
+//         } else {
+//             return Integer.compare(d1.day, d2.day);
+//         }
+//     }
+// } // end of dateComparator class
