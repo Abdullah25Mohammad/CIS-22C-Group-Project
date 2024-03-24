@@ -132,6 +132,9 @@ public class User {
         for (int i = 0; i < username.length(); i++) {
             sum += username.charAt(i);
         }
+        for (int i = 0; i < password.length(); i++) {
+            sum += password.charAt(i);
+        }
         return sum;
     }
 }
