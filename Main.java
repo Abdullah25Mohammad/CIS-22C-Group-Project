@@ -29,7 +29,7 @@ public class Main {
                 String lastName = scanner.next();
                 scanner.nextLine(); // clear the buffer
 
-                String login = scanner.nextLine();
+                String username = scanner.nextLine();
                 String password = scanner.nextLine();
                 String role = scanner.nextLine();
 
@@ -37,7 +37,7 @@ public class Main {
                     Customer customer = new Customer(
                         firstName,
                         lastName,
-                        login,
+                        username,
                         password
                     );
                     customerTable.add(customer);
@@ -45,7 +45,7 @@ public class Main {
                     Employee employee = new Employee(
                         firstName,
                         lastName,
-                        login,
+                        username,
                         password,
                         false
                     );
@@ -54,7 +54,7 @@ public class Main {
                     Employee employee = new Employee(
                         firstName,
                         lastName,
-                        login,
+                        username,
                         password,
                         true
                     );
