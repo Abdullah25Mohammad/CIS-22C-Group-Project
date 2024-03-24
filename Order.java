@@ -7,7 +7,7 @@
 public class Order {
     private int orderID;
     private Customer customer;
-    private String datePlaced; // date format: "MM/DD/YYYY"
+    private Date datePlaced; // date format: "MM/DD/YYYY"
     private LinkedList<Game> orderContents;
     private int shippingSpeed;
     private int priority;
@@ -24,7 +24,7 @@ public class Order {
      * @param priority
      * @postcondition a new Order object is created with the given values
      */
-    public Order(int orderID, Customer customer, String datePlaced, LinkedList<Game> orderContents, int shippingSpeed, int priority) {
+    public Order(int orderID, Customer customer, Date datePlaced, LinkedList<Game> orderContents, int shippingSpeed, int priority) {
         this.orderID = orderID;
         this.customer = customer;
         this.datePlaced = datePlaced;
@@ -58,7 +58,7 @@ public class Order {
      *
      * @return the datePlaced of the order
      */
-    public String getDate() {
+    public Date getDate() {
         return datePlaced;
     }
 
@@ -118,7 +118,7 @@ public class Order {
      * @param datePlaced the datePlaced of the order
      * @postcondition the datePlaced of the order is set
      */
-    public void setDate(String datePlaced) {
+    public void setDate(Date datePlaced) {
         this.datePlaced = datePlaced;
     }
 
