@@ -61,7 +61,7 @@ public class Order {
      *
      * @return the datePlaced of the order
      */
-    public Date getDate() {
+    public Date getDatePlaced() {
         return datePlaced;
     }
 
@@ -167,7 +167,7 @@ class priorityComparator implements Comparator<Order> {
 class datePlacedComparator implements Comparator<Order> {
     @Override
     public int compare(Order o1, Order o2) {
-        return o1.getDate().compareTo(o2.getDate());
+        return o1.getDatePlaced().compareTo(o2.getDatePlaced());
     }
 } // end of OrderComparator class
 
