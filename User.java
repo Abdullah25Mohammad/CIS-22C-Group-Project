@@ -137,4 +137,23 @@ public class User {
         }
         return sum;
     }
+
+    /**
+     * Compares two Users for equality. They are equal if they have the same username and password.
+     * 
+     * @param obj User to compare to
+     * @return true if the two Users are equal, false otherwise.
+    */
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj) {
+            return true;
+        }
+        else if (obj == null || !(obj instanceof User)) {
+            return false;
+        }
+
+        User user2 = (User) obj;
+        return (this.username.equals(user2.username) && this.password.equals(user2.password));
+    }
 }
