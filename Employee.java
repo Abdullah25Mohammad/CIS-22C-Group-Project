@@ -13,13 +13,13 @@ public class Employee extends User {
      * 
      * @param firstName
      * @param lastName
-     * @param login
+     * @param username
      * @param password
      * @param isManager
      * @postcondition a new Employee object is created with the given values
      */
-    public Employee(String firstName, String lastName, String login, String password, boolean isManager) {
-        super(firstName, lastName, login, password);
+    public Employee(String firstName, String lastName, String username, String password, boolean isManager) {
+        super(firstName, lastName, username, password);
 
         this.isManager = isManager;
     }

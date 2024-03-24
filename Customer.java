@@ -19,12 +19,12 @@ public class Customer extends User {
 	 * 
 	 * @param firstName
 	 * @param lastName
-	 * @param login
+	 * @param username
 	 * @param password
 	 * @postcondition a new Customer object is created with the given values
 	 */
-	public Customer(String firstName, String lastName, String login, String password) {
-		super(firstName, lastName, login, password);
+	public Customer(String firstName, String lastName, String username, String password) {
+		super(firstName, lastName, username, password);
 
 		this.shippedOrders = new LinkedList<>();
 		this.unshippedOrders = new LinkedList<>();
@@ -35,7 +35,7 @@ public class Customer extends User {
 	 *
 	 * @param firstName the first name of the customer
 	 * @param lastName  the last name of the customer
-	 * @param login     the login of the customer
+	 * @param username     the username of the customer
 	 * @param password  the password of the customer
 	 * @param address   the address of the customer
 	 * @param city      the city of the customer
@@ -43,8 +43,8 @@ public class Customer extends User {
 	 * @param zip       the zip code of the customer
 	 * @postcondition a new Customer object is created with the given values
 	 */
-	public Customer(String firstName, String lastName, String login, String password, String address, String city, String state, String zip) {
-		super(firstName, lastName, login, password);
+	public Customer(String firstName, String lastName, String username, String password, String address, String city, String state, String zip) {
+		super(firstName, lastName, username, password);
 
 		this.address = address;
 		this.city = city;

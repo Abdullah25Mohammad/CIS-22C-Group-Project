@@ -7,7 +7,7 @@
 public class User {
     String firstName;
     String lastName;
-    String login;
+    String username;
     String password;
 
     /**
@@ -15,14 +15,14 @@ public class User {
      * 
      * @param firstName the first name of the user
      * @param lastName  the last name of the user
-     * @param login     the login of the user
+     * @param username     the username of the user
      * @param password  the password of the user
      * @postcondition a new User object is created with the given values
      */
-    public User(String firstName, String lastName, String login, String password) {
+    public User(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.login = login;
+        this.username = username;
         this.password = password;
     }
 
@@ -47,12 +47,12 @@ public class User {
     }
 
     /**
-     * Returns the login of the user.
+     * Returns the username of the user.
      *
-     * @return the login of the user
+     * @return the username of the user
      */
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
     /**
@@ -87,13 +87,13 @@ public class User {
     }
 
     /**
-     * Sets the login of the user.
+     * Sets the username of the user.
      *
-     * @param login the login of the user
-     * @postcondition the login of the user is set
+     * @param username the username of the user
+     * @postcondition the username of the user is set
      */
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     /**
@@ -117,7 +117,7 @@ public class User {
     public String toString() {
         return (
             "Name: " + firstName + " " + lastName + "\n" + 
-            "Login: " + login + "\n"
+            "Username: " + username + "\n"
             );
     }
 
@@ -129,8 +129,8 @@ public class User {
     @Override
     public int hashCode() {
         int sum = 0;
-        for (int i = 0; i < login.length(); i++) {
-            sum += login.charAt(i);
+        for (int i = 0; i < username.length(); i++) {
+            sum += username.charAt(i);
         }
         return sum;
     }
