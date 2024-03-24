@@ -4,10 +4,13 @@
  * 
  * @author Abdullah Mohammad
  */
+
+import java.util.Comparator;
+
 public class Order {
     private int orderID;
     private Customer customer;
-    private String datePlaced; // date format: "MM/DD/YYYY"
+    private Date datePlaced; // date format: "MM/DD/YYYY"
     private LinkedList<Game> orderContents;
     private int shippingSpeed;
     private int priority;
@@ -24,7 +27,7 @@ public class Order {
      * @param priority
      * @postcondition a new Order object is created with the given values
      */
-    public Order(int orderID, Customer customer, String datePlaced, LinkedList<Game> orderContents, int shippingSpeed, int priority) {
+    public Order(int orderID, Customer customer, Date datePlaced, LinkedList<Game> orderContents, int shippingSpeed, int priority) {
         this.orderID = orderID;
         this.customer = customer;
         this.datePlaced = datePlaced;
@@ -58,7 +61,7 @@ public class Order {
      *
      * @return the datePlaced of the order
      */
-    public String getDate() {
+    public Date getDatePlaced() {
         return datePlaced;
     }
 
@@ -118,7 +121,7 @@ public class Order {
      * @param datePlaced the datePlaced of the order
      * @postcondition the datePlaced of the order is set
      */
-    public void setDate(String datePlaced) {
+    public void setDate(Date datePlaced) {
         this.datePlaced = datePlaced;
     }
 
@@ -152,4 +155,29 @@ public class Order {
         this.priority = priority;
     }
 
-}
+} // end of Order class
+
+class priorityComparator implements Comparator<Order> {
+    @Override
+    public int compare(Order o1, Order o2) {
+        return Integer.compare(o1.getPriority(), o2.getPriority());
+    }
+} // end of OrderComparator class
+
+class datePlacedComparator implements Comparator<Order> {
+    @Override
+    public int compare(Order o1, Order o2) {
+        return o1.getDatePlaced().compareTo(o2.getDatePlaced());
+    }
+} // end of OrderComparator class
+
+
+/*
+ * Possible other comparators:
+ * 
+ * - orderIDComparator: compares two orders by their order ID
+ * - customerComparator: compares two orders by their customer
+ * - orderContentsComparator: compares two orders by their contents
+ * - shippingSpeedComparator: compares two orders by their shipping speed
+ * - orderTotalComparator: compares two orders by their total price
+ */

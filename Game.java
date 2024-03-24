@@ -10,7 +10,7 @@ public class Game {
 	private String developer;
 	private String id;
 	private String genre;
-	private String releaseDate; // in the format of MM/DD/YYYY
+	private Date releaseDate;
 	private String description;
     private double price;
 	private int stock;
@@ -27,7 +27,7 @@ public class Game {
         this.developer = "Unknown";
         this.id = "000000";
         this.genre = "None";
-        this.releaseDate = "00/00/0000";
+        this.releaseDate = new Date(0, 0, 0);
         this.description = "None";
         this.price = 0.0;
         this.stock = 0;
@@ -46,7 +46,7 @@ public class Game {
      * @param description
      * @postcondition a new Game object is created with the given values
      */
-    public Game(String title, String developer, String id, String genre, String releaseDate, String description, double price, int stock){
+    public Game(String title, String developer, String id, String genre, Date releaseDate, String description, double price, int stock){
         this.title = title;
         this.developer = developer;
         this.id = id;
@@ -100,7 +100,7 @@ public class Game {
      * 
      * @return the release date of the game
      */
-    public String getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
@@ -183,7 +183,7 @@ public class Game {
      * @param releaseDate
      * @postcondition the release date of the game is set to the given value
      */
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -230,7 +230,7 @@ public class Game {
             "Developer: " + developer + "\n" +
             "ID: " + id + "\n" +
             "Genre: " + genre + "\n" +
-            "Release Date: " + releaseDate + "\n" +
+            "Release Date: " + releaseDate.toString() + "\n" +
             "Description: " + description + "\n"
         );
     }
