@@ -11,6 +11,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import javax.naming.directory.SearchResult;
+
 public class Main {
     private static Scanner myScanner = new Scanner(System.in);
 
@@ -63,7 +65,7 @@ public class Main {
     }
 
     /**
-     * TODO: Implement
+     * Reads the users.txt file and creates the Customer and Employee objects
      * 
      * @author Abdullah Mohammad
      */
@@ -120,7 +122,7 @@ public class Main {
     }
     
     /**
-     * TODO: Implement
+     * Reads the database.txt file and creates the Game objects
      * 
      * @author Abdullah Mohammad
      */
@@ -383,26 +385,44 @@ public class Main {
             }
         } while(choice != 1 && choice != 2 && choice != 3 && choice != -1);
 
-        if(choice == 1) {
-            System.out.print("What game would you like to search for?: ");
-            String gameTitle = myScanner.nextLine();
-            System.out.println();
+        if((choice == 1) || (choice == 2)) {
+            System.out.println("Please enter the name of the game/developer you would like to search for:");
+            String search = myScanner.nextLine();
 
-            Game tempGame = gamesByTitle.search(new Game(gameTitle, ""), titleCMP);
-            if(tempGame != null) {
-                System.out.println(tempGame);
+            LinkedList<Game> searchResults = new LinkedList<Game>();
+
+            if(choice == 1) {
+                Game tempGame = new Game(search, "");
+                
+                Game tempResult = gamesByTitle.search(tempGame, titleCMP);
+
+                while (tempResult != null) {
+                    searchResults.addLast(tempResult);
+                    gamesByTitle.remove(tempResult, titleCMP);
+                    tempResult = gamesByTitle.search(tempGame, titleCMP);
+                }
+            }
+            else if(choice == 2) {
+                Game tempGame = new Game("", search);
+
+                Game tempResult = gamesByDeveloper.search(tempGame, developerCMP);
+
+                while (tempResult != null) {
+                    searchResults.addLast(tempResult);
+                    gamesByDeveloper.remove(tempResult, developerCMP);
+                    tempResult = gamesByDeveloper.search(tempGame, developerCMP);
+                }
+            }
+
+            if(searchResults.isEmpty()) {
+                System.out.println("No results found.");
             }
             else {
-                System.out.println("The game " + gameTitle + " was not found. Please try again.");
+                // Print out the search results
+                System.out.println(searchResults.toString());
             }
         }
 
-        else if(choice == 2) {
-            System.out.print("What developer would you like to search for?: ");
-            String developerName = myScanner.nextLine();
-            System.out.println();
-            System.out.println(gamesByDeveloper.search(new Game("", developerName), developerCMP));
-        }
         else if(choice == 3) {
             CustomerOptions(tempCustomer, isGuest);
         }
