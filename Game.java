@@ -37,6 +37,23 @@ public class Game {
      * Constructor for Game
      * 
      * @param title
+     * @postcondition a new Game object is created with the parameter title
+     */
+    public Game(String title) {
+        this.title = title;
+        this.developer = "Unknown";
+        this.id = "000000";
+        this.genre = "None";
+        this.releaseDate = new Date(0, 0, 0);
+        this.summary = "None";
+        this.price = 0.0;
+        this.stock = 0;
+    }
+
+    /**
+     * Constructor for Game
+     * 
+     * @param title
      * @param developer
      * @param id
      * @param genre
