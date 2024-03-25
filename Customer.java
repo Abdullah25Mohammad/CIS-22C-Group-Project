@@ -14,6 +14,15 @@ public class Customer extends User {
 	private LinkedList<Order> shippedOrders;
 	private LinkedList<Order> unshippedOrders;
 
+    /**
+     * Constructs a default Customer object.
+     * 
+     * @postcondition a new Customer object is created with "Undefined" for the values
+     */
+    public Customer() {
+        super();
+    }
+
 	/**
 	 * Constructs a Customer object with the specified details.
 	 * 
@@ -41,7 +50,7 @@ public class Customer extends User {
 	 * @param city      the city of the customer
 	 * @param state     the state of the customer
 	 * @param zip       the zip code of the customer
-	 * @postcondition a new Customer object is created with the given values
+	 * @postcondition   a new Customer object is created with the given values
 	 */
 	public Customer(String firstName, String lastName, String username, String password, String address, String city, String state, String zip) {
 		super(firstName, lastName, username, password);
