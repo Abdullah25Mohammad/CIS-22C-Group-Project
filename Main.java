@@ -7,6 +7,9 @@
  */
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOError;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -41,11 +44,26 @@ public class Main {
             System.out.println("Type '1' for Customer and '2' for Employee.");
             choice = Integer.parseInt(myScanner.nextLine());
             if(choice == 1) {
-                loginAsCustomer();
+                Customer tempCustomer = loginAsCustomer();
+                customerTable.add(tempCustomer);
+                try {
+                    FileWriter myWriter = new FileWriter("Users.txt", true);
+                    myWriter.append("\n");
+                    myWriter.append(tempCustomer.getName() + "\n");
+                    myWriter.append(tempCustomer.getUsername() + "\n");
+                    myWriter.append(tempCustomer.getPassword() + "\n");
+                    myWriter.append("customer\n");
+
+                    myWriter.close();
+                } catch (IOException e) {
+                    System.out.println("An error occurred.");
+                    e.printStackTrace();
+                }
+                
                 break;
             }
             if(choice == 2) {
-                loginAsEmployee();
+                employeeTable.add(loginAsEmployee());
                 break;
             }        
             else {
@@ -156,7 +174,7 @@ public class Main {
         }
     }
 
-    public static void loginAsCustomer() {
+    public static Customer loginAsCustomer() {
         System.out.println("Would you like to make a new account or login to an existing one?");
         System.out.println("Type '1' for new account and '2' for existing account.");
         int choice = Integer.parseInt(myScanner.nextLine());
@@ -167,15 +185,17 @@ public class Main {
             choice = Integer.parseInt(myScanner.nextLine());
         }
 
-        Customer tempCustomer;
+        Customer tempCustomer = null;
         
         if(choice == 1) {
             tempCustomer = loginAsNewCustomer();
         }
         
-        else if(choice == 2) {
+        else {
             tempCustomer = loginAsExistingCustomer();
         }
+
+        return tempCustomer;
     }
 
     public static Customer loginAsNewCustomer() {
@@ -243,7 +263,7 @@ public class Main {
         return tempCustomer;
     }
     
-    public static void loginAsEmployee() {
+    public static Employee loginAsEmployee() {
         System.out.println("Please enter your username:");
         String username = myScanner.nextLine();
         System.out.println("Please enter your password:");
@@ -259,5 +279,7 @@ public class Main {
         else {
             System.out.println("Login failed.");
         }
+
+        return tempEmployee;
     }
 }
