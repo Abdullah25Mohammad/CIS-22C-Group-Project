@@ -12,6 +12,7 @@ public class Game {
 	private String genre;
 	private Date releaseDate;
 	private String summary;
+    private LinkedList<String> platforms;
     private double price;
 	private int stock;
 
@@ -29,6 +30,7 @@ public class Game {
         this.genre = "None";
         this.releaseDate = new Date(0, 0, 0);
         this.summary = "None";
+        this.platforms = new LinkedList<String>();
         this.price = 0.0;
         this.stock = 0;
     }
@@ -46,6 +48,7 @@ public class Game {
         this.genre = "None";
         this.releaseDate = new Date(0, 0, 0);
         this.summary = "None";
+        this.platforms = new LinkedList<String>();
         this.price = 0.0;
         this.stock = 0;
     }
@@ -61,15 +64,19 @@ public class Game {
      * @param price
      * @param stock
      * @param summary
+     * @param platforms
+     * @param price
+     * @param stock
      * @postcondition a new Game object is created with the given values
      */
-    public Game(String title, String developer, String id, String genre, Date releaseDate, String summary, double price, int stock){
+    public Game(String title, String developer, String id, String genre, Date releaseDate, String summary, LinkedList<String> platforms, double price, int stock){
         this.title = title;
         this.developer = developer;
         this.id = id;
         this.genre = genre;
         this.releaseDate = releaseDate;
         this.summary = summary;
+        this.platforms = platforms;
         this.price = price;
         this.stock = stock;
     }
@@ -128,6 +135,15 @@ public class Game {
      */
     public String getSummary() {
         return summary;
+    }
+
+    /**
+     * Accessor for platforms
+     * 
+     * @return the platforms of the game
+     */
+    public LinkedList<String> getPlatforms() {
+        return platforms;
     }
 
     /**
@@ -212,6 +228,16 @@ public class Game {
      */
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    /**
+     * Mutator for platforms
+     * 
+     * @param platforms
+     * @postcondition the platforms of the game are set to the given value
+     */
+    public void setPlatforms(LinkedList<String> platforms) {
+        this.platforms = platforms;
     }
 
     /**
@@ -356,5 +382,6 @@ class ReleaseDateComparator implements Comparator<Game> {
  * 
  * - GenreComparator
  * - SummaryComparator
+ * - PlatformComparator
  * - IDComparator 
  */
