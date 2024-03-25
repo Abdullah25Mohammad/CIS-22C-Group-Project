@@ -1,108 +1,120 @@
-The Oregon Trail 
-Minnesota Educational Computing Consortium
-1
-Strategy
-12/3/1971
-[description goes here]
-$0.50
-50
-
-Pac-Man
-Namco
-2
-Maze
-5/22/1980
-[description goes here]
-$2.00
-90
-
-Donkey Kong
-Nintendo
-3
-Platform
-7/9/1981
-[description goes here]
-$2.00
-75
-
-The Legend of Zelda
-Nintendo
-4
-Action-adventure
-2/21/1986
-[description goes here]
-$20.00
-65
-
-Mega Man 2
-Capcom
-4
-Platform
-12/24/1988
-[description goes here]
-$15.00
-35
-
-Super Mario World
-Nintendo
-5
-Platform
-11/21/1990
-[description goes here]
-$25.00
-60
-
-Sonic the Hedgehog 2
-Sega
-6
-Platform
-11/21/1992
-[description goes here]
-$15.00
-80
-
-NBA Jam
-Midway
-7
-Sports
-3/4/1994
-[description goes here]
-$15.00
-40
-
-Pokémon Red and Blue
-Nintendo
-8
-Role-playing
-10/28/1998
-[description goes here]
-$25.00
-30
-
 Half-Life 2
 Valve
-9
+1
 First-person shooter
 11/16/2004
 [description goes here]
+PC
 $40.00
 80
 
 Halo 3
 Microsoft Game Studios
-10
+2
 First-person shooter
 11/26/2007
 [description goes here]
+Xbox 360
 $40.00
 75
 
 Minecraft
 Mojang
-11
+3
 Sandbox
 11/18/2011
 [description goes here]
+PC, Mac, Linux
 $20.00
 120
+
+Overwatch
+Blizzard Entertainment
+4
+First-person shooter
+10/15/2019
+[description goes here]
+PC, PlayStation 4, Xbox One
+$10.00
+80
+
+Portal 2
+Valve
+5
+Puzzle-platformer
+4/18/2011
+[description goes here]
+PC, PlayStation 3, Xbox 360
+$30.00
+100
+
+Borderlands 2
+2K Games
+6
+Action role-playing
+09/18/2012
+[description goes here]
+PC, PlayStation 3, Xbox 360
+$30.00
+80
+
+Rocket League
+Psyonix
+7
+Sports
+07/07/2015
+[description goes here]
+PC, PlayStation 4
+$20.00
+140
+
+Undertale
+Toby Fox
+8
+Role-playing
+09/15/2015
+[description goes here]
+PC, Mac
+$10.00
+105
+
+The Witcher 3: Wild Hunt
+CD Projekt
+9
+Action role-playing
+05/18/2015
+[description goes here]
+PC, PlayStation 4, Xbox One
+$40.00
+60
+
+Fortnite
+Epic Games
+10
+Third-person shooter
+09/26/2017
+[description goes here]
+PC, Mac, PlayStation 4, Xbox One
+$1.50
+200
+
+The Legend of Zelda: Breath of the Wild
+Nintendo
+11
+Action-adventure
+03/03/2017
+[description goes here]
+Nintendo Switch, Wii U
+$60.00
+110
+
+Super Mario Odyssey
+Nintendo
+12
+Platform
+10/27/2017
+[description goes here]
+Nintendo Switch
+$50.00
+150
 
