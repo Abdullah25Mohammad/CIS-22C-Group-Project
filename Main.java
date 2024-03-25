@@ -360,6 +360,43 @@ public class Main {
     }
 
     /**
+     * Displays the game database
+     * 
+     * @author Abdullah Mohammad
+     */
+    private static void DisplayGameDatabase() {
+        int choice = 0;
+
+        do {
+            System.out.println("Please select one of the following options by typing in the corresponding number:");
+            System.out.println("1. Display games by title.");
+            System.out.println("2. Display games by developer.");
+            System.out.println("3. Display games by price.");
+            System.out.println("-1. Exit the program.");
+
+            choice = Integer.parseInt(myScanner.nextLine());
+
+            if(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1) {
+                System.out.println("Invalid input. Please try again.");
+            }
+        } while(choice != 1 && choice != 2 && choice != 3 && choice != -1);
+
+        if(choice == 1) {
+            System.out.println(gamesByTitle.inOrderString());
+        }
+        else if(choice == 2) {
+            System.out.println(gamesByDeveloper.inOrderString());
+        }
+        else if(choice == 3) {
+            System.out.println(gamesByPrice.inOrderString());
+        }
+        else if(choice == -1) {
+            System.exit(0);
+        }
+
+    }
+
+    /**
      * Asks the user what game/developer to search for, and then performs the search
      * 
      * @author Chahid Bagdouri
@@ -432,43 +469,6 @@ public class Main {
     }
 
     /**
-     * Displays the game database
-     * 
-     * @author Abdullah Mohammad
-     */
-    private static void DisplayGameDatabase() {
-        int choice = 0;
-
-        do {
-            System.out.println("Please select one of the following options by typing in the corresponding number:");
-            System.out.println("1. Display games by title.");
-            System.out.println("2. Display games by developer.");
-            System.out.println("3. Display games by price.");
-            System.out.println("-1. Exit the program.");
-
-            choice = Integer.parseInt(myScanner.nextLine());
-
-            if(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1) {
-                System.out.println("Invalid input. Please try again.");
-            }
-        } while(choice != 1 && choice != 2 && choice != 3 && choice != -1);
-
-        if(choice == 1) {
-            System.out.println(gamesByTitle.inOrderString());
-        }
-        else if(choice == 2) {
-            System.out.println(gamesByDeveloper.inOrderString());
-        }
-        else if(choice == 3) {
-            System.out.println(gamesByPrice.inOrderString());
-        }
-        else if(choice == -1) {
-            System.exit(0);
-        }
-
-    }
-
-    /**
      * Asks the user what game to order, and then orders it for the user
      * 
      * @author Chahid Bagdouri
@@ -501,7 +501,6 @@ public class Main {
             }
         }
     }
-
 
     /**
      * Logs in as an Employee
