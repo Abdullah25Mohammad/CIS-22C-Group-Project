@@ -4,11 +4,20 @@
  * 
  * @author Abdullah Mohammad
  */
-public class User {
+abstract public class User {
     String firstName;
     String lastName;
     String username;
     String password;
+
+    /**
+     * Constructs a default User object.
+     * 
+     * @postcondition a new User object is created with "Undefined" for the values
+     */
+    public User() {
+        this.firstName = this.lastName = this.username = this.password = "Undefined";
+    }
 
     /**
      * Constructs a User object with the specified details.
