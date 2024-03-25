@@ -21,12 +21,11 @@ public class Main {
     // BSTs
     private static BST<Game> gamesByTitle = new BST<Game>();
     private static BST<Game> gamesByDeveloper = new BST<Game>();
-    // private static BST<Game> gamesByReleaseDate = new BST<Game>();
-    // private static BST<Game> gamesByPrice = new BST<Game>(); // UNCOMMENT WHEN IMPLEMENTED
+    private static BST<Game> gamesByPrice = new BST<Game>();
+
     private static TitleComparator titleCMP = new TitleComparator();
     private static DeveloperComparator developerCMP = new DeveloperComparator();
-    // private static ReleaseDateComparator releaseDateCMP = new ReleaseDateComparator();
-    // PriceComparator priceCMP = new PriceComparator(); // UNCOMMENT WHEN IMPLEMENTED
+    private static PriceComparator priceCMP = new PriceComparator();
 
     /**
      * main method
@@ -166,11 +165,9 @@ public class Main {
                 temp = gamesByDeveloper;
                 gamesByDeveloper = new BST<>(temp, developerCMP);
 
-                // gamesByReleaseDate.insert(game, releaseDateCMP);
-                // temp = gamesByReleaseDate;
-                // gamesByReleaseDate = new BST<>(temp, releaseDateCMP);
-
-                // Add gamesByPrice when implemented
+                gamesByPrice.insert(game, priceCMP);
+                temp = gamesByPrice;
+                gamesByPrice = new BST<>(temp, priceCMP);
             }
             scanner.close();
         } catch (FileNotFoundException error) {
@@ -332,26 +329,27 @@ public class Main {
             System.out.println("1. Search for a product.");
             System.out.println("2. List Database of Products.");
 
-            if(!isGuest) {
+            if(!isGuest) { // Only show these options if the user is not a guest
                 System.out.println("3. Place an Order.");
                 System.out.println("4. View Purchases.");
             }
 
             System.out.println("-1. Exit the program.");
 
+            myScanner.nextLine(); // clear the buffer
             choice1 = Integer.parseInt(myScanner.nextLine());
 
             if(choice1 == 1) {
                 SearchForGame(tempCustomer, isGuest);
             }
             else if (choice1 == 2) {
-                System.out.println("What game would you like to search for?");
+                DisplayGameDatabase();
             }
             else if (choice1 == 3) {
                 CustomerPlaceOrder(tempCustomer);
             }
             else if (choice1 == 4) {
-                System.out.println("What game would you like to search for?");
+                System.out.println("Not implemented yet.");
             }
             else if (choice1 == -1) {
                 System.exit(0);
@@ -411,6 +409,43 @@ public class Main {
         else if(choice == -1) {
             System.exit(0);
         }
+    }
+
+    /**
+     * Displays the game database
+     * 
+     * @author Abdullah Mohammad
+     */
+    private static void DisplayGameDatabase() {
+        int choice = 0;
+
+        do {
+            System.out.println("Please select one of the following options by typing in the corresponding number:");
+            System.out.println("1. Display games by title.");
+            System.out.println("2. Display games by developer.");
+            System.out.println("3. Display games by price.");
+            System.out.println("-1. Exit the program.");
+
+            choice = Integer.parseInt(myScanner.nextLine());
+
+            if(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1) {
+                System.out.println("Invalid input. Please try again.");
+            }
+        } while(choice != 1 && choice != 2 && choice != 3 && choice != -1);
+
+        if(choice == 1) {
+            System.out.println(gamesByTitle.inOrderString());
+        }
+        else if(choice == 2) {
+            System.out.println(gamesByDeveloper.inOrderString());
+        }
+        else if(choice == 3) {
+            System.out.println(gamesByPrice.inOrderString());
+        }
+        else if(choice == -1) {
+            System.exit(0);
+        }
+
     }
 
     /**
