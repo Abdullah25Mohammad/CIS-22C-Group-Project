@@ -47,6 +47,15 @@ public class User {
     }
 
     /**
+     * Returns the full name of the user.
+     *
+     * @return the full name of the user
+     */
+    public String getName() {
+        return firstName + " " + lastName;
+    }
+
+    /**
      * Returns the username of the user.
      *
      * @return the username of the user
