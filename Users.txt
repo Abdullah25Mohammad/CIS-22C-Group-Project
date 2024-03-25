@@ -14,8 +14,8 @@ J@cobJac0b
 manager
 
 Chahid Bagdouri
-peregrinef
-iLoveDataStructures
+ChahidB
+password123
 customer
 
 Michael Chen
