@@ -1,108 +1,144 @@
-The Oregon Trail 
-Minnesota Educational Computing Consortium
+The Witcher 3: Wild Hunt
+CD Projekt Red
 1
-Strategy
-12/3/1971
-[description goes here]
-$0.50
+Action RPG
+05/19/2015
+Embark on a dark fantasy adventure as Geralt of Rivia a monster hunter for hire in a vast open world full of rich storytelling and immersive gameplay.
+$29.99
 50
 
-Pac-Man
-Namco
+Red Dead Redemption 2
+Rockstar Games
 2
-Maze
-5/22/1980
-[description goes here]
-$2.00
-90
+Action-Adventure
+10/26/2018
+Explore the Wild West as outlaw Arthur Morgan in this critically acclaimed open-world epic from Rockstar Games.
+$59.99
+25
 
-Donkey Kong
-Nintendo
+Fortnite
+Epic Games
 3
-Platform
-7/9/1981
-[description goes here]
-$2.00
-75
-
-The Legend of Zelda
-Nintendo
-4
-Action-adventure
-2/21/1986
-[description goes here]
-$20.00
-65
-
-Mega Man 2
-Capcom
-4
-Platform
-12/24/1988
-[description goes here]
-$15.00
-35
-
-Super Mario World
-Nintendo
-5
-Platform
-11/21/1990
-[description goes here]
-$25.00
-60
-
-Sonic the Hedgehog 2
-Sega
-6
-Platform
-11/21/1992
-[description goes here]
-$15.00
-80
-
-NBA Jam
-Midway
-7
-Sports
-3/4/1994
-[description goes here]
-$15.00
+Battle Royale
+07/25/2017
+Join millions worldwide in a battle to be the last one standing in this free-to-play multiplayer sensation.
+$0.00
 40
 
-Pokémon Red and Blue
-Nintendo
-8
-Role-playing
-10/28/1998
-[description goes here]
-$25.00
-30
-
-Half-Life 2
-Valve
-9
-First-person shooter
-11/16/2004
-[description goes here]
-$40.00
-80
-
-Halo 3
-Microsoft Game Studios
-10
-First-person shooter
-11/26/2007
-[description goes here]
-$40.00
-75
-
 Minecraft
-Mojang
-11
+Mojang Studios
+4
 Sandbox
 11/18/2011
-[description goes here]
-$20.00
-120
+Create explore and survive in a blocky world filled with endless possibilities and creative freedom.
+$26.95
+30
+
+Overwatch
+Blizzard Entertainment
+5
+Hero Shooter
+05/24/2016
+Team up and compete in fast-paced team-based battles with a diverse cast of heroes in this popular multiplayer game.
+$39.99
+40
+
+Grand Theft Auto V
+Rockstar Games
+6
+Action-Adventure
+09/17/2013
+Experience the crime-filled streets of Los Santos in this open-world masterpiece with a gripping story and dynamic multiplayer.
+$29.99
+50
+
+Cyberpunk 2077
+CD Projekt Red
+7
+Action RPG
+12/10/2020
+Immerse yourself in a dystopian future as V a mercenary navigating the dangerous streets of Night City in search of immortality.
+$49.99
+20
+
+The Legend of Zelda: Breath of the Wild
+Nintendo
+8
+Action-Adventure
+03/03/2017
+Embark on a grand adventure as Link in a vast open world filled with puzzles battles and exploration in this iconic Nintendo title.
+$59.99
+60
+
+Call of Duty: Warzone
+Infinity Ward
+9
+Battle Royale
+03/10/2020
+Drop into a massive combat arena gather weapons and fight to be the last squad standing in this free-to-play battle royale game.
+$0.00
+40
+
+Super Mario Odyssey
+Nintendo
+10
+Platformer
+10/27/2017
+Join Mario on a globe-trotting journey to rescue Princess Peach from Bowser's clutches in this delightful 3D platformer for the Nintendo Switch.
+$59.99
+20
+
+Apex Legends
+Respawn Entertainment
+11
+Battle Royale
+02/04/2019
+Form a squad of legendary characters with unique abilities and compete for fame and fortune in this fast-paced battle royale game.
+$0.00
+40
+
+Assassin's Creed Valhalla
+Ubisoft Montreal
+12
+Action RPG
+11/10/2020
+Forge your Viking legend as Eivor raiding conquering and building alliances in the stunning landscapes of Norway and England.
+$59.99
+60
+
+FIFA 22
+EA Vancouver
+13
+Sports
+10/01/2021
+Experience the thrill of football with realistic gameplay stunning visuals and enhanced career modes in the latest installment of the FIFA series.
+$59.99
+25
+
+Among Us
+Innersloth
+14
+Social Deduction
+06/15/2018
+Work together to complete tasks on a spaceship but beware of impostors among the crew in this popular multiplayer game of deception and strategy.
+$4.99
+50
+
+Hades
+Supergiant Games
+15
+Action RPG
+09/17/2020
+Descend into the underworld as Zagreus battling mythical foes and uncovering secrets in this critically acclaimed roguelike dungeon crawler.
+$24.99
+25
+
+Animal Crossing: New Horizons
+Nintendo
+16
+Life Simulation
+03/20/2020
+Create your dream island paradise interact with adorable anthropomorphic villagers and customize your world in this relaxing life simulation game.
+$59.99
+60
 
