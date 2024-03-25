@@ -11,6 +11,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import javax.naming.directory.SearchResult;
+
 public class Main {
     private static Scanner myScanner = new Scanner(System.in);
 
@@ -46,13 +48,11 @@ public class Main {
         System.out.println("Would you like to login as a Customer or Employee?");
         System.out.println("Type '1' for Customer and '2' for Employee.");
         int choice = Integer.parseInt(myScanner.nextLine());
-        System.out.println(); // newline
 
         while(choice != 1 && choice != 2) {
             System.out.println("Please try again.");
             System.out.println("Type '1' for Customer and '2' for Employee.");
             choice = Integer.parseInt(myScanner.nextLine());
-            System.out.println(); // newline
         }
 
         if(choice == 1) {
@@ -138,11 +138,6 @@ public class Main {
                 String releaseDateString = scanner.nextLine();
                 Date releaseDate = new Date(releaseDateString);
                 String summary = scanner.nextLine();
-                String platformsString = scanner.nextLine();
-                LinkedList<String> platforms = new LinkedList<String>();
-                for (String platform : platformsString.split(", ")) {
-                    platforms.addLast(platform);
-                }
                 String priceString = scanner.nextLine();
                 double price = Double.parseDouble(priceString.substring(1));
                 String stockString = scanner.nextLine();
@@ -157,7 +152,6 @@ public class Main {
                     genre,
                     releaseDate,
                     summary,
-                    platforms,
                     price,
                     stock
                 );
@@ -196,7 +190,6 @@ public class Main {
         System.out.println("2. Login to an existing account.");
         System.out.println("3. Continue as a Guest.");
         int choice = Integer.parseInt(myScanner.nextLine());
-        System.out.println(); // newline
 
         while(choice != 1 && choice != 2 && choice != 3) {
             System.out.println("Please try again.");
@@ -245,7 +238,6 @@ public class Main {
         String username = myScanner.next();
         System.out.print("Please enter a password: ");
         String password = myScanner.next();
-        System.out.println(); // newline
 
         Customer tempCustomer = new Customer(firstName, lastName, username, password);
 
@@ -253,14 +245,12 @@ public class Main {
             System.out.println("The user with the information that you provided already exists.");
             tempCustomer = customerTable.get(tempCustomer);
             System.out.println("Successfully logged in as existing user " + tempCustomer.getFirstName() + " " + tempCustomer.getLastName());
-            System.out.println(); // newline
         }
 
         else {  
             customerTable.add(tempCustomer);
 
             System.out.println("Successfully created account for and logged in as " + tempCustomer.getFirstName() + " " + tempCustomer.getLastName());
-            System.out.println(); // newline
         }
 
         
@@ -293,14 +283,12 @@ public class Main {
         String username = myScanner.next();
         System.out.print("Please enter your password: ");
         String password = myScanner.next();
-        System.out.println(); // newline
 
         Customer tempCustomer = new Customer("", "", username, password);
 
         if((customerTable.find(tempCustomer) != -1)) {
             tempCustomer = customerTable.get(tempCustomer);
             System.out.println("Successfully logged in as " + tempCustomer.getName());
-            System.out.println(); // newline
         }
 
         else {
@@ -309,14 +297,12 @@ public class Main {
             System.out.println("Type '1' to try again or '2' for new account.");
             myScanner.nextLine(); // clear the buffer
             int choice = Integer.parseInt(myScanner.nextLine());
-            System.out.println(); // newline
 
             while(choice != 1 && choice != 2) {
                 System.out.println("Please try again.");
                 System.out.println("Type '1' to try again or '2' for new account.");
                 myScanner.nextLine(); // clear the buffer
                 choice = Integer.parseInt(myScanner.nextLine());
-                System.out.println(); // newline
             }
 
             if(choice == 1) {
@@ -354,7 +340,6 @@ public class Main {
 
             myScanner.nextLine(); // clear the buffer
             choice1 = Integer.parseInt(myScanner.nextLine());
-            System.out.println(); // newline
 
             if(choice1 == 1) {
                 SearchForGame(tempCustomer, isGuest);
@@ -362,14 +347,17 @@ public class Main {
             else if (choice1 == 2) {
                 DisplayGameDatabase();
             }
-            else if (choice1 == 3) {
+            else if (choice1 == 3 && !isGuest) {
                 CustomerPlaceOrder(tempCustomer);
             }
-            else if (choice1 == 4) {
-                System.out.println("Not implemented yet.");
+            else if (choice1 == 4 && !isGuest) {
+                ViewPurchases(tempCustomer);
             }
             else if (choice1 == -1) {
                 System.exit(0);
+            }
+            else {
+                System.out.println("Invalid input. Please try again.");
             }
         } while(choice1 != 1 && choice1 != 2 && choice1 != 3 && choice1 != 4 && choice1 != -1);
     }
@@ -390,11 +378,10 @@ public class Main {
             System.out.println("Please select one of the following options by typing in the corresponding number:");
             System.out.println("1. Search by game title.");
             System.out.println("2. Search by game developer name.");
-            System.out.println("3. Go back to menu options.");
+            System.out.println("3. Go back to main menu.");
             System.out.println("-1. Exit the program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
-            System.out.println(); // newline
 
             if(choice != 1 && choice != 2 && choice != 3 && choice != -1) {
                 System.out.println("Invalid input. Please try again.");
@@ -402,10 +389,10 @@ public class Main {
         } while(choice != 1 && choice != 2 && choice != 3 && choice != -1);
 
         if((choice == 1) || (choice == 2)) {
-            System.out.println("Please enter the name of the game/developer you would like to search for:");
+            System.out.print("Please enter the name of the game you would like to search for:");
             String search = myScanner.nextLine();
-            System.out.println(); // newline
-
+            System.out.println();
+            
             LinkedList<Game> searchResults = new LinkedList<Game>();
 
             if(choice == 1) {
@@ -464,7 +451,6 @@ public class Main {
             System.out.println("-1. Exit the program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
-            System.out.println(); // newline
 
             if(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1) {
                 System.out.println("Invalid input. Please try again.");
@@ -495,7 +481,6 @@ public class Main {
     private static void CustomerPlaceOrder(Customer tempCustomer) {
         System.out.println("What would you like to order?: ");
         String gameTitle = myScanner.nextLine();
-        System.out.println(); // newline
         System.out.println(gamesByTitle.search(new Game(gameTitle, ""), titleCMP));
 
         int choice = -1;
@@ -505,6 +490,8 @@ public class Main {
             System.out.println("1. Overnight Shipping.");
             System.out.println("2. Rush Shipping.");
             System.out.println("3. Standard Shipping.");
+            System.out.println("4. Cancel order and go back to main menu.");
+            System.out.println("-1. Exit the program.");
 
             if(choice == 1) {
                 // TODO: Implement
@@ -515,6 +502,12 @@ public class Main {
             else if (choice == 3) {
                 // TODO: Implement
             }
+            else if(choice == 4) {
+                CustomerOptions(tempCustomer, false);
+            }
+            else if(choice == -1) {
+                System.exit(0);
+            }
             else {
                 System.out.println("Invalid input. Please try again.");
             }
@@ -522,6 +515,49 @@ public class Main {
     }
 
 
+<<<<<<< HEAD
+    /**
+     * Displays the game database
+     * 
+     * @author Abdullah Mohammad
+     */
+    private static void ViewPurchases(Customer tempCustomer) {
+        int choice = 0;
+
+        do {
+            System.out.println("Please select one of the following options by typing in the corresponding number:");
+            System.out.println("1. View shipped orders.");
+            System.out.println("2. View unshipped orders.");
+            System.out.println("3. Go back to main menu.");
+            System.out.println("-1. Exit the program.");
+
+            choice = Integer.parseInt(myScanner.nextLine());
+
+            if(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1) {
+                System.out.println("Invalid input. Please try again.");
+            }
+        } while(choice != -1);
+        // } while(choice != 1 && choice != 2 && choice != 3 && choice != -1);
+        
+        if(choice == 1) {
+            System.out.println(tempCustomer.getShippedOrders());
+        }
+        else if(choice == 2) {
+            System.out.println(tempCustomer.getUnshippedOrders());
+        }
+        else if(choice == 3) {
+            CustomerOptions(tempCustomer, false);
+        }
+        else if(choice == -1) {
+            System.exit(0);
+        }
+
+    }
+
+
+
+=======
+>>>>>>> parent of c6b1782 (Switch order of DisplayGameDatabase() and SearchForGame())
     /**
      * Logs in as an Employee
      * 
@@ -534,10 +570,8 @@ public class Main {
         while(!isEmployee) {
             System.out.println("Please enter your username:");
             String username = myScanner.nextLine();
-            System.out.println(); // newline
             System.out.println("Please enter your password:");
             String password = myScanner.nextLine();
-            System.out.println(); // newline
 
             tempEmployee = new Employee("", "", username, password, false);
             isEmployee = (employeeTable.find(tempEmployee) != -1);
@@ -545,7 +579,6 @@ public class Main {
             if(isEmployee) {
                 tempEmployee = employeeTable.get(tempEmployee);
                 System.out.println("Successfully logged in as " + tempEmployee.getFirstName() + " " + tempEmployee.getLastName());
-                System.out.println(); // newline
             }
             else {
                 System.out.println("Login failed. Please try again.");
@@ -573,7 +606,6 @@ public class Main {
             System.out.println("-1. Exit the program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
-            System.out.println(); // newline
 
             if(choice == 1) {
                 // TODO: Implement
