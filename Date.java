@@ -23,6 +23,13 @@ public class Date {
         this.year = year;
     }
 
+    public Date(String date) {
+        String[] dateParts = date.split("/");
+        this.month = Integer.parseInt(dateParts[0]);
+        this.day = Integer.parseInt(dateParts[1]);
+        this.year = Integer.parseInt(dateParts[2]);
+    }
+
     // public Comparator<Date> getDateComparator()
     // {
     //     return dateComparator;
