@@ -8,7 +8,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.io.IOError;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -21,12 +20,20 @@ public class Main {
 
     // BSTs
     private static BST<Game> gamesByTitle = new BST<Game>();
-    private static BST<Game> gamesByReleaseDate = new BST<Game>();
+    private static BST<Game> gamesByDeveloper = new BST<Game>();
+    // private static BST<Game> gamesByReleaseDate = new BST<Game>();
     // private static BST<Game> gamesByPrice = new BST<Game>(); // UNCOMMENT WHEN IMPLEMENTED
     private static TitleComparator titleCMP = new TitleComparator();
-    private static ReleaseDateComparator releaseDateCMP = new ReleaseDateComparator();
+    private static DeveloperComparator developerCMP = new DeveloperComparator();
+    // private static ReleaseDateComparator releaseDateCMP = new ReleaseDateComparator();
     // PriceComparator priceCMP = new PriceComparator(); // UNCOMMENT WHEN IMPLEMENTED
 
+    /**
+     * main method
+     * 
+     * @author Abdullah Mohammad
+     * @author Chahid Bagdouri
+     */
     public static void main(String[] args) {
         createLoginTables();
         createDatabase();
@@ -38,40 +45,29 @@ public class Main {
 
         System.out.println("Welcome to the Video Games Store!");
         System.out.println("Would you like to login as a Customer or Employee?");
+        System.out.println("Type '1' for Customer and '2' for Employee.");
+        int choice = Integer.parseInt(myScanner.nextLine());
 
-        int choice = -1;
         while(choice != 1 && choice != 2) {
+            System.out.println("Please try again.");
             System.out.println("Type '1' for Customer and '2' for Employee.");
             choice = Integer.parseInt(myScanner.nextLine());
-            if(choice == 1) {
-                Customer tempCustomer = loginAsCustomer();
-                customerTable.add(tempCustomer);
-                try {
-                    FileWriter myWriter = new FileWriter("Users.txt", true);
-                    myWriter.append("\n");
-                    myWriter.append(tempCustomer.getName() + "\n");
-                    myWriter.append(tempCustomer.getUsername() + "\n");
-                    myWriter.append(tempCustomer.getPassword() + "\n");
-                    myWriter.append("customer\n");
-
-                    myWriter.close();
-                } catch (IOException e) {
-                    System.out.println("An error occurred.");
-                    e.printStackTrace();
-                }
-                
-                break;
-            }
-            if(choice == 2) {
-                employeeTable.add(loginAsEmployee());
-                break;
-            }        
-            else {
-                System.out.println("Please try again.");
-            }
         }
+
+        if(choice == 1) {
+            Customer tempCustomer = loginAsCustomer();
+            customerTable.add(tempCustomer);
+        }
+        else if (choice == 2) {
+            employeeTable.add(loginAsEmployee());
+        }   
     }
 
+    /**
+     * TODO: Implement
+     * 
+     * @author Abdullah Mohammad
+     */
     public static void createLoginTables() {
         try {
             File file = new File("users.txt");
@@ -123,7 +119,12 @@ public class Main {
             error.printStackTrace();
         }
     }
-   
+    
+    /**
+     * TODO: Implement
+     * 
+     * @author Abdullah Mohammad
+     */
     public static void createDatabase() {
         try {
             File file = new File("database.txt");
@@ -161,9 +162,13 @@ public class Main {
                 temp = gamesByTitle;
                 gamesByTitle = new BST<>(temp, titleCMP);
 
-                gamesByReleaseDate.insert(game, releaseDateCMP);
-                temp = gamesByReleaseDate;
-                gamesByReleaseDate = new BST<>(temp, releaseDateCMP);
+                gamesByDeveloper.insert(game, developerCMP);
+                temp = gamesByDeveloper;
+                gamesByDeveloper = new BST<>(temp, developerCMP);
+
+                // gamesByReleaseDate.insert(game, releaseDateCMP);
+                // temp = gamesByReleaseDate;
+                // gamesByReleaseDate = new BST<>(temp, releaseDateCMP);
 
                 // Add gamesByPrice when implemented
             }
@@ -174,31 +179,58 @@ public class Main {
         }
     }
 
+    /**
+     * Logs in as a Customer
+     * 
+     * @author Chahid Bagdouri
+     * @return logged in Customer object
+     */
     public static Customer loginAsCustomer() {
-        System.out.println("Would you like to make a new account or login to an existing one?");
-        System.out.println("Type '1' for new account and '2' for existing account.");
+        System.out.println("Please select one of the following options by typing in the corresponding number:");
+        System.out.println("1. Make a new account");
+        System.out.println("2. Login to an existing account.");
+        System.out.println("3. Continue as a Guest.");
         int choice = Integer.parseInt(myScanner.nextLine());
 
-        while(choice != 1 && choice != 2) {
+        while(choice != 1 && choice != 2 && choice != 3) {
             System.out.println("Please try again.");
-            System.out.println("Type '1' for new account and '2' for existing account.");
+            System.out.println("Please select one of the following options by typing in the corresponding number:");
+            System.out.println("1. Make a new account");
+            System.out.println("2. Login to an existing account.");
+            System.out.println("3. Continue as a Guest.");
             choice = Integer.parseInt(myScanner.nextLine());
         }
 
         Customer tempCustomer = null;
         
-        if(choice == 1) {
+        if (choice == 1) {
             tempCustomer = loginAsNewCustomer();
+            CustomerOptions(tempCustomer, false);
         }
         
-        else {
+        else if(choice == 2) {
             tempCustomer = loginAsExistingCustomer();
+            CustomerOptions(tempCustomer, false);
+        }
+        
+        else if(choice == 3) {
+            tempCustomer = new Customer();
+            CustomerOptions(tempCustomer, true);
         }
 
         return tempCustomer;
     }
-
-    public static Customer loginAsNewCustomer() {
+    
+    /**
+     * private helper method for loginAsCustomer()
+     * Makes a new Customer account
+     * Logs in as the new Customer
+     * Appends the Customer's information to Users.txt
+     * 
+     * @author Chahid Bagdouri
+     * @return logged in Customer object
+     */
+    private static Customer loginAsNewCustomer() {
         System.out.print("Please enter your first name: ");
         String firstName = myScanner.next();
         System.out.print("Please enter your last name: ");
@@ -222,10 +254,32 @@ public class Main {
             System.out.println("Successfully created account for and logged in as " + tempCustomer.getFirstName() + " " + tempCustomer.getLastName());
         }
 
+        
+        try {
+            FileWriter myWriter = new FileWriter("Users.txt", true);
+            myWriter.append("\n");
+            myWriter.append(tempCustomer.getName() + "\n");
+            myWriter.append(tempCustomer.getUsername() + "\n");
+            myWriter.append(tempCustomer.getPassword() + "\n");
+            myWriter.append("customer\n");
+
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
         return tempCustomer;
     }
     
-    public static Customer loginAsExistingCustomer() {
+    /**
+     * private helper method for loginAsCustomer()
+     * Logs in to Existing Customer Account
+     * 
+     * @author Chahid Bagdouri
+     * @return logged in Customer object
+     */
+    private static Customer loginAsExistingCustomer() {
         System.out.print("Please enter your username: ");
         String username = myScanner.next();
         System.out.print("Please enter your password: ");
@@ -235,7 +289,7 @@ public class Main {
 
         if((customerTable.find(tempCustomer) != -1)) {
             tempCustomer = customerTable.get(tempCustomer);
-            System.out.println("Successfully logged in as " + tempCustomer.getFirstName() + " " + tempCustomer.getLastName());
+            System.out.println("Successfully logged in as " + tempCustomer.getName());
         }
 
         else {
@@ -262,24 +316,202 @@ public class Main {
 
         return tempCustomer;
     }
-    
+
+    /**
+     * Displays options to the Customer
+     * 
+     * @author Chahid Bagdouri
+     * @param tempCustomer
+     * @param isGuest
+     */
+    public static void CustomerOptions(Customer tempCustomer, boolean isGuest) {
+        int choice1 = 0;
+
+        do {
+            System.out.println("Please select one of the following options by typing in the corresponding number:");
+            System.out.println("1. Search for a product.");
+            System.out.println("2. List Database of Products.");
+
+            if(!isGuest) {
+                System.out.println("3. Place an Order.");
+                System.out.println("4. View Purchases.");
+            }
+
+            System.out.println("-1. Exit the program.");
+
+            choice1 = Integer.parseInt(myScanner.nextLine());
+
+            if(choice1 == 1) {
+                SearchForGame(tempCustomer, isGuest);
+            }
+            else if (choice1 == 2) {
+                System.out.println("What game would you like to search for?");
+            }
+            else if (choice1 == 3) {
+                CustomerPlaceOrder(tempCustomer);
+            }
+            else if (choice1 == 4) {
+                System.out.println("What game would you like to search for?");
+            }
+            else if (choice1 == -1) {
+                System.exit(0);
+            }
+        } while(choice1 != 1 && choice1 != 2 && choice1 != 3 && choice1 != 4 && choice1 != -1);
+    }
+
+    /**
+     * Asks the user what game/developer to search for, and then performs the search
+     * 
+     * @author Chahid Bagdouri
+     * @param tempCustomer
+     * @param isGuest
+     */
+    private static void SearchForGame(Customer tempCustomer, boolean isGuest) {
+        int choice = 0;
+
+        System.out.println("How would you like to search for a game?");
+
+        do {
+            System.out.println("Please select one of the following options by typing in the corresponding number:");
+            System.out.println("1. Search by game title.");
+            System.out.println("2. Search by game developer name.");
+            System.out.println("3. Go back to menu options.");
+            System.out.println("-1. Exit the program.");
+
+            choice = Integer.parseInt(myScanner.nextLine());
+
+            if(choice != 1 && choice != 2 && choice != 3 && choice != -1) {
+                System.out.println("Invalid input. Please try again.");
+            }
+        } while(choice != 1 && choice != 2 && choice != 3 && choice != -1);
+
+        if(choice == 1) {
+            System.out.print("What game would you like to search for?: ");
+            String gameTitle = myScanner.nextLine();
+            System.out.println();
+
+            Game tempGame = gamesByTitle.search(new Game(gameTitle, ""), titleCMP);
+            if(tempGame != null) {
+                System.out.println(tempGame);
+            }
+            else {
+                System.out.println("The game " + gameTitle + " was not found. Please try again.");
+            }
+        }
+
+        else if(choice == 2) {
+            System.out.print("What developer would you like to search for?: ");
+            String developerName = myScanner.nextLine();
+            System.out.println();
+            System.out.println(gamesByDeveloper.search(new Game("", developerName), developerCMP));
+        }
+        else if(choice == 3) {
+            CustomerOptions(tempCustomer, isGuest);
+        }
+        else if(choice == -1) {
+            System.exit(0);
+        }
+    }
+
+    /**
+     * Asks the user what game to order, and then orders it for the user
+     * 
+     * @author Chahid Bagdouri
+     * @param tempCustomer
+     */
+    private static void CustomerPlaceOrder(Customer tempCustomer) {
+        System.out.println("What would you like to order?: ");
+        String gameTitle = myScanner.nextLine();
+        System.out.println(gamesByTitle.search(new Game(gameTitle, ""), titleCMP));
+
+        int choice = -1;
+        while(choice != 1 && choice != 2) {
+            System.out.println("What type of shipping would you like?");
+            System.out.println("Please select one of the following options by typing in the corresponding number:");
+            System.out.println("1. Overnight Shipping.");
+            System.out.println("2. Rush Shipping.");
+            System.out.println("3. Standard Shipping.");
+
+            if(choice == 1) {
+                // TODO: Implement
+            }
+            else if (choice == 2) {
+                // TODO: Implement
+            }
+            else if (choice == 3) {
+                // TODO: Implement
+            }
+            else {
+                System.out.println("Invalid input. Please try again.");
+            }
+        }
+    }
+
+
+    /**
+     * Logs in as an Employee
+     * 
+     * @author Chahid Bagdouri
+     * @return logged in Employee object
+     */
     public static Employee loginAsEmployee() {
-        System.out.println("Please enter your username:");
-        String username = myScanner.nextLine();
-        System.out.println("Please enter your password:");
-        String password = myScanner.nextLine();
+        boolean isEmployee = false;
+        Employee tempEmployee = null;
+        while(!isEmployee) {
+            System.out.println("Please enter your username:");
+            String username = myScanner.nextLine();
+            System.out.println("Please enter your password:");
+            String password = myScanner.nextLine();
 
-
-        Employee tempEmployee = new Employee("", "", username, password, false);
-        boolean isEmployee = (employeeTable.find(tempEmployee) != -1);
-        if(isEmployee) {
-            tempEmployee = employeeTable.get(tempEmployee);
-            System.out.println("Successfully logged in as " + tempEmployee.getFirstName() + " " + tempEmployee.getLastName());
+            tempEmployee = new Employee("", "", username, password, false);
+            isEmployee = (employeeTable.find(tempEmployee) != -1);
+            
+            if(isEmployee) {
+                tempEmployee = employeeTable.get(tempEmployee);
+                System.out.println("Successfully logged in as " + tempEmployee.getFirstName() + " " + tempEmployee.getLastName());
+            }
+            else {
+                System.out.println("Login failed. Please try again.");
+            }
         }
-        else {
-            System.out.println("Login failed.");
-        }
-
         return tempEmployee;
+    }
+
+    /**
+     * Displays options to the Employee
+     * 
+     * @author Chahid Bagdouri
+     * @author Michael Chen
+     * @param tempEmployee
+     */
+    public static void EmployeeOptions(Employee tempEmployee) {
+        int choice = 0;
+
+        do {
+            System.out.println("Please select one of the following options by typing in the corresponding number:");
+            System.out.println("1. Search for a product.");
+            System.out.println("2. List Database of Products.");
+            System.out.println("3. Place an Order.");
+            System.out.println("4. View Purchases.");
+            System.out.println("-1. Exit the program.");
+
+            choice = Integer.parseInt(myScanner.nextLine());
+
+            if(choice == 1) {
+                // TODO: Implement
+            }
+            else if (choice == 2) {
+                // TODO: Implement
+            }
+            else if (choice == 3) {
+                // TODO: Implement
+            }
+            else if (choice == 4) {
+                // TODO: Implement
+            }
+            else if (choice == -1) {
+                System.exit(0);
+            }
+        } while(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1);
     }
 }
