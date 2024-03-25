@@ -284,16 +284,10 @@ public class HashTable<T> {
             if (!bucket.isEmpty()) {
                 bucket.positionIterator();
                 while (!bucket.offEnd()) {
-                    sb.append(bucket.getIterator().toString()).append(" ");
+                    sb.append(bucket.getIterator().toString()).append("\n");
                     bucket.advanceIterator();
                 }
-                sb.append("\n");
             }
-        }
-        if (sb.length() == 0) {
-            sb.append("\n");
-        } else {
-            sb.append("\n");
         }
         return sb.toString();
     }
