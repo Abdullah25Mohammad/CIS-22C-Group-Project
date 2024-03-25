@@ -11,7 +11,7 @@ public class Game {
 	private String id;
 	private String genre;
 	private Date releaseDate;
-	private String description;
+	private String summary;
     private double price;
 	private int stock;
 
@@ -28,7 +28,7 @@ public class Game {
         this.id = "000000";
         this.genre = "None";
         this.releaseDate = new Date(0, 0, 0);
-        this.description = "None";
+        this.summary = "None";
         this.price = 0.0;
         this.stock = 0;
     }
@@ -43,16 +43,16 @@ public class Game {
      * @param releaseDate
      * @param price
      * @param stock
-     * @param description
+     * @param summary
      * @postcondition a new Game object is created with the given values
      */
-    public Game(String title, String developer, String id, String genre, Date releaseDate, String description, double price, int stock){
+    public Game(String title, String developer, String id, String genre, Date releaseDate, String summary, double price, int stock){
         this.title = title;
         this.developer = developer;
         this.id = id;
         this.genre = genre;
         this.releaseDate = releaseDate;
-        this.description = description;
+        this.summary = summary;
         this.price = price;
         this.stock = stock;
     }
@@ -105,12 +105,12 @@ public class Game {
     }
 
     /**
-     * Accessor for description
+     * Accessor for summary
      * 
-     * @return the description of the game
+     * @return the summary of the game
      */
-    public String getDescription() {
-        return description;
+    public String getSummary() {
+        return summary;
     }
 
     /**
@@ -188,13 +188,13 @@ public class Game {
     }
 
     /**
-     * Mutator for description
+     * Mutator for summary
      * 
-     * @param description
-     * @postcondition the description of the game is set to the given value
+     * @param summary
+     * @postcondition the summary of the game is set to the given value
      */
-    public void setDescription(String description) {
-        this.description = description;
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
     /**
@@ -231,7 +231,7 @@ public class Game {
             "ID: " + id + "\n" +
             "Genre: " + genre + "\n" +
             "Release Date: " + releaseDate.toString() + "\n" +
-            "Description: " + description + "\n"
+            "Summary: " + summary + "\n"
         );
     }
 
@@ -255,7 +255,7 @@ public class Game {
                 id.equals(g.getId()) &&
                 genre.equals(g.getGenre()) &&
                 releaseDate.equals(g.getReleaseDate()) &&
-                description.equals(g.getDescription()) &&
+                summary.equals(g.getSummary()) &&
                 price == g.getPrice() &&
                 stock == g.getStock()
             );
@@ -324,6 +324,6 @@ class ReleaseDateComparator implements Comparator<Game> {
  * 
  * - DeveloperComparator
  * - GenreComparator
- * - DescriptionComparator
+ * - SummaryComparator
  * - IDComparator 
  */
