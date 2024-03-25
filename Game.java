@@ -37,11 +37,11 @@ public class Game {
      * Constructor for Game
      * 
      * @param title
-     * @postcondition a new Game object is created with the parameter title
+     * @postcondition a new Game object is created with the parameter title and developer
      */
-    public Game(String title) {
+    public Game(String title, String developer) {
         this.title = title;
-        this.developer = "Unknown";
+        this.developer = developer;
         this.id = "000000";
         this.genre = "None";
         this.releaseDate = new Date(0, 0, 0);
@@ -290,7 +290,7 @@ class TitleComparator implements Comparator<Game> {
      */
     @Override
     public int compare(Game g1, Game g2) {
-        return g1.getTitle().compareTo(g2.getTitle());
+        return (g1.getTitle().toLowerCase()).compareTo(g2.getTitle().toLowerCase());
     }
 } // end class TitleComparator
 
@@ -322,6 +322,20 @@ class StockComparator implements Comparator<Game> {
     }
 } // end class StockComparator
 
+class DeveloperComparator implements Comparator<Game> {
+    /**
+     * Compares two Game objects by developer
+     * 
+     * @param g1
+     * @param g2
+     * @return the comparison
+     */
+    @Override
+    public int compare(Game g1, Game g2) {
+        return (g1.getDeveloper().toLowerCase()).compareTo(g2.getDeveloper().toLowerCase());
+    }
+} // end class ReleaseDateComparator
+
 class ReleaseDateComparator implements Comparator<Game> {
     /**
      * Compares two Game objects by release date
@@ -336,10 +350,10 @@ class ReleaseDateComparator implements Comparator<Game> {
     }
 } // end class ReleaseDateComparator
 
+
 /*
  * Possible additional comparators:
  * 
- * - DeveloperComparator
  * - GenreComparator
  * - SummaryComparator
  * - IDComparator 
