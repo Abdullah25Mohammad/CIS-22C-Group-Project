@@ -12,8 +12,18 @@ import java.util.Scanner;
 public class Main {
     private static HashTable<Customer> customerTable = new HashTable<Customer>(10);
     private static HashTable<Employee> employeeTable = new HashTable<Employee>(10);
+
+    // BSTs
+    private static BST<Game> gamesByTitle = new BST<Game>();
+    private static BST<Game> gamesByReleaseDate = new BST<Game>();
+    // private static BST<Game> gamesByPrice = new BST<Game>(); // UNCOMMENT WHEN IMPLEMENTED
+    private static TitleComparator titleCMP = new TitleComparator();
+    private static ReleaseDateComparator releaseDateCMP = new ReleaseDateComparator();
+    // PriceComparator priceCMP = new PriceComparator(); // UNCOMMENT WHEN IMPLEMENTED
+
     public static void main(String[] args) {
         createLoginTables();
+        createDatabase();
 
         // System.out.println("Customer Table:");
         // System.err.println(customerTable.toString());
@@ -75,7 +85,56 @@ public class Main {
             error.printStackTrace();
         }
     }
-   
+
+    public static void createDatabase() {
+        try {
+            File file = new File("database.txt");
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String title = scanner.nextLine();
+                String developer = scanner.nextLine();
+                String id = scanner.nextLine();
+                String genre = scanner.nextLine();
+                String releaseDateString = scanner.nextLine();
+                Date releaseDate = new Date(releaseDateString);
+                String summary = scanner.nextLine();
+                String priceString = scanner.nextLine();
+                double price = Double.parseDouble(priceString.substring(1));
+                String stockString = scanner.nextLine();
+                int stock = Integer.parseInt(stockString);
+
+                scanner.nextLine(); // skip a line
+
+                Game game = new Game(
+                    title,
+                    developer,
+                    id,
+                    genre,
+                    releaseDate,
+                    summary,
+                    price,
+                    stock
+                );
+
+                // Insert and Reorder BSTs
+                BST<Game> temp;
+
+                gamesByTitle.insert(game, titleCMP);
+                temp = gamesByTitle;
+                gamesByTitle = new BST<>(temp, titleCMP);
+
+                gamesByReleaseDate.insert(game, releaseDateCMP);
+                temp = gamesByReleaseDate;
+                gamesByReleaseDate = new BST<>(temp, releaseDateCMP);
+
+                // Add gamesByPrice when implemented
+            }
+            scanner.close();
+        } catch (FileNotFoundException error) {
+            System.out.println("An error occurred.");
+            error.printStackTrace();
+        }
+    }
 
     public static void login() {
         Scanner myScanner = new Scanner(System.in);
