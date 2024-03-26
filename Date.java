@@ -1,3 +1,5 @@
+import java.util.Comparator;
+
 /**
  * Date class
  * Represents a date with a month, day, and year
@@ -62,18 +64,48 @@ public class Date {
         }
     }
 
-    // TODO: add addDay() method
+    public Date addDays(int days) {
+        int newYear = year;
+        int newMonth = month;
+        int newDay = day + days;
+
+        while (newDay > daysInMonth(newMonth, newYear)) {
+            newDay -= daysInMonth(newMonth, newYear);
+            newMonth++;
+            if (newMonth > 12) {
+                newMonth = 1;
+                newYear++;
+            }
+        }
+
+        return new Date(newMonth, newDay, newYear);
+    }
+
+    private int daysInMonth(int month, int year) {
+        switch (month) {
+            case 2:
+                return 29;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                return 30;
+            default:
+                return 31;
+        }
+    }
+
+
 } // end of Date class
 
-// class dateComparator implements Comparator<Date> {
-//     @Override
-//     public int compare(Date d1, Date d2) {
-//         if (d1.year != d2.year) {
-//             return Integer.compare(d1.year, d2.year);
-//         } else if (d1.month != d2.month) {
-//             return Integer.compare(d1.month, d2.month);
-//         } else {
-//             return Integer.compare(d1.day, d2.day);
-//         }
-//     }
-// } // end of dateComparator class
+ class DateComparator implements Comparator<Date> {
+     public int compare(Date d1, Date d2) {
+         if (d1.year != d2.year) {
+             return Integer.compare(d1.year, d2.year);
+         } else if (d1.month != d2.month) {
+             return Integer.compare(d1.month, d2.month);
+         } else {
+             return Integer.compare(d1.day, d2.day);
+         }
+     }
+ } // end of dateComparator class

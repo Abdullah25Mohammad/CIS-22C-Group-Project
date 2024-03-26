@@ -15,29 +15,25 @@ public class Order {
     private int shippingSpeed;
     private Date priority;
 
-    static private int tempOrderID = 0;
+    static private int nextOrderID = 1;
 
 
     /**
      * Constructor for the Order class
-     * 
-     * @param orderID
+     *
      * @param customer
      * @param datePlaced
      * @param orderContents
      * @param shippingSpeed
-     * @param priority
      * @postcondition a new Order object is created with the given values
      */
-    public Order(Customer customer, Date datePlaced, LinkedList<Game> orderContents, int shippingSpeed, int priority) {
-        this.orderID = tempOrderID++;
+    public Order(Customer customer, Date datePlaced, LinkedList<Game> orderContents, int shippingSpeed) {
+        this.orderID = nextOrderID++;
         this.customer = customer;
         this.datePlaced = datePlaced;
         this.orderContents = orderContents;
         this.shippingSpeed = shippingSpeed;
-
-        // TODO: datePlaced + shippingSpeed
-        this.priority = datePlaced;
+        this.priority = datePlaced.addDays(shippingSpeed);
     }
 
     /**** ACCESSORS ****/
@@ -92,7 +88,7 @@ public class Order {
      *
      * @return the priority of the order
      */
-    public int getPriority() {
+    public Date getPriority() {
         return priority;
     }
 
@@ -149,22 +145,12 @@ public class Order {
         this.shippingSpeed = shippingSpeed;
     }
 
-    /**
-     * Sets the priority of the order.
-     *
-     * @param priority the priority of the order
-     * @postcondition the priority of the order is set
-     */
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
-
 } // end of Order class
 
-class priorityComparator implements Comparator<Order> {
+class PriorityComparator implements Comparator<Order> {
     @Override
     public int compare(Order o1, Order o2) {
-        return Integer.compare(o1.getPriority(), o2.getPriority());
+        return new DateComparator().compare(o1.getPriority(), o2.getPriority());
     }
 } // end of OrderComparator class
 
