@@ -360,7 +360,7 @@ class DeveloperComparator implements Comparator<Game> {
     public int compare(Game g1, Game g2) {
         return (g1.getDeveloper().toLowerCase()).compareTo(g2.getDeveloper().toLowerCase());
     }
-} // end class ReleaseDateComparator
+} // end class DeveloperComparator
 
 class ReleaseDateComparator implements Comparator<Game> {
     /**
