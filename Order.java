@@ -36,6 +36,33 @@ public class Order {
         this.priority = datePlaced.addDays(shippingSpeed);
     }
 
+    /**
+     * Constructor for the Order class
+     *
+     * @param customer
+     * @param datePlaced
+     * @param orderContents
+     * @param shippingSpeed
+     * @postcondition a new Order object is created with the given values
+     */
+    public Order(int OrderID, Customer customer, Date datePlaced, LinkedList<Game> orderContents, int shippingSpeed) {
+        this.orderID = OrderID;
+        this.customer = customer;
+        this.datePlaced = datePlaced;
+        this.orderContents = orderContents;
+        this.shippingSpeed = shippingSpeed;
+        this.priority = datePlaced.addDays(shippingSpeed);
+        nextOrderID = Math.max(nextOrderID, OrderID + 1);
+    }
+
+    public Order(int orderID)
+    {
+        this.orderID = orderID;
+    }
+
+
+
+
     /**** ACCESSORS ****/
 
     /**
@@ -145,12 +172,47 @@ public class Order {
         this.shippingSpeed = shippingSpeed;
     }
 
+    /**
+     * Sets the next Order ID of Orders
+     *
+     * @param nextOrderID the nextOrderIDof the order
+     * @postcondition the orderID is set
+     */
+    public static void setNextOrderID(int nextOrderID) {
+        Order.nextOrderID = nextOrderID;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderID=" + orderID + "\n"+
+                "customer=" + customer.getName() + "\n"+
+                "datePlaced=" + datePlaced + "\n"+
+                "orderContents=" + orderContents + "\n"+
+                "shippingSpeed=" + shippingSpeed + "\n"+
+                "priority=" + priority;
+    }
+
+
 } // end of Order class
 
 class PriorityComparator implements Comparator<Order> {
     @Override
     public int compare(Order o1, Order o2) {
         return new DateComparator().compare(o1.getPriority(), o2.getPriority());
+    }
+} // end of OrderComparator class
+
+class IDComparator implements Comparator<Order> {
+    @Override
+    public int compare(Order o1, Order o2) {
+        return Integer.compare(o1.getOrderID(), o2.getOrderID());
+    }
+} // end of OrderComparator class
+
+class NameComparator implements Comparator<Order> {
+    @Override
+    public int compare(Order o1, Order o2) {
+        return o1.getCustomer().getName().compareTo(o2.getCustomer().getName());
     }
 } // end of OrderComparator class
 
