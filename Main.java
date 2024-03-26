@@ -44,6 +44,7 @@ public class Main {
     public static void main(String[] args) {
         createLoginTables();
         createDatabase();
+        createOrders();
 
         // System.out.println("Customer Table:");
         // System.err.println(customerTable.toString());
@@ -205,7 +206,9 @@ public class Main {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 int orderID = Integer.parseInt(scanner.nextLine());
-                Customer cus = customerTable.get(new Customer("", "", scanner.nextLine(), scanner.nextLine()));
+                String username = scanner.nextLine();
+                String password = scanner.nextLine();
+                Customer cus = customerTable.get(new Customer("", "", username, password));
                 int numProducts = Integer.parseInt(scanner.nextLine());
                 LinkedList<Game> products = new LinkedList<>();
                 for(int i = 0; i < numProducts; i++)
@@ -226,7 +229,7 @@ public class Main {
             }
             scanner.close();
         } catch (FileNotFoundException error) {
-            System.out.println("An error occurred.");
+            System.out.println("An error occurred. in createOrders");
             error.printStackTrace();
         }
     }
@@ -670,8 +673,8 @@ public class Main {
             System.out.println("Please select one of the following options by typing in the corresponding number:");
             System.out.println("1. Search for a Order.");
             System.out.println("2. View Order with Highest Priority");
-            System.out.println("3. Place an Order.");
-            System.out.println("4. View Purchases.");
+            System.out.println("3. View all Orders");
+            System.out.println("4. Ship a order.");
             System.out.println("-1. Exit the program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
@@ -687,10 +690,7 @@ public class Main {
                 choice = viewOrder(true);
             }
             else if (choice == 4) {
-//- Ship an Order (Remove from Heap.
-// Insert Order to shipped Linked List for the Customer +
-// Remove from Unshipped List)
-                // TODO: Implement
+                shipOrder();
             }
 
             if (choice == -1) {
@@ -712,7 +712,7 @@ public class Main {
         System.out.println("How would you like to search for a order?");
 
         do {
-            System.out.println("Please select one of the following options by typing in the corresponding number:");
+            System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
             System.out.println("1. Search by Order ID.");
             System.out.println("2. Search by customer first and last name");
             System.out.println("3. Go back to main menu.");
@@ -729,12 +729,13 @@ public class Main {
         if(choice == 1)
         {
             System.out.println("Please enter the Order ID you are looking for: ");
-            Integer ID = Integer.parseInt(myScanner.nextLine());
+            int ID = Integer.parseInt(myScanner.nextLine());
             System.out.println(); // newline
+
 
             Order target = orderByID.search(new Order(ID), new IDComparator());
             if( target != null) {
-                System.out.println(target);
+                System.out.println(target + "\n");
             }
             else {
                 System.out.println("No results found.");
@@ -742,7 +743,7 @@ public class Main {
         }
         if(choice == 2)
         {
-            System.out.println("Please enter the Order ID you are looking for: ");
+            System.out.println("Please enter the Customer you are looking for: ");
             Integer ID = Integer.parseInt(myScanner.nextLine());
             System.out.println(); // newline
 
@@ -829,6 +830,7 @@ public class Main {
         {
             System.out.println(unshippedOrders.getMax());
         }
+        System.out.println();
         return 0;
     }
 
@@ -846,7 +848,9 @@ public class Main {
             shippedOrders.insert(shippedOrder);
 
             Customer customer = shippedOrder.getCustomer();
+            System.out.println(customer.getUnshippedOrders());
             customer.removeUnshippedOrder(shippedOrder);
+
             customer.addShippedOrder(shippedOrder);
 
             shippedOrders.insert(shippedOrder);

@@ -184,13 +184,26 @@ public class Order {
 
     @Override
     public String toString() {
-        return "OrderID=" + orderID + "\n"+
-                "customer=" + customer.getName() + "\n"+
-                "datePlaced=" + datePlaced + "\n"+
-                "orderContents=" + orderContents + "\n"+
-                "shippingSpeed=" + shippingSpeed + "\n"+
-                "priority=" + priority;
+        return "OrderID = " + orderID + "\n"+
+                "customer = " + customer.getName() + "\n"+
+                "datePlaced = " + datePlaced + "\n"+
+                "orderContents = " + contentToString() + "\n"+
+                "shippingSpeed = " + shippingSpeed + "\n"+
+                "priority = " + priority;
     }
+
+    public String contentToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        orderContents.positionIterator();
+        while(!orderContents.offEnd()) {
+            sb.append(orderContents.getIterator().getTitle() + ", ");
+            orderContents.advanceIterator();
+        }
+        return sb.toString().substring(0, sb.length() - 2);
+    }
+
+
 
 
 } // end of Order class
