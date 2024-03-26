@@ -66,7 +66,7 @@ public class Main {
     }
 
     /**
-     * Reads the users.txt file and creates the Customer and Employee objects
+     * Reads the Users.txt file and creates the Customer and Employee objects
      * 
      * @author Abdullah Mohammad
      */
