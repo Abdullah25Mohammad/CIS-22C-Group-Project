@@ -513,7 +513,7 @@ public class Main {
             System.out.println("-1. Exit the program.");
 
             if(choice == 1) {
-                // TODO: Implement
+                // tempCustomer.addUnshippedOrder(new Order());
             }
             else if (choice == 2) {
                 // TODO: Implement
