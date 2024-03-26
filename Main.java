@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -139,9 +140,9 @@ public class Main {
                 Date releaseDate = new Date(releaseDateString);
                 String summary = scanner.nextLine();
                 String platformsString = scanner.nextLine();
-                LinkedList<String> platforms = new LinkedList<String>();
+                ArrayList<String> platforms = new ArrayList<String>();
                 for (String platform : platformsString.split(", ")) {
-                    platforms.addLast(platform);
+                    platforms.add(platform);
                 }
                 String priceString = scanner.nextLine();
                 double price = Double.parseDouble(priceString.substring(1));

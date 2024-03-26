@@ -3,7 +3,9 @@
  * @author Abdullah Mohammad
  */
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Comparator;
+
 
 public class Game {
 	private String title;
@@ -12,7 +14,7 @@ public class Game {
 	private String genre;
 	private Date releaseDate;
 	private String summary;
-    private LinkedList<String> platforms;
+    private ArrayList<String> platforms;
     private double price;
 	private int stock;
 
@@ -30,7 +32,7 @@ public class Game {
         this.genre = "None";
         this.releaseDate = new Date(0, 0, 0);
         this.summary = "None";
-        this.platforms = new LinkedList<String>();
+        this.platforms = new ArrayList<String>();
         this.price = 0.0;
         this.stock = 0;
     }
@@ -48,7 +50,7 @@ public class Game {
         this.genre = "None";
         this.releaseDate = new Date(0, 0, 0);
         this.summary = "None";
-        this.platforms = new LinkedList<String>();
+        this.platforms = new ArrayList<String>();
         this.price = 0.0;
         this.stock = 0;
     }
@@ -69,7 +71,7 @@ public class Game {
      * @param stock
      * @postcondition a new Game object is created with the given values
      */
-    public Game(String title, String developer, String id, String genre, Date releaseDate, String summary, LinkedList<String> platforms, double price, int stock){
+    public Game(String title, String developer, String id, String genre, Date releaseDate, String summary, ArrayList<String> platforms, double price, int stock){
         this.title = title;
         this.developer = developer;
         this.id = id;
@@ -142,8 +144,20 @@ public class Game {
      * 
      * @return the platforms of the game
      */
-    public LinkedList<String> getPlatforms() {
+    public ArrayList<String> getPlatforms() {
         return platforms;
+    }
+
+    public String getPlatformsString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < platforms.size(); i++) {
+            String platform = platforms.get(i);
+            sb.append(platform);
+            if (i != platforms.size() - 1) {
+                sb.append(", ");
+            }
+        }
+        return sb.toString();
     }
 
     /**
@@ -236,7 +250,7 @@ public class Game {
      * @param platforms
      * @postcondition the platforms of the game are set to the given value
      */
-    public void setPlatforms(LinkedList<String> platforms) {
+    public void setPlatforms(ArrayList<String> platforms) {
         this.platforms = platforms;
     }
 
@@ -274,7 +288,8 @@ public class Game {
             "ID: " + id + "\n" +
             "Genre: " + genre + "\n" +
             "Release Date: " + releaseDate.toString() + "\n" +
-            "Summary: " + summary + "\n"
+            "Summary: " + summary + "\n" + 
+            "Platforms: " + getPlatformsString() + "\n"
         );
     }
 
