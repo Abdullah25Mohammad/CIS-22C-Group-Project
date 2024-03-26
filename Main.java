@@ -353,7 +353,6 @@ public class Main {
 
             System.out.println("-1. Exit the program.");
 
-            myScanner.nextLine(); // clear the buffer
             choice1 = Integer.parseInt(myScanner.nextLine());
             System.out.println(); // newline
 
@@ -375,7 +374,7 @@ public class Main {
             else {
                 System.out.println("Invalid input. Please try again.");
             }
-        } while(choice1 != 1 && choice1 != 2 && choice1 != 3 && choice1 != 4 && choice1 != -1);
+        } while(choice1 != -1);
     }
 
     /**
@@ -445,7 +444,7 @@ public class Main {
         }
 
         else if(choice == 3) {
-            CustomerOptions(tempCustomer, isGuest);
+            return;
         }
         else if(choice == -1) {
             System.exit(0);
@@ -512,8 +511,11 @@ public class Main {
             System.out.println("4. Cancel order and go back to main menu.");
             System.out.println("-1. Exit the program.");
 
+
+            // wants to order The Legend of Zelda: Breath of the Wild
+            // how
             if(choice == 1) {
-                // tempCustomer.addUnshippedOrder(new Order());
+                // tempCustomer.addUnshippedOrder(new Order(tempCustomer, new Date("12/25/2021"), new LinkedList<Game>(), 1, 1));
             }
             else if (choice == 2) {
                 // TODO: Implement
