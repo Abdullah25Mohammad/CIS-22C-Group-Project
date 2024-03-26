@@ -13,7 +13,9 @@ public class Order {
     private Date datePlaced; // date format: "MM/DD/YYYY"
     private LinkedList<Game> orderContents;
     private int shippingSpeed;
-    private int priority;
+    private Date priority;
+
+    static private int tempOrderID = 0;
 
 
     /**
@@ -27,13 +29,15 @@ public class Order {
      * @param priority
      * @postcondition a new Order object is created with the given values
      */
-    public Order(int orderID, Customer customer, Date datePlaced, LinkedList<Game> orderContents, int shippingSpeed, int priority) {
-        this.orderID = orderID;
+    public Order(Customer customer, Date datePlaced, LinkedList<Game> orderContents, int shippingSpeed, int priority) {
+        this.orderID = tempOrderID++;
         this.customer = customer;
         this.datePlaced = datePlaced;
         this.orderContents = orderContents;
         this.shippingSpeed = shippingSpeed;
-        this.priority = priority;
+
+        // TODO: datePlaced + shippingSpeed
+        this.priority = datePlaced;
     }
 
     /**** ACCESSORS ****/
