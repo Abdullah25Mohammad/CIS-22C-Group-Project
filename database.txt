@@ -23,19 +23,19 @@ Mojang
 3
 Sandbox
 11/18/2011
-[description goes here]
+Create explore and survive in a blocky world filled with endless possibilities and creative freedom.
 PC, Mac, Linux
-$20.00
+$26.95
 120
 
 Overwatch
 Blizzard Entertainment
 4
 First-person shooter
-10/15/2019
+05/24/2016
 [description goes here]
 PC, PlayStation 4, Xbox One
-$10.00
+$0.00
 80
 
 Portal 2
@@ -47,16 +47,6 @@ Puzzle-platformer
 PC, PlayStation 3, Xbox 360
 $30.00
 100
-
-Borderlands 2
-2K Games
-6
-Action role-playing
-09/18/2012
-[description goes here]
-PC, PlayStation 3, Xbox 360
-$30.00
-80
 
 Rocket League
 Psyonix
@@ -82,8 +72,8 @@ The Witcher 3: Wild Hunt
 CD Projekt
 9
 Action role-playing
-05/18/2015
-[description goes here]
+05/19/2015
+Embark on a dark fantasy adventure as Geralt of Rivia a monster hunter for hire in a vast open world full of rich storytelling and immersive gameplay.
 PC, PlayStation 4, Xbox One
 $40.00
 60
@@ -92,29 +82,89 @@ Fortnite
 Epic Games
 10
 Third-person shooter
-09/26/2017
-[description goes here]
+07/25/2017
+Join millions worldwide in a battle to be the last one standing in this free-to-play multiplayer sensation.
 PC, Mac, PlayStation 4, Xbox One
-$1.50
-200
+$0.00
+40
 
 The Legend of Zelda: Breath of the Wild
 Nintendo
 11
 Action-adventure
 03/03/2017
-[description goes here]
+Embark on a grand adventure as Link in a vast open world filled with puzzles battles and exploration in this iconic Nintendo title.
 Nintendo Switch, Wii U
 $60.00
 110
 
-Super Mario Odyssey
-Nintendo
+Red Dead Redemption 2
+Rockstar Games
+2
+Action-Adventure
+10/26/2018
+Explore the Wild West as outlaw Arthur Morgan in this critically acclaimed open-world epic from Rockstar Games.
+TODO
+$59.99
+25
+
+Call of Duty: Warzone
+Infinity Ward
+9
+Battle Royale
+03/10/2020
+Drop into a massive combat arena gather weapons and fight to be the last squad standing in this free-to-play battle royale game.
+TODO
+$0.00
+40
+
+Apex Legends
+Respawn Entertainment
+11
+Battle Royale
+02/04/2019
+Form a squad of legendary characters with unique abilities and compete for fame and fortune in this fast-paced battle royale game.
+TODO
+$0.00
+40
+
+Assassin's Creed Valhalla
+Ubisoft Montreal
 12
-Platform
-10/27/2017
-[description goes here]
-Nintendo Switch
-$50.00
-150
+Action RPG
+11/10/2020
+Forge your Viking legend as Eivor raiding conquering and building alliances in the stunning landscapes of Norway and England.
+TODO
+$59.99
+60
+
+FIFA 22
+EA Vancouver
+13
+Sports
+10/01/2021
+Experience the thrill of football with realistic gameplay stunning visuals and enhanced career modes in the latest installment of the FIFA series.
+TODO
+$59.99
+25
+
+Among Us
+Innersloth
+14
+Social Deduction
+06/15/2018
+Work together to complete tasks on a spaceship but beware of impostors among the crew in this popular multiplayer game of deception and strategy.
+TODO
+$4.99
+50
+
+Animal Crossing: New Horizons
+Nintendo
+16
+Life Simulation
+03/20/2020
+Create your dream island paradise interact with adorable anthropomorphic villagers and customize your world in this relaxing life simulation game.
+TODO
+$59.99
+60
 
