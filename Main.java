@@ -344,6 +344,7 @@ public class Main {
         String username = myScanner.next();
         System.out.print("Please enter your password: ");
         String password = myScanner.next();
+        myScanner.nextLine(); // clear the buffer
         System.out.println(); // newline
 
         Customer tempCustomer = new Customer("", "", username, password);
@@ -358,7 +359,6 @@ public class Main {
             System.out.println("Username and password do not match.");
             System.out.println("Would you like to try again or make a new account?");
             System.out.println("Type '1' to try again or '2' for new account.");
-            myScanner.nextLine(); // clear the buffer
             int choice = Integer.parseInt(myScanner.nextLine());
             System.out.println(); // newline
 
@@ -403,7 +403,6 @@ public class Main {
 
             System.out.println("-1. Exit the program.");
 
-            myScanner.nextLine(); // clear the buffer
             choice1 = Integer.parseInt(myScanner.nextLine());
             System.out.println(); // newline
 
