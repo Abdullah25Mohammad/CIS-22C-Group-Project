@@ -1190,6 +1190,8 @@ public class Main {
         System.out.println("Saving data...");
         saveOrders();
         saveGames();
+
+        myScanner.close();
         
         System.out.println("Data saved. Exiting the program.");
         System.exit(0);
