@@ -58,7 +58,7 @@ public class Main {
         int choice = Integer.parseInt(myScanner.nextLine());
         System.out.println(); // newline
 
-        while(choice != 1 && choice != 2) {
+        while (choice < 1 || choice > 3) {
             System.out.println("Please try again.");
             System.out.println("Type '1' for Customer, '2' for Employee, and '3' for Manager.");
             choice = Integer.parseInt(myScanner.nextLine());
