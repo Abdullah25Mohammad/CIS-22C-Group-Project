@@ -264,6 +264,15 @@ public class Game {
     }
 
     /**
+     * Adds to stock
+     * @param stock
+     * @postcondition the stock is set to the given value
+     */
+    public void addStock(int stock) {
+        this.stock += stock;
+    }
+
+    /**
      * Mutator for stock
      * @param stock
      * @postcondition the stock is set to the given value

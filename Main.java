@@ -235,6 +235,7 @@ public class Main {
                 {
                     String productTitle = scanner.nextLine();
                     Game tempGame = gamesByTitle.search(new Game(productTitle, ""), titleCMP);
+                    tempGame.addStock(-1);
                     products.addLast(tempGame);
                 }
 
@@ -591,6 +592,7 @@ public class Main {
         String gameTitle = myScanner.nextLine();
 //        System.out.println(); // newline
         Game result = gamesByTitle.search(new Game(gameTitle, ""), titleCMP);
+        result.addStock(-1);
 
         if(result == null) {
             System.out.println("Game not found.");
