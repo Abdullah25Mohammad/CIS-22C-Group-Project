@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -54,8 +55,17 @@ public class Main {
 
         System.out.println("Welcome to the Video Games Store!");
         System.out.println("Would you like to login as a Customer, Employee, or Manager?");
-        System.out.println("Type '1' for Customer and '2' for Employee, and '3' for Manager.");
-        int choice = Integer.parseInt(myScanner.nextLine());
+        int choice = 0;
+        while (true) {
+            try {
+                System.out.println("Type '1' for Customer, '2' for Employee, and '3' for Manager.");
+                choice = Integer.parseInt(myScanner.nextLine());
+                if (choice >= 1 && choice <= 3) break;
+                System.out.println("Invalid choice. Please try again.");
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid number.");
+            }
+        }
         System.out.println(); // newline
 
         while (choice < 1 || choice > 3) {
@@ -78,6 +88,9 @@ public class Main {
             case 3:
                 Employee manager = loginAsManager();
                 managerOptions(manager);
+                break;
+            default:
+                System.out.println("Invalid choice. Exiting the program.");
                 break;
         }
     }
