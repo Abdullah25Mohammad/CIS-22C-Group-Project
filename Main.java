@@ -1,6 +1,6 @@
 /**
  * Main class
- * 
+ *
  * @author Abdullah Mohammad
  * @author Chahid Bagdouri
  * @author Jacob L. Johnston
@@ -39,7 +39,7 @@ public class Main {
 
     /**
      * main method
-     * 
+     *
      * @author Abdullah Mohammad
      * @author Chahid Bagdouri
      * @author Jacob L. Johnston
@@ -97,7 +97,7 @@ public class Main {
 
     /**
      * Reads the Users.txt file and creates the Customer and Employee objects
-     * 
+     *
      * @author Abdullah Mohammad
      */
     public static void createLoginTables() {
@@ -116,34 +116,34 @@ public class Main {
 
                 if (role.equals("customer")) {
                     Customer customer = new Customer(
-                        firstName,
-                        lastName,
-                        username,
-                        password
+                            firstName,
+                            lastName,
+                            username,
+                            password
                     );
                     customerTable.add(customer);
                 } else if (role.equals("employee")) {
                     Employee employee = new Employee(
-                        firstName,
-                        lastName,
-                        username,
-                        password,
-                        false
+                            firstName,
+                            lastName,
+                            username,
+                            password,
+                            false
                     );
                     employeeTable.add(employee);
                 } else if (role.equals("manager")) {
                     Employee employee = new Employee(
-                        firstName,
-                        lastName,
-                        username,
-                        password,
-                        true
+                            firstName,
+                            lastName,
+                            username,
+                            password,
+                            true
                     );
                     employeeTable.add(employee);
                 } else {
                     System.out.println("Invalid role: " + role);
                 }
-                
+
             }
             scanner.close();
         } catch (FileNotFoundException error) {
@@ -151,10 +151,10 @@ public class Main {
             error.printStackTrace();
         }
     }
-    
+
     /**
      * Reads the database.txt file and creates the Game objects
-     * 
+     *
      * @author Abdullah Mohammad
      */
     public static void createDatabase() {
@@ -182,15 +182,15 @@ public class Main {
                 scanner.nextLine(); // skip a line
 
                 Game game = new Game(
-                    title,
-                    developer,
-                    id,
-                    genre,
-                    releaseDate,
-                    summary,
-                    platforms,
-                    price,
-                    stock
+                        title,
+                        developer,
+                        id,
+                        genre,
+                        releaseDate,
+                        summary,
+                        platforms,
+                        price,
+                        stock
                 );
 
                 // Insert and Reorder BSTs
@@ -261,7 +261,7 @@ public class Main {
 
     /**
      * Logs in as a Customer
-     * 
+     *
      * @author Chahid Bagdouri
      * @return logged in Customer object
      */
@@ -283,17 +283,17 @@ public class Main {
         }
 
         Customer tempCustomer = null;
-        
+
         if (choice == 1) {
             tempCustomer = loginAsNewCustomer();
             CustomerOptions(tempCustomer, false);
         }
-        
+
         else if(choice == 2) {
             tempCustomer = loginAsExistingCustomer();
             CustomerOptions(tempCustomer, false);
         }
-        
+
         else if(choice == 3) {
             tempCustomer = new Customer();
             CustomerOptions(tempCustomer, true);
@@ -301,13 +301,13 @@ public class Main {
 
         return tempCustomer;
     }
-    
+
     /**
      * private helper method for loginAsCustomer()
      * Makes a new Customer account
      * Logs in as the new Customer
      * Appends the Customer's information to Users.txt
-     * 
+     *
      * @author Chahid Bagdouri
      * @return logged in Customer object
      */
@@ -355,11 +355,11 @@ public class Main {
 //        System.out.println(); // newline
         return tempCustomer;
     }
-    
+
     /**
      * private helper method for loginAsCustomer()
      * Logs in to Existing Customer Account
-     * 
+     *
      * @author Chahid Bagdouri
      * @return logged in Customer object
      */
@@ -407,7 +407,7 @@ public class Main {
 
     /**
      * Displays options to the Customer
-     * 
+     *
      * @author Chahid Bagdouri
      * @author Abdullah Mohammad
      * @author Jacob L. Johnston
@@ -468,7 +468,7 @@ public class Main {
 
     /**
      * Asks the user what game/developer to search for, and then performs the search
-     * 
+     *
      * @author Abdullah Mohammad
      * @author Chahid Bagdouri
      * @param tempCustomer
@@ -503,13 +503,19 @@ public class Main {
 
             if(choice == 1) {
                 Game tempGame = new Game(search, "");
-                
+
                 Game tempResult = gamesByTitle.search(tempGame, titleCMP);
 
                 while (tempResult != null) {
                     searchResults.addLast(tempResult);
                     gamesByTitle.remove(tempResult, titleCMP);
                     tempResult = gamesByTitle.search(tempGame, titleCMP);
+                }
+                searchResults.positionIterator();
+                while(!searchResults.offEnd())
+                {
+                    gamesByTitle.insert(searchResults.getIterator(), titleCMP);
+                    searchResults.advanceIterator();
                 }
             }
             else if(choice == 2) {
@@ -521,6 +527,12 @@ public class Main {
                     searchResults.addLast(tempResult);
                     gamesByDeveloper.remove(tempResult, developerCMP);
                     tempResult = gamesByDeveloper.search(tempGame, developerCMP);
+                }
+                searchResults.positionIterator();
+                while(!searchResults.offEnd())
+                {
+                    gamesByDeveloper.insert(searchResults.getIterator(), developerCMP);
+                    searchResults.advanceIterator();
                 }
             }
 
@@ -543,7 +555,7 @@ public class Main {
 
     /**
      * Displays the game database
-     * 
+     *
      * @author Abdullah Mohammad
      */
     private static void DisplayGameDatabase() {
@@ -581,7 +593,7 @@ public class Main {
 
     /**
      * Asks the user what game to order, and then orders it for the user
-     * 
+     *
      * @author Chahid Bagdouri
      * @author Abdullah Mohammad
      * @param tempCustomer
@@ -589,7 +601,7 @@ public class Main {
     private static void CustomerPlaceOrder(Customer tempCustomer) {
         System.out.print("\nWhat would you like to order?: ");
         String gameTitle = myScanner.nextLine();
-        Game result = gamesByTitle.search(new Game(gameTitle, ""), titleCMP);        
+        Game result = gamesByTitle.search(new Game(gameTitle, ""), titleCMP);
 
         if(result == null) {
             System.out.println("Game not found.");
@@ -622,10 +634,10 @@ public class Main {
             choice = Integer.parseInt(myScanner.nextLine());
 
             Order newOrder = new Order(
-                tempCustomer,
-                new Date(),
-                orderContents,
-                0
+                    tempCustomer,
+                    new Date(),
+                    orderContents,
+                    0
             );
             if(choice == 1) {
                 newOrder.setShippingSpeed(1);
@@ -654,13 +666,13 @@ public class Main {
 
 //            System.out.println(); // newline
             System.out.println("Order placed!");
-            
+
         } while(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1);
     }
 
     /**
      * Displays the game database
-     * 
+     *
      * @author Chahid Bagdouri
      * @author Abdullah Mohammad
      * @param tempCustomer
@@ -681,9 +693,9 @@ public class Main {
             if(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1) {
                 System.out.println("Invalid input. Please try again.");
             }
-        // } while(choice != -1);
+            // } while(choice != -1);
         } while(choice != 1 && choice != 2 && choice != 3 && choice != -1);
-        
+
         if(choice == 1) {
             System.out.println(tempCustomer.getShippedOrders());
         }
@@ -703,7 +715,7 @@ public class Main {
 
     /**
      * Logs in as an Employee
-     * 
+     *
      * @author Chahid Bagdouri
      * @return logged in Employee object
      */
@@ -720,7 +732,7 @@ public class Main {
 
             tempEmployee = new Employee("", "", username, password, false);
             isEmployee = (employeeTable.find(tempEmployee) != -1);
-            
+
             if(isEmployee) {
                 tempEmployee = employeeTable.get(tempEmployee);
                 if (tempEmployee.isManager()) {
@@ -740,7 +752,7 @@ public class Main {
 
     /**
      * Displays options to the Employee
-     * 
+     *
      * @author Chahid Bagdouri
      * @author Michael Chen
      * @param tempEmployee
@@ -835,21 +847,21 @@ public class Main {
             String lastName = myScanner.next();
 //            System.out.println(); // newline
             myScanner.nextLine(); // clear the buffer
-            
+
             Order target = orderByName.search(
-                new Order(
-                    0, 
-                    new Customer(
-                        firstName, 
-                        lastName, 
-                        "", 
-                        ""
-                    ), 
-                    new Date(), 
-                    new LinkedList<Game>(), 
-                    0
-                ), 
-                new NameComparator()
+                    new Order(
+                            0,
+                            new Customer(
+                                    firstName,
+                                    lastName,
+                                    "",
+                                    ""
+                            ),
+                            new Date(),
+                            new LinkedList<Game>(),
+                            0
+                    ),
+                    new NameComparator()
             );
 
             if(target != null) {
@@ -893,37 +905,37 @@ public class Main {
 
     /**
      * Ships an order
-     * 
+     *
      * @author Michael Chen
      * @author Hari Prakash
      * @return 0
      */
     private static int shipOrder() {
         try {
-            if (unshippedOrders.getHeapSize() == 0) { 
+            if (unshippedOrders.getHeapSize() == 0) {
                 System.out.println("No orders to ship!");
                 return 0;
             }
-    
+
             Order shippedOrder = unshippedOrders.getMax();
-    
+
             unshippedOrders.remove(1);
             shippedOrders.insert(shippedOrder);
-    
+
             Customer customer = shippedOrder.getCustomer();
             customer.removeUnshippedOrder(shippedOrder);
             customer.addShippedOrder(shippedOrder);
 
             orderByID.remove(shippedOrder, new IDComparator());
             orderByName.remove(shippedOrder, new NameComparator());
-    
+
             System.out.println("Order " + shippedOrder.getOrderID() + " shipped!");
         } catch (IndexOutOfBoundsException e) {
             System.out.println("No more orders to ship.");
         }
         return 0;
     }
-    
+
 
     /**** Manager Methods ****/
 
@@ -1149,7 +1161,7 @@ public class Main {
 
     /**
      * Exits the program
-     * 
+     *
      * @author Hari Prakash
      * @author Abdullah Mohammad
      */
@@ -1159,14 +1171,14 @@ public class Main {
         saveGames();
 
         myScanner.close();
-        
+
         System.out.println("Data saved. Exiting the program.");
         System.exit(0);
     }
 
     /**
      * Saves the orders to orders.txt file
-     * 
+     *
      * @author Hari Prakash
      */
     private static void saveOrders() {
@@ -1177,14 +1189,14 @@ public class Main {
                 writer.write(order.getCustomer().getUsername() + "\n");
                 writer.write(order.getCustomer().getPassword() + "\n");
                 writer.write(order.getOrderContents().getLength() + "\n");
-    
+
                 order.getOrderContents().positionIterator();
                 while (!order.getOrderContents().offEnd()) {
                     Game game = order.getOrderContents().getIterator();
                     writer.write(game.getTitle() + "\n");
                     order.getOrderContents().advanceIterator();
                 }
-    
+
                 writer.write(order.getDatePlaced().toString() + "\n");
                 writer.write(order.getShippingSpeed() + "\n");
                 writer.write("\n");
@@ -1198,7 +1210,7 @@ public class Main {
 
     /**
      * Saves a game to database.txt file
-     * 
+     *
      * @author Hari Prakash
      * @author Michael Chen
      * @author Abdullah Mohammad
@@ -1214,5 +1226,5 @@ public class Main {
             e.printStackTrace();
         }
     }
-    
+
 }
