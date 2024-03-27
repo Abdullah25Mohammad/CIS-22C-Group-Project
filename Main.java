@@ -984,7 +984,6 @@ public class Main {
             System.out.println("3. Remove Product");
             System.out.println("-1. Back to Manager Options");
             choice = Integer.parseInt(myScanner.nextLine());
-
             switch (choice) {
                 case 1:
                     addNewProduct();
@@ -1021,7 +1020,7 @@ public class Main {
         System.out.print("Genre: ");
         String genre = scanner.nextLine();
 
-        System.out.print("Release Date (yyyy-mm-dd): ");
+        System.out.print("Release Date (MM/DD/YYYY): ");
         String dateString = scanner.nextLine();
         Date releaseDate = new Date(dateString); // Do we have a comparator for this?
 
@@ -1233,7 +1232,7 @@ public class Main {
      */
     private static void saveGame(Game game) {
         try {
-            FileWriter writer = new FileWriter("database.txt");
+            FileWriter writer = new FileWriter("database.txt", true);
             writer.write(game.getTitle() + "\n");
             writer.write(game.getDeveloper() + "\n");
             writer.write(game.getId() + "\n");
