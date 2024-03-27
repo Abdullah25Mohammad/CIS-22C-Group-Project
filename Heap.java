@@ -4,10 +4,8 @@
  * @author Chahid Bagdouri
  * CIS 22C, Lab 19
  */
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.NoSuchElementException;
 
 public class Heap<T> {
     private int heapSize;
