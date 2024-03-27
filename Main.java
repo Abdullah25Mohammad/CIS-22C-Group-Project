@@ -590,15 +590,21 @@ public class Main {
     private static void CustomerPlaceOrder(Customer tempCustomer) {
         System.out.print("\nWhat would you like to order?: ");
         String gameTitle = myScanner.nextLine();
-//        System.out.println(); // newline
-        Game result = gamesByTitle.search(new Game(gameTitle, ""), titleCMP);
-        result.addStock(-1);
+        Game result = gamesByTitle.search(new Game(gameTitle, ""), titleCMP);        
 
         if(result == null) {
             System.out.println("Game not found.");
             return;
-        } else {
-            System.out.println(result);
+        }
+        else {
+            if(result.getStock() <= 0) {
+                System.out.println(result.getTitle() + " is out of stock.");
+                return;
+            }
+            else {
+                System.out.println(result);
+                result.addStock(-1);
+            }
         }
 
         LinkedList<Game> orderContents = new LinkedList<Game>();
