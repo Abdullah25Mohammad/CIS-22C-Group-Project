@@ -90,6 +90,7 @@ public class Main {
                 System.out.println("Invalid choice. Exiting the program.");
                 break;
         }
+        exitProgram();
     }
 
     /**** Technical Setup ****/
@@ -1067,7 +1068,7 @@ public class Main {
         gamesByDeveloper.insert(newGame, developerCMP);
         gamesByPrice.insert(newGame, priceCMP);
 
-        saveGame(newGame);
+
         System.out.println("New product added successfully.");
     }
 
@@ -1093,7 +1094,7 @@ public class Main {
             return;
         }
 
-        System.out.println("Current information: " + game);
+        System.out.println("Current information: " + game.toGameInfoString());
         System.out.print("New price (leave blank to keep current): ");
         String priceInput = scanner.nextLine();
         if (!priceInput.isEmpty()) {
@@ -1189,6 +1190,7 @@ public class Main {
     private static void exitProgram() {
         System.out.println("Saving data...");
         saveOrders();
+        saveGames();
         
         System.out.println("Data saved. Exiting the program.");
         System.exit(0);
@@ -1249,18 +1251,12 @@ public class Main {
      * 
      * @author Hari Prakash
      */
-    private static void saveGame(Game game) {
-        try {
-            FileWriter writer = new FileWriter("database.txt", true);
-            writer.write(game.getTitle() + "\n");
-            writer.write(game.getDeveloper() + "\n");
-            writer.write(game.getId() + "\n");
-            writer.write(game.getGenre() + "\n");
-            writer.write(game.getReleaseDate().toString() + "\n");
-            writer.write(game.getSummary() + "\n");
-            writer.write(game.getPlatforms().toString() + "\n");
-            writer.write("$" + game.getPrice() + "\n");
-            writer.write(game.getStock() + "\n\n");
+    private static void saveGames() {
+        System.out.println();
+        System.out.println(gamesByTitle.inOrderString());
+        try{
+            FileWriter writer = new FileWriter("database.txt");
+            writer.write(gamesByTitle.inOrderString());
             writer.close();
         } catch (IOException e) {
             System.out.println("saveGames(): An error occurred.");
