@@ -241,6 +241,8 @@ public class Main {
                 Date datePlaced = new Date(scanner.nextLine());
                 int shippingSpeed = Integer.parseInt(scanner.nextLine());
 
+                scanner.nextLine(); // clear the buffer
+
                 Order newOrder = new Order(orderID, cus, datePlaced, products, shippingSpeed);
                 cus.addUnshippedOrder(newOrder);
                 orderByID.insert(newOrder, new IDComparator());
@@ -1221,6 +1223,7 @@ public class Main {
     
                 writer.write(order.getDatePlaced().toString() + "\n");
                 writer.write(order.getShippingSpeed() + "\n");
+                writer.write("\n");
             }
             writer.close();
         } catch (IOException e) {

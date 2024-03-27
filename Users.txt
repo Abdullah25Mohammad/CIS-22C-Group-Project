@@ -15,7 +15,7 @@ employee
 
 Sango Koko
 koko
-1
+a
 customer
 
 Jacob Johnston
