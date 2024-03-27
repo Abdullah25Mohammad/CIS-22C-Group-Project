@@ -184,12 +184,12 @@ public class Order {
 
     @Override
     public String toString() {
-        return "OrderID = " + orderID + "\n"+
-                "customer = " + customer.getName() + "\n"+
-                "datePlaced = " + datePlaced + "\n"+
-                "orderContents = " + contentToString() + "\n"+
-                "shippingSpeed = " + shippingSpeed + "\n"+
-                "priority = " + priority;
+        return "Order ID = " + orderID + "\n"+
+               "Customer = " + customer.getName() + "\n"+
+               "Date Placed = " + datePlaced + "\n"+
+               "Order Contents = " + contentToString() + "\n"+
+               "Shipping Speed = " + shippingSpeed + "\n"+
+               "Priority = " + priority;
     }
 
     public String contentToString()
