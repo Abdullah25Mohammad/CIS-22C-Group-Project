@@ -424,6 +424,7 @@ public class Main {
             else {
                 System.out.println("Invalid input. Please try again.");
             }
+            System.out.println(); // newline
         } while(choice1 != -1);
     }
 
@@ -604,6 +605,7 @@ public class Main {
             orderByID.insert(newOrder, new IDComparator());
             orderByName.insert(newOrder, new NameComparator());
 
+            System.out.println(); // newline
             System.out.println("Order placed!");
             
         } while(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1);
@@ -626,6 +628,7 @@ public class Main {
             System.out.println("-1. Exit the program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
+            System.out.println(); // newline
 
             if(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1) {
                 System.out.println("Invalid input. Please try again.");
@@ -873,7 +876,7 @@ public class Main {
         {
             System.out.println(unshippedOrders.getMax());
         }
-        System.out.println();
+        System.out.println(); // newline
         return 0;
     }
 
