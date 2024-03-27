@@ -1099,7 +1099,7 @@ public class Main {
      * @author Jacob L. Johnston
      */
     private static void updateExistingProduct() {
-        System.out.println("Update an existing product.");
+        System.out.println("\nUpdate an existing product.");
 
         System.out.println("Enter the title of the product to update: ");
         String title = myScanner.nextLine();
@@ -1107,11 +1107,11 @@ public class Main {
         Game game = gamesByTitle.search(new Game(title, ""), new TitleComparator());
 
         if (game == null) {
-            System.out.println("Product not found.");
+            System.out.println("\nProduct not found.");
             return;
         }
 
-        System.out.println("Current information: " + game.toGameInfoString());
+        System.out.println("\nCurrent information: " + game.toGameInfoString());
         System.out.print("New price (leave blank to keep current): ");
         String priceInput = myScanner.nextLine();
         if (!priceInput.isEmpty()) {
