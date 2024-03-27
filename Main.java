@@ -887,7 +887,7 @@ public class Main {
     
             Order shippedOrder = unshippedOrders.getMax();
     
-            unshippedOrders.remove(1); 
+            unshippedOrders.remove(1);
             shippedOrders.insert(shippedOrder);
     
             Customer customer = shippedOrder.getCustomer();
@@ -1139,6 +1139,7 @@ public class Main {
         //               3         (shippingSpeed)
         try {
             FileWriter writer = new FileWriter("orders.txt", true);
+            writer.write("\n");
             writer.write(newOrder.getOrderID() + "\n");
             writer.write(newOrder.getCustomer().getUsername() + "\n");
             writer.write(newOrder.getCustomer().getPassword() + "\n");
