@@ -55,13 +55,13 @@ public class Main {
         // System.err.println(employeeTable.toString());
 
         System.out.println("Welcome to the Video Games Store!");
-        System.out.println("Would you like to login as a Customer, Employee, or Manager?");
+        System.out.println("Would you like to login as a Customer or Employee?");
         int choice = 0;
         while (true) {
             try {
-                System.out.println("Type '1' for Customer, '2' for Employee, and '3' for Manager.");
+                System.out.println("Type '1' for Customer, '2' for Employee.");
                 choice = Integer.parseInt(myScanner.nextLine());
-                if (choice >= 1 && choice <= 3) break;
+                if (choice >= 1 && choice <= 2) break;
                 System.out.println("Invalid choice. Please try again.");
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid number.");
@@ -69,9 +69,9 @@ public class Main {
         }
 //        System.out.println(); // newline
 
-        while (choice < 1 || choice > 3) {
+        while (choice < 1 || choice > 2) {
             System.out.println("Please try again.");
-            System.out.println("Type '1' for Customer, '2' for Employee, and '3' for Manager.");
+            System.out.println("Type '1' for Customer, '2' for Employee.");
             choice = Integer.parseInt(myScanner.nextLine());
 //            System.out.println(); // newline
         }
@@ -85,10 +85,6 @@ public class Main {
                 Employee tempEmployee = loginAsEmployee();
                 employeeTable.add(tempEmployee);
                 EmployeeOptions(tempEmployee);
-                break;
-            case 3:
-                Employee manager = loginAsManager();
-                managerOptions(manager);
                 break;
             default:
                 System.out.println("Invalid choice. Exiting the program.");
@@ -703,6 +699,7 @@ public class Main {
      * @return logged in Employee object
      */
     public static Employee loginAsEmployee() {
+//        System.out.println(employeeTable.toString());
         boolean isEmployee = false;
         Employee tempEmployee = null;
         while(!isEmployee) {
@@ -718,7 +715,12 @@ public class Main {
             
             if(isEmployee) {
                 tempEmployee = employeeTable.get(tempEmployee);
-                System.out.println("Successfully logged in as " + tempEmployee.getFirstName() + " " + tempEmployee.getLastName() + ".");
+                if (tempEmployee.isManager()) {
+                    System.out.println("Successfully logged in as manager " + tempEmployee.getFirstName() + " " + tempEmployee.getLastName() + ".");
+                } else {
+                    System.out.println("Successfully logged in as " + tempEmployee.getFirstName() + " " + tempEmployee.getLastName() + ".");
+
+                }
 //                System.out.println(); // newline
             }
             else {
@@ -737,6 +739,10 @@ public class Main {
      */
     public static void EmployeeOptions(Employee tempEmployee) {
         int choice = 0;
+        boolean manager = tempEmployee.isManager();
+//        System.out.println(manager);
+
+
 
         do {
             System.out.println("Please select one of the following options by typing in the corresponding number:");
@@ -744,6 +750,8 @@ public class Main {
             System.out.println("2. View Order with Highest Priority");
             System.out.println("3. View all Orders");
             System.out.println("4. Ship a order.");
+            if(manager)
+                System.out.println("5. Update Products Catalogue.");
             System.out.println("-1. Exit the program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
@@ -760,6 +768,9 @@ public class Main {
             }
             else if (choice == 4) {
                 shipOrder();
+            }
+            else if( manager && choice == 5) {
+                updateProductsCatalogue();
             }
 
             if (choice == -1) {
@@ -907,6 +918,7 @@ public class Main {
 
     /**** Manager Methods ****/
 
+
     /**
      * Handles the manager login process.
      * Asks for username and password, verifies the credentials, and returns a logged-in manager.
@@ -914,6 +926,7 @@ public class Main {
      * @author Jacob L. Johnston
      * @return manager The logged-in manager for whom the options are displayed
      */
+    /*
     public static Employee loginAsManager() {
         boolean isManager = false;
         Employee manager = null;
@@ -933,6 +946,8 @@ public class Main {
         return manager;
     }
 
+     */
+
     /**
      * Presents/handles the manager's operational options.
      * Allows managers to update the products catalogue and view orders.
@@ -940,6 +955,7 @@ public class Main {
      * @author Jacob L. Johnston
      * @param manager The logged-in manager for whom the options are displayed.
      */
+    /*
     public static void managerOptions(Employee manager) {
         int choice;
         do {
@@ -968,6 +984,8 @@ public class Main {
             }
         } while (choice != -1);
     }
+
+     */
 
     /**
      * Displays and handles the options for updating the products catalogue.
@@ -1070,7 +1088,7 @@ public class Main {
 
         Game game = gamesByTitle.search(new Game(title, ""), new TitleComparator());
 
-        scanner.close();
+//        scanner.close();
 
         if (game == null) {
             System.out.println("Product not found.");
@@ -1083,6 +1101,7 @@ public class Main {
         if (!priceInput.isEmpty()) {
             double price = Double.parseDouble(priceInput);
             game.setPrice(price);
+
         }
 
         System.out.print("New stock (leave blank to keep current): ");
@@ -1091,6 +1110,7 @@ public class Main {
             int stock = Integer.parseInt(stockInput);
             game.setStock(stock);
         }
+
 
         System.out.println("Product updated successfully.");
     }
@@ -1119,6 +1139,7 @@ public class Main {
         // Separate BST's
         gamesByTitle.remove(game, titleCMP);
         gamesByDeveloper.remove(game, developerCMP);
+        gamesByPrice.remove(game, priceCMP);
 
         System.out.println("Product removed successfully.");
     }
