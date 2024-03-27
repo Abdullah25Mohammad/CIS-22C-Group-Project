@@ -235,7 +235,6 @@ public class Main {
                 {
                     String productTitle = scanner.nextLine();
                     Game tempGame = gamesByTitle.search(new Game(productTitle, ""), titleCMP);
-                    tempGame.addStock(-1);
                     products.addLast(tempGame);
                 }
 

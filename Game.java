@@ -315,7 +315,8 @@ public class Game {
                 "Release Date: " + releaseDate.toString() + "\n" +
                 "Summary: " + summary + "\n" +
                 "Platforms: " + getPlatformsString() + "\n" +
-                "Price: " + getFormattedPrice() + "\n"
+                "Price: " + getFormattedPrice() + "\n" +
+                "Stock: " + getStock() + "\n"
         ;
     }
 
