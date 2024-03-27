@@ -458,7 +458,7 @@ public class Main {
                     }
                     break;
                 case -1:
-                    System.exit(0);
+                    exitProgram();
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -538,7 +538,7 @@ public class Main {
             return;
         }
         else if(choice == -1) {
-            System.exit(0);
+            exitProgram();
         }
     }
 
@@ -575,7 +575,7 @@ public class Main {
             System.out.println(gamesByPrice.inOrderString());
         }
         else if(choice == -1) {
-            System.exit(0);
+            exitProgram();
         }
 
     }
@@ -634,7 +634,7 @@ public class Main {
                 return;
             }
             else if(choice == -1) {
-                System.exit(0);
+                exitProgram();
             }
             else {
                 System.out.println("Invalid input. Please try again.");
@@ -689,7 +689,7 @@ public class Main {
             CustomerOptions(tempCustomer, false);
         }
         else if(choice == -1) {
-            System.exit(0);
+            exitProgram();
         }
 
     }
@@ -1158,5 +1158,15 @@ public class Main {
             System.out.println("updateOrderFile(): An error occurred.");
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Exits the program
+     * 
+     * @author Abdullah Mohammad
+     */
+    private static void exitProgram() {
+        System.out.println("Exiting the program.");
+        System.exit(0);
     }
 }
