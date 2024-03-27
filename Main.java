@@ -547,7 +547,7 @@ public class Main {
      * @param tempCustomer
      */
     private static void CustomerPlaceOrder(Customer tempCustomer) {
-        System.out.println("What would you like to order?: ");
+        System.out.print("What would you like to order?: ");
         String gameTitle = myScanner.nextLine();
         System.out.println(); // newline
         Game result = gamesByTitle.search(new Game(gameTitle, ""), titleCMP);
@@ -631,11 +631,12 @@ public class Main {
             if(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1) {
                 System.out.println("Invalid input. Please try again.");
             }
-        } while(choice != -1);
-        // } while(choice != 1 && choice != 2 && choice != 3 && choice != -1);
+        // } while(choice != -1);
+        } while(choice != 1 && choice != 2 && choice != 3 && choice != -1);
         
         if(choice == 1) {
             System.out.println(tempCustomer.getShippedOrders());
+            System.out.println("HERE");
         }
         else if(choice == 2) {
             System.out.println(tempCustomer.getUnshippedOrders());
@@ -880,9 +881,9 @@ public class Main {
     private static int shipOrder()
     {
 
-//- Ship an Order (Remove from Heap.
-// Insert Order to shipped Linked List for the Customer +
-// Remove from Unshipped List)
+        //- Ship an Order (Remove from Heap.
+        // Insert Order to shipped Linked List for the Customer +
+        // Remove from Unshipped List)
         if (!(unshippedOrders.getMax() == null)) {
             Order shippedOrder = unshippedOrders.getMax();
 
