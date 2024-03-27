@@ -316,10 +316,13 @@ public class Main {
         String firstName = myScanner.next();
         System.out.print("Please enter your last name: ");
         String lastName = myScanner.next();
+        myScanner.nextLine(); // Clear the buffer after reading the last name
+
         System.out.print("Please enter a username: ");
         String username = myScanner.next();
         System.out.print("Please enter a password: ");
         String password = myScanner.next();
+        myScanner.nextLine(); // Clear the buffer after reading the password
         System.out.println(); // newline
 
         Customer tempCustomer = new Customer(firstName, lastName, username, password);
@@ -328,17 +331,12 @@ public class Main {
             System.out.println("The user with the information that you provided already exists.");
             tempCustomer = customerTable.get(tempCustomer);
             System.out.println("Successfully logged in as existing user " + tempCustomer.getFirstName() + " " + tempCustomer.getLastName());
-            System.out.println(); // newline
-        }
-
-        else {  
+        } else {
             customerTable.add(tempCustomer);
-
             System.out.println("Successfully created account for and logged in as " + tempCustomer.getFirstName() + " " + tempCustomer.getLastName());
-            System.out.println(); // newline
         }
 
-        
+
         try {
             FileWriter myWriter = new FileWriter("Users.txt", true);
             myWriter.append("\n");
@@ -352,7 +350,7 @@ public class Main {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
+        System.out.println(); // newline
         return tempCustomer;
     }
     
@@ -414,43 +412,55 @@ public class Main {
      * @param isGuest
      */
     public static void CustomerOptions(Customer tempCustomer, boolean isGuest) {
-        int choice1 = 0;
-
-        do {
+        while (true) {
             System.out.println("Please select one of the following options by typing in the corresponding number:");
             System.out.println("1. Search for a product.");
             System.out.println("2. List Database of Products.");
-
-            if(!isGuest) { // Only show these options if the user is not a guest
+            if (!isGuest) {
                 System.out.println("3. Place an Order.");
                 System.out.println("4. View Purchases.");
             }
-
             System.out.println("-1. Exit the program.");
 
-            choice1 = Integer.parseInt(myScanner.nextLine());
-            System.out.println(); // newline
+            String input = myScanner.nextLine().trim();
+            int choice1;
 
-            if(choice1 == 1) {
-                SearchForGame(tempCustomer, isGuest);
+            try {
+                choice1 = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                continue; // Go back to the beginning of the loop and prompt again
             }
-            else if (choice1 == 2) {
-                DisplayGameDatabase();
+
+            switch (choice1) {
+                case 1:
+                    SearchForGame(tempCustomer, isGuest);
+                    break;
+                case 2:
+                    DisplayGameDatabase();
+                    break;
+                case 3:
+                    if (!isGuest) {
+                        CustomerPlaceOrder(tempCustomer);
+                    } else {
+                        System.out.println("Invalid choice. Please try again.");
+                    }
+                    break;
+                case 4:
+                    if (!isGuest) {
+                        ViewPurchases(tempCustomer);
+                    } else {
+                        System.out.println("Invalid choice. Please try again.");
+                    }
+                    break;
+                case -1:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
             }
-            else if (choice1 == 3 && !isGuest) {
-                CustomerPlaceOrder(tempCustomer);
-            }
-            else if (choice1 == 4 && !isGuest) {
-                ViewPurchases(tempCustomer);
-            }
-            else if (choice1 == -1) {
-                System.exit(0);
-            }
-            else {
-                System.out.println("Invalid input. Please try again.");
-            }
-            System.out.println(); // newline
-        } while(choice1 != -1);
+        }
     }
 
     /**
