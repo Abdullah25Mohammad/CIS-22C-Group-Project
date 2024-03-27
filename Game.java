@@ -289,7 +289,8 @@ public class Game {
             "Genre: " + genre + "\n" +
             "Release Date: " + releaseDate.toString() + "\n" +
             "Summary: " + summary + "\n" + 
-            "Platforms: " + getPlatformsString() + "\n"
+            "Platforms: " + getPlatformsString() + "\n" +
+            "Price: " + getFormattedPrice() + "\n"
         );
     }
 
