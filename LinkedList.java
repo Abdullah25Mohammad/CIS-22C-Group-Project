@@ -397,8 +397,6 @@ public class LinkedList<T> {
             throw new IllegalArgumentException("Error: spinList(). numMoves < 0");
         } else if (numMoves == 0) {
             return;
-        } else if (this == null) {
-            return;
         } else if (this.isEmpty()) {
             return;
         } else {
