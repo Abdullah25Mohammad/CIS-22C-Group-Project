@@ -563,7 +563,7 @@ public class Main {
         orderContents.addLast(result);
 
         int choice = -1;
-        while(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1) {
+        do {
             System.out.println("What type of shipping would you like?");
             System.out.println("Please select one of the following options by typing in the corresponding number:");
             System.out.println("1. Overnight Shipping.");
@@ -598,7 +598,7 @@ public class Main {
             else {
                 System.out.println("Invalid input. Please try again.");
             }
-        }
+        } while(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1);
     }
 
     
