@@ -1023,30 +1023,29 @@ public class Main {
      * @author Jacob L. Johnston
      */
     private static void addNewProduct() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Adding a new product.");
 
         System.out.print("Title: ");
-        String title = scanner.nextLine();
+        String title = myScanner.nextLine();
 
         System.out.print("Developer: ");
-        String developer = scanner.nextLine();
+        String developer = myScanner.nextLine();
 
         System.out.print("ID: ");
-        String id = scanner.nextLine();
+        String id = myScanner.nextLine();
 
         System.out.print("Genre: ");
-        String genre = scanner.nextLine();
+        String genre = myScanner.nextLine();
 
         System.out.print("Release Date (MM/DD/YYYY): ");
-        String dateString = scanner.nextLine();
+        String dateString = myScanner.nextLine();
         Date releaseDate = new Date(dateString); // Do we have a comparator for this?
 
         System.out.print("Summary: ");
-        String summary = scanner.nextLine();
+        String summary = myScanner.nextLine();
 
         System.out.print("Platforms (comma-separated): ");
-        String platformsString = scanner.nextLine();
+        String platformsString = myScanner.nextLine();
 
         // Create an ArrayList from split string
         String[] platformsArray = platformsString.split(",");
@@ -1056,10 +1055,10 @@ public class Main {
         }
 
         System.out.print("Price: ");
-        double price = Double.parseDouble(scanner.nextLine());
+        double price = Double.parseDouble(myScanner.nextLine());
 
         System.out.print("Stock: ");
-        int stock = Integer.parseInt(scanner.nextLine());
+        int stock = Integer.parseInt(myScanner.nextLine());
 
         Game newGame = new Game(title, developer, id, genre, releaseDate, summary, platforms, price, stock);
 
@@ -1070,7 +1069,6 @@ public class Main {
 
         saveGame(newGame);
         System.out.println("New product added successfully.");
-        scanner.close();
     }
 
     /**
