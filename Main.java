@@ -40,6 +40,7 @@ public class Main {
      * 
      * @author Abdullah Mohammad
      * @author Chahid Bagdouri
+     * @author Jacob L. Johnston
      */
     public static void main(String[] args) {
         createLoginTables();
@@ -52,27 +53,33 @@ public class Main {
         // System.err.println(employeeTable.toString());
 
         System.out.println("Welcome to the Video Games Store!");
-        System.out.println("Would you like to login as a Customer or Employee?");
-        System.out.println("Type '1' for Customer and '2' for Employee.");
+        System.out.println("Would you like to login as a Customer, Employee, or Manager?");
+        System.out.println("Type '1' for Customer and '2' for Employee, and '3' for Manager.");
         int choice = Integer.parseInt(myScanner.nextLine());
         System.out.println(); // newline
 
         while(choice != 1 && choice != 2) {
             System.out.println("Please try again.");
-            System.out.println("Type '1' for Customer and '2' for Employee.");
+            System.out.println("Type '1' for Customer, '2' for Employee, and '3' for Manager.");
             choice = Integer.parseInt(myScanner.nextLine());
             System.out.println(); // newline
         }
 
-        if(choice == 1) {
-            Customer tempCustomer = loginAsCustomer();
-            customerTable.add(tempCustomer);
+        switch (choice) {
+            case 1:
+                Customer tempCustomer = loginAsCustomer();
+                customerTable.add(tempCustomer);
+                break;
+            case 2:
+                Employee tempEmployee = loginAsEmployee();
+                employeeTable.add(tempEmployee);
+                EmployeeOptions(tempEmployee);
+                break;
+            case 3:
+                Employee manager = loginAsManager();
+                managerOptions(manager);
+                break;
         }
-        else if (choice == 2) {
-            Employee tempEmployee = loginAsEmployee();
-            employeeTable.add(tempEmployee);
-            EmployeeOptions( tempEmployee);
-        }   
     }
 
     /**
@@ -907,5 +914,215 @@ public class Main {
             System.out.println("No orders to ship!");
         }
         return 0;
+    }
+
+
+    /**
+     * Handles the manager login process.
+     * Asks for username and password, verifies the credentials, and returns a logged-in manager.
+     *
+     * @author Jacob L. Johnston
+     * @return manager The logged-in manager for whom the options are displayed
+     */
+    public static Employee loginAsManager() {
+        boolean isManager = false;
+        Employee manager = null;
+        while (!isManager) {
+            System.out.println("Please enter your username:");
+            String username = myScanner.nextLine();
+            System.out.println("Please enter your password:");
+            String password = myScanner.nextLine();
+            manager = new Employee("", "", username, password, true);
+            isManager = employeeTable.find(manager) != -1 && manager.isManager();
+            if (isManager) {
+                System.out.println("Successfully logged in as manager " + manager.getFirstName());
+            } else {
+                System.out.println("Login failed. Please try again.");
+            }
+        }
+        return manager;
+    }
+
+    /**
+     * Presents/handles the manager's operational options.
+     * Allows managers to update the products catalogue and view orders.
+     *
+     * @author Jacob L. Johnston
+     * @param manager The logged-in manager for whom the options are displayed.
+     */
+    public static void managerOptions(Employee manager) {
+        int choice;
+        do {
+            System.out.println("Manager Options:");
+            System.out.println("1. Update Products Catalogue");
+            System.out.println("2. View Orders");
+            System.out.println("-1. Exit");
+            choice = Integer.parseInt(myScanner.nextLine());
+
+            switch (choice) {
+                case 1:
+                    updateProductsCatalogue();
+                    break;
+                case 2:
+                    System.out.println("View Orders:");
+                    System.out.println("1. View all unshipped orders");
+                    System.out.println("2. View order with highest priority");
+                    int viewChoice = Integer.parseInt(myScanner.nextLine());
+                    if (viewChoice == 2) {
+                        viewOrder(false); // Only view the highest priority order
+                    } else {
+                        viewOrder(true); // View all unshipped orders
+                    }
+//                    viewOrder(viewChoice != 2); // Shorter version of the 5 lines above, but much less readable
+                    break;
+            }
+        } while (choice != -1);
+    }
+
+    /**
+     * Displays and handles the options for updating the products catalogue.
+     * Allows adding new products, updating existing products, and removing products.
+     *
+     * @author Jacob L. Johnston
+     */
+    public static void updateProductsCatalogue() {
+        int choice;
+        do {
+            System.out.println("Update Products Catalogue: ");
+            System.out.println("1. Add New Product");
+            System.out.println("2. Update Existing Product");
+            System.out.println("3. Remove Product");
+            System.out.println("-1. Back to Manager Options");
+            choice = Integer.parseInt(myScanner.nextLine());
+
+            switch (choice) {
+                case 1:
+                    addNewProduct();
+                    break;
+                case 2:
+                    updateExistingProduct();
+                    break;
+                case 3:
+                    removeProduct();
+                    break;
+            }
+        } while (choice != -1);
+    }
+
+    /**
+     * Adds a new product to the catalogue.
+     * Guides the user through the process of entering product details and inserts the product into the BST.
+     *
+     * @author Jacob L. Johnston
+     */
+    private static void addNewProduct() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Adding a new product.");
+
+        System.out.print("Title: ");
+        String title = scanner.nextLine();
+
+        System.out.print("Developer: ");
+        String developer = scanner.nextLine();
+
+        System.out.print("ID: ");
+        String id = scanner.nextLine();
+
+        System.out.print("Genre: ");
+        String genre = scanner.nextLine();
+
+        System.out.print("Release Date (yyyy-mm-dd): ");
+        String dateString = scanner.nextLine();
+        Date releaseDate = new Date(dateString); // Do we have a comparator for this?
+
+        System.out.print("Summary: ");
+        String summary = scanner.nextLine();
+
+        System.out.print("Platforms (comma-separated): ");
+        String platformsString = scanner.nextLine();
+
+        // Create an ArrayList from split string
+        String[] platformsArray = platformsString.split(",");
+        ArrayList<String> platforms = new ArrayList<>();
+        for (String platform : platformsArray) {
+            platforms.add(platform.trim()); // leading or trailing spaces
+        }
+
+        System.out.print("Price: ");
+        double price = Double.parseDouble(scanner.nextLine());
+
+        System.out.print("Stock: ");
+        int stock = Integer.parseInt(scanner.nextLine());
+
+        Game newGame = new Game(title, developer, id, genre, releaseDate, summary, platforms, price, stock);
+
+        // Seperate BSTs
+        gamesByTitle.insert(newGame, titleCMP);
+        gamesByDeveloper.insert(newGame, developerCMP);
+
+        System.out.println("New product added successfully.");
+    }
+
+    /**
+     * Updates the price or stock of an existing product in the catalogue.
+     * Searches for the product by key, allows the user to update its details, and updates the BST.
+     *
+     * @author Jacob L. Johnston
+     */
+    private static void updateExistingProduct() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Update an existing product.");
+
+        System.out.println("Enter the title of the product to update: ");
+        String title = scanner.nextLine();
+
+        Game game = gamesByTitle.search(new Game(title, ""), new TitleComparator());
+        if (game == null) {
+            System.out.println("Product not found.");
+            return;
+        }
+
+        System.out.println("Current information: " + game);
+        System.out.print("New price (leave blank to keep current): ");
+        String priceInput = scanner.nextLine();
+        if (!priceInput.isEmpty()) {
+            double price = Double.parseDouble(priceInput);
+            game.setPrice(price);
+        }
+
+        System.out.print("New stock (leave blank to keep current): ");
+        String stockInput = scanner.nextLine();
+        if (!stockInput.isEmpty()) {
+            int stock = Integer.parseInt(stockInput);
+            game.setStock(stock);
+        }
+
+        System.out.println("Product updated successfully.");
+    }
+
+    /**
+     * Removes a product from the catalogue.
+     * Searches for the product by key and removes it from the BST if found.
+     *
+     * @author Jacob L. Johnston
+     */
+    private static void removeProduct() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Removing a product.");
+
+        System.out.print("Enter the title of the product to remove: ");
+        String title = scanner.nextLine();
+
+        Game game = gamesByTitle.search(new Game(title, ""), new TitleComparator());
+        if (game == null) {
+            System.out.println("Product not found.");
+            return;
+        }
+
+        // Separate BST's
+        gamesByTitle.remove(game, titleCMP);
+        gamesByDeveloper.remove(game, developerCMP);
+
+        System.out.println("Product removed successfully.");
     }
 }
