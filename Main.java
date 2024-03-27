@@ -403,6 +403,7 @@ public class Main {
 
             System.out.println("-1. Exit the program.");
 
+            myScanner.nextLine(); // clear the buffer
             choice1 = Integer.parseInt(myScanner.nextLine());
             System.out.println(); // newline
 
