@@ -164,6 +164,7 @@ public class Queue<T> implements Q<T> {
      * @return whether obj and this are equal
      */
     @Override
+    @SuppressWarnings("unchecked")
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof Queue)) {
             return false;
