@@ -55,13 +55,13 @@ public class Main {
         // System.err.println(employeeTable.toString());
 
         System.out.println("Welcome to the Video Games Store!");
-        System.out.println("Would you like to login as a Customer, Employee, or Manager?");
+        System.out.println("Would you like to login as a Customer or Employee?");
         int choice = 0;
         while (true) {
             try {
-                System.out.println("Type '1' for Customer, '2' for Employee, and '3' for Manager.");
+                System.out.println("Type '1' for Customer, '2' for Employee.");
                 choice = Integer.parseInt(myScanner.nextLine());
-                if (choice >= 1 && choice <= 3) break;
+                if (choice >= 1 && choice <= 2) break;
                 System.out.println("Invalid choice. Please try again.");
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid number.");
@@ -69,9 +69,9 @@ public class Main {
         }
 //        System.out.println(); // newline
 
-        while (choice < 1 || choice > 3) {
+        while (choice < 1 || choice > 2) {
             System.out.println("Please try again.");
-            System.out.println("Type '1' for Customer, '2' for Employee, and '3' for Manager.");
+            System.out.println("Type '1' for Customer, '2' for Employee.");
             choice = Integer.parseInt(myScanner.nextLine());
 //            System.out.println(); // newline
         }
@@ -86,14 +86,11 @@ public class Main {
                 employeeTable.add(tempEmployee);
                 EmployeeOptions(tempEmployee);
                 break;
-            case 3:
-                Employee manager = loginAsManager();
-                managerOptions(manager);
-                break;
             default:
                 System.out.println("Invalid choice. Exiting the program.");
                 break;
         }
+        exitProgram();
     }
 
     /**** Technical Setup ****/
@@ -703,6 +700,7 @@ public class Main {
      * @return logged in Employee object
      */
     public static Employee loginAsEmployee() {
+//        System.out.println(employeeTable.toString());
         boolean isEmployee = false;
         Employee tempEmployee = null;
         while(!isEmployee) {
@@ -718,7 +716,12 @@ public class Main {
             
             if(isEmployee) {
                 tempEmployee = employeeTable.get(tempEmployee);
-                System.out.println("Successfully logged in as " + tempEmployee.getFirstName() + " " + tempEmployee.getLastName() + ".");
+                if (tempEmployee.isManager()) {
+                    System.out.println("Successfully logged in as manager " + tempEmployee.getFirstName() + " " + tempEmployee.getLastName() + ".");
+                } else {
+                    System.out.println("Successfully logged in as " + tempEmployee.getFirstName() + " " + tempEmployee.getLastName() + ".");
+
+                }
 //                System.out.println(); // newline
             }
             else {
@@ -737,6 +740,10 @@ public class Main {
      */
     public static void EmployeeOptions(Employee tempEmployee) {
         int choice = 0;
+        boolean manager = tempEmployee.isManager();
+//        System.out.println(manager);
+
+
 
         do {
             System.out.println("Please select one of the following options by typing in the corresponding number:");
@@ -744,6 +751,8 @@ public class Main {
             System.out.println("2. View Order with Highest Priority");
             System.out.println("3. View all Orders");
             System.out.println("4. Ship a order.");
+            if(manager)
+                System.out.println("5. Update Products Catalogue.");
             System.out.println("-1. Exit the program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
@@ -760,6 +769,9 @@ public class Main {
             }
             else if (choice == 4) {
                 shipOrder();
+            }
+            else if( manager && choice == 5) {
+                updateProductsCatalogue();
             }
 
             if (choice == -1) {
@@ -907,6 +919,7 @@ public class Main {
 
     /**** Manager Methods ****/
 
+
     /**
      * Handles the manager login process.
      * Asks for username and password, verifies the credentials, and returns a logged-in manager.
@@ -914,6 +927,7 @@ public class Main {
      * @author Jacob L. Johnston
      * @return manager The logged-in manager for whom the options are displayed
      */
+    /*
     public static Employee loginAsManager() {
         boolean isManager = false;
         Employee manager = null;
@@ -933,6 +947,8 @@ public class Main {
         return manager;
     }
 
+     */
+
     /**
      * Presents/handles the manager's operational options.
      * Allows managers to update the products catalogue and view orders.
@@ -940,6 +956,7 @@ public class Main {
      * @author Jacob L. Johnston
      * @param manager The logged-in manager for whom the options are displayed.
      */
+    /*
     public static void managerOptions(Employee manager) {
         int choice;
         do {
@@ -969,6 +986,8 @@ public class Main {
         } while (choice != -1);
     }
 
+     */
+
     /**
      * Displays and handles the options for updating the products catalogue.
      * Allows adding new products, updating existing products, and removing products.
@@ -984,7 +1003,6 @@ public class Main {
             System.out.println("3. Remove Product");
             System.out.println("-1. Back to Manager Options");
             choice = Integer.parseInt(myScanner.nextLine());
-
             switch (choice) {
                 case 1:
                     addNewProduct();
@@ -1006,30 +1024,29 @@ public class Main {
      * @author Jacob L. Johnston
      */
     private static void addNewProduct() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Adding a new product.");
 
         System.out.print("Title: ");
-        String title = scanner.nextLine();
+        String title = myScanner.nextLine();
 
         System.out.print("Developer: ");
-        String developer = scanner.nextLine();
+        String developer = myScanner.nextLine();
 
         System.out.print("ID: ");
-        String id = scanner.nextLine();
+        String id = myScanner.nextLine();
 
         System.out.print("Genre: ");
-        String genre = scanner.nextLine();
+        String genre = myScanner.nextLine();
 
-        System.out.print("Release Date (yyyy-mm-dd): ");
-        String dateString = scanner.nextLine();
+        System.out.print("Release Date (MM/DD/YYYY): ");
+        String dateString = myScanner.nextLine();
         Date releaseDate = new Date(dateString); // Do we have a comparator for this?
 
         System.out.print("Summary: ");
-        String summary = scanner.nextLine();
+        String summary = myScanner.nextLine();
 
         System.out.print("Platforms (comma-separated): ");
-        String platformsString = scanner.nextLine();
+        String platformsString = myScanner.nextLine();
 
         // Create an ArrayList from split string
         String[] platformsArray = platformsString.split(",");
@@ -1039,19 +1056,20 @@ public class Main {
         }
 
         System.out.print("Price: ");
-        double price = Double.parseDouble(scanner.nextLine());
+        double price = Double.parseDouble(myScanner.nextLine());
 
         System.out.print("Stock: ");
-        int stock = Integer.parseInt(scanner.nextLine());
+        int stock = Integer.parseInt(myScanner.nextLine());
 
         Game newGame = new Game(title, developer, id, genre, releaseDate, summary, platforms, price, stock);
 
         // Seperate BSTs
         gamesByTitle.insert(newGame, titleCMP);
         gamesByDeveloper.insert(newGame, developerCMP);
+        gamesByPrice.insert(newGame, priceCMP);
+
 
         System.out.println("New product added successfully.");
-        scanner.close();
     }
 
     /**
@@ -1069,19 +1087,20 @@ public class Main {
 
         Game game = gamesByTitle.search(new Game(title, ""), new TitleComparator());
 
-        scanner.close();
+//        scanner.close();
 
         if (game == null) {
             System.out.println("Product not found.");
             return;
         }
 
-        System.out.println("Current information: " + game);
+        System.out.println("Current information: " + game.toGameInfoString());
         System.out.print("New price (leave blank to keep current): ");
         String priceInput = scanner.nextLine();
         if (!priceInput.isEmpty()) {
             double price = Double.parseDouble(priceInput);
             game.setPrice(price);
+
         }
 
         System.out.print("New stock (leave blank to keep current): ");
@@ -1090,6 +1109,7 @@ public class Main {
             int stock = Integer.parseInt(stockInput);
             game.setStock(stock);
         }
+
 
         System.out.println("Product updated successfully.");
     }
@@ -1118,6 +1138,7 @@ public class Main {
         // Separate BST's
         gamesByTitle.remove(game, titleCMP);
         gamesByDeveloper.remove(game, developerCMP);
+        gamesByPrice.remove(game, priceCMP);
 
         System.out.println("Product removed successfully.");
     }
@@ -1169,7 +1190,6 @@ public class Main {
     private static void exitProgram() {
         System.out.println("Saving data...");
         saveOrders();
-        saveUsers();
         saveGames();
         
         System.out.println("Data saved. Exiting the program.");
@@ -1212,21 +1232,13 @@ public class Main {
      * 
      * @author Hari Prakash
      */
-    private static void saveUsers() {
+    private static void addUser(Customer customer) {
         try {
             FileWriter writer = new FileWriter("users.txt");
-            for (Customer customer : customerTable) {
-                writer.write(customer.getName() + "\n");
-                writer.write(customer.getUsername() + "\n");
-                writer.write(customer.getPassword() + "\n");
-                writer.write("customer\n");
-            }
-            for (Employee employee : employeeTable) {
-                writer.write(employee.getName() + "\n");
-                writer.write(employee.getUsername() + "\n");
-                writer.write(employee.getPassword() + "\n");
-                writer.write(employee.isManager() ? "manager\n" : "employee\n");
-            } 
+            writer.write(customer.getName() + "\n");
+            writer.write(customer.getUsername() + "\n");
+            writer.write(customer.getPassword() + "\n");
+            writer.write("customer\n");
             writer.close();
         } catch (IOException e) {
             System.out.println("saveUsers(): An error occurred.");
@@ -1235,24 +1247,16 @@ public class Main {
     }
 
     /**
-     * Saves the games to database.txt file
+     * Saves a game to database.txt file
      * 
      * @author Hari Prakash
      */
     private static void saveGames() {
-        try {
+        System.out.println();
+        System.out.println(gamesByTitle.inOrderString());
+        try{
             FileWriter writer = new FileWriter("database.txt");
-            for (Game game : gamesByTitle) {
-                writer.write(game.getTitle() + "\n");
-                writer.write(game.getDeveloper() + "\n");
-                writer.write(game.getId() + "\n");
-                writer.write(game.getGenre() + "\n");
-                writer.write(game.getReleaseDate().toString() + "\n");
-                writer.write(game.getSummary() + "\n");
-                writer.write(game.getPlatforms().toString() + "\n");
-                writer.write("$" + game.getPrice() + "\n");
-                writer.write(game.getStock() + "\n\n");
-            }
+            writer.write(gamesByTitle.inOrderString());
             writer.close();
         } catch (IOException e) {
             System.out.println("saveGames(): An error occurred.");
