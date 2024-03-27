@@ -550,10 +550,20 @@ public class Main {
         System.out.println("What would you like to order?: ");
         String gameTitle = myScanner.nextLine();
         System.out.println(); // newline
-        System.out.println(gamesByTitle.search(new Game(gameTitle, ""), titleCMP));
+        Game result = gamesByTitle.search(new Game(gameTitle, ""), titleCMP);
+
+        if(result == null) {
+            System.out.println("Game not found.");
+            return;
+        } else {
+            System.out.println(result);
+        }
+
+        LinkedList<Game> orderContents = new LinkedList<Game>();
+        orderContents.addLast(result);
 
         int choice = -1;
-        while(choice != 1 && choice != 2) {
+        while(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1) {
             System.out.println("What type of shipping would you like?");
             System.out.println("Please select one of the following options by typing in the corresponding number:");
             System.out.println("1. Overnight Shipping.");
@@ -562,20 +572,25 @@ public class Main {
             System.out.println("4. Cancel order and go back to main menu.");
             System.out.println("-1. Exit the program.");
 
+            choice = Integer.parseInt(myScanner.nextLine());
 
-            // wants to order The Legend of Zelda: Breath of the Wild
-            // how
+            Order newOrder = new Order(
+                tempCustomer,
+                new Date(),
+                orderContents,
+                0
+            );
             if(choice == 1) {
-                // tempCustomer.addUnshippedOrder(new Order(tempCustomer, new Date("12/25/2021"), new LinkedList<Game>(), 1, 1));
+                newOrder.setShippingSpeed(1);
             }
             else if (choice == 2) {
-                // TODO: Implement
+                newOrder.setShippingSpeed(2);
             }
             else if (choice == 3) {
-                // TODO: Implement
+                newOrder.setShippingSpeed(3);
             }
             else if(choice == 4) {
-                CustomerOptions(tempCustomer, false);
+                return;
             }
             else if(choice == -1) {
                 System.exit(0);
