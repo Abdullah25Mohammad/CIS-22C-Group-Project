@@ -744,12 +744,29 @@ public class Main {
         if(choice == 2)
         {
             System.out.println("Please enter the Customer you are looking for: ");
-            Integer ID = Integer.parseInt(myScanner.nextLine());
+            String firstName = myScanner.next();
+            String lastName = myScanner.next();
             System.out.println(); // newline
+            myScanner.nextLine(); // clear the buffer
+            
+            Order target = orderByName.search(
+                new Order(
+                    0, 
+                    new Customer(
+                        firstName, 
+                        lastName, 
+                        "", 
+                        ""
+                    ), 
+                    new Date(), 
+                    new LinkedList<Game>(), 
+                    0
+                ), 
+                new NameComparator()
+            );
 
-            Order target = orderByName.search(new Order(ID), new NameComparator());
             if( target != null) {
-                System.out.println(target);
+                System.out.println(target + "\n");
             }
             else {
                 System.out.println("No results found.");
