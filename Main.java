@@ -654,7 +654,6 @@ public class Main {
 
 //            System.out.println(); // newline
             System.out.println("Order placed!");
-            updateOrderFile(newOrder);
             
         } while(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1);
     }
@@ -1088,15 +1087,12 @@ public class Main {
      * @author Jacob L. Johnston
      */
     private static void updateExistingProduct() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Update an existing product.");
 
         System.out.println("Enter the title of the product to update: ");
-        String title = scanner.nextLine();
+        String title = myScanner.nextLine();
 
         Game game = gamesByTitle.search(new Game(title, ""), new TitleComparator());
-
-//        scanner.close();
 
         if (game == null) {
             System.out.println("Product not found.");
@@ -1105,7 +1101,7 @@ public class Main {
 
         System.out.println("Current information: " + game.toGameInfoString());
         System.out.print("New price (leave blank to keep current): ");
-        String priceInput = scanner.nextLine();
+        String priceInput = myScanner.nextLine();
         if (!priceInput.isEmpty()) {
             double price = Double.parseDouble(priceInput);
             game.setPrice(price);
@@ -1113,7 +1109,7 @@ public class Main {
         }
 
         System.out.print("New stock (leave blank to keep current): ");
-        String stockInput = scanner.nextLine();
+        String stockInput = myScanner.nextLine();
         if (!stockInput.isEmpty()) {
             int stock = Integer.parseInt(stockInput);
             game.setStock(stock);
@@ -1149,45 +1145,6 @@ public class Main {
         gamesByPrice.remove(game, priceCMP);
 
         System.out.println("\nProduct removed successfully.");
-    }
-
-    /**
-     * Updates the Orders.txt file
-     * 
-     * @author Hari Prakash
-     */
-    private static void updateOrderFile(Order newOrder){
-        //               001    (orderID)
-        //               airi   (username)
-        //               1   (password)
-        //               3   (numGames)
-        //               Halo 3
-        //               Minecraft
-        //               Undertale
-        //               05/01/2005 (datePlaced)
-        //               3         (shippingSpeed)
-        try {
-            FileWriter writer = new FileWriter("orders.txt", true);
-            writer.write("\n");
-            writer.write(newOrder.getOrderID() + "\n");
-            writer.write(newOrder.getCustomer().getUsername() + "\n");
-            writer.write(newOrder.getCustomer().getPassword() + "\n");
-            writer.write(newOrder.getOrderContents().getLength() + "\n");
-    
-            newOrder.getOrderContents().positionIterator();
-            while (!newOrder.getOrderContents().offEnd()) {
-                Game game = newOrder.getOrderContents().getIterator();
-                writer.write(game.getTitle() + "\n");
-                newOrder.getOrderContents().advanceIterator();
-            }
-    
-            writer.write(newOrder.getDatePlaced().toString() + "\n");
-            writer.write(newOrder.getShippingSpeed() + "\n");
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("updateOrderFile(): An error occurred.");
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -1235,25 +1192,6 @@ public class Main {
             writer.close();
         } catch (IOException e) {
             System.out.println("saveOrders(): An error occurred.");
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Saves the users to users.txt file
-     * 
-     * @author Hari Prakash
-     */
-    private static void addUser(Customer customer) {
-        try {
-            FileWriter writer = new FileWriter("users.txt");
-            writer.write(customer.getName() + "\n");
-            writer.write(customer.getUsername() + "\n");
-            writer.write(customer.getPassword() + "\n");
-            writer.write("customer\n");
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("saveUsers(): An error occurred.");
             e.printStackTrace();
         }
     }
