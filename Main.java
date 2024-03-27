@@ -875,37 +875,35 @@ public class Main {
      * Ships an order
      * 
      * @author Michael Chen
+     * @author Hari Prakash
      * @return 0
      */
-    private static int shipOrder()
-    {
-
-        //- Ship an Order (Remove from Heap.
-        // Insert Order to shipped Linked List for the Customer +
-        // Remove from Unshipped List)
-        if (!(unshippedOrders.getMax() == null)) {
+    private static int shipOrder() {
+        try {
+            if (unshippedOrders.getHeapSize() == 0) { 
+                System.out.println("No orders to ship!");
+                return 0;
+            }
+    
             Order shippedOrder = unshippedOrders.getMax();
-
-
-            unshippedOrders.remove(1);
+    
+            unshippedOrders.remove(1); 
             shippedOrders.insert(shippedOrder);
-
+    
             Customer customer = shippedOrder.getCustomer();
-            // System.out.println(customer.getUnshippedOrders());
             customer.removeUnshippedOrder(shippedOrder);
-
             customer.addShippedOrder(shippedOrder);
 
-            shippedOrders.insert(shippedOrder);
             orderByID.remove(shippedOrder, new IDComparator());
             orderByName.remove(shippedOrder, new NameComparator());
+    
             System.out.println("Order " + shippedOrder.getOrderID() + " shipped!");
-
-        } else {
-            System.out.println("No orders to ship!");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("No more orders to ship.");
         }
         return 0;
     }
+    
 
     /**** Manager Methods ****/
 
