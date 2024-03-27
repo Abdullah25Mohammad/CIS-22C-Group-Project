@@ -1,9 +1,9 @@
 Half-Life 2
 Valve
 1
-First-person shooter
+First-Person Shooter
 11/16/2004
-[description goes here]
+Dive into the dystopian world of Half-Life 2 where you, as Dr. Gordon Freeman, must navigate through a technologically advanced but oppressive regime. Armed with a gravity gun and your wits, solve complex puzzles and battle against alien invaders in this groundbreaking first-person shooter that blends physics, storytelling, and action like no other.
 PC
 $40.00
 80
@@ -11,9 +11,9 @@ $40.00
 Halo 3
 Microsoft Game Studios
 2
-First-person shooter
+First-Person Shooter
 11/26/2007
-[description goes here]
+Experience the epic conclusion to the Halo trilogy as Master Chief. Battle against the Covenant and Flood in a desperate effort to save humanity. With its compelling narrative, innovative gameplay, and revolutionary online multiplayer, Halo 3 is a landmark in first-person shooter history that's both intellectually stimulating and wildly entertaining.
 Xbox 360
 $40.00
 75
@@ -31,9 +31,9 @@ $26.95
 Portal 2
 Valve
 4
-Puzzle-platformer
+Puzzle-Platformer
 4/18/2011
-[description goes here]
+Step into the mind-bending universe of Portal 2, a puzzle-platformer that challenges you with spatial problems and teleportation mechanics. Play as Chell, navigate through the mysterious Aperture Science Laboratories, and utilize the portal gun under the witty guidance of GLaDOS. It's a cerebral journey filled with humor, physics-based puzzles, and a captivating story.
 PC, PlayStation 3, Xbox 360
 $30.00
 100
@@ -43,7 +43,7 @@ Psyonix
 5
 Sports
 07/07/2015
-[description goes here]
+Imagine soccer but with rocket-powered cars in a high-flying, fast-paced arena. Rocket League combines physics, engineering, and sports in a unique, addictive game that challenges your strategy, teamwork, and motor skills in a thrilling, competitive environment.
 PC, PlayStation 4
 $20.00
 140
@@ -51,9 +51,9 @@ $20.00
 Undertale
 Toby Fox
 6
-Role-playing
+Role-Playing
 09/15/2015
-[description goes here]
+Undertale offers a quirky, character-driven narrative where choices matter. In this role-playing game, you encounter monsters with distinct personalities. The innovative combat system allows for pacifist or aggressive approaches, making it a study in empathy, ethics, and the consequences of our actions.
 PC, Mac
 $10.00
 105
@@ -61,7 +61,7 @@ $10.00
 The Witcher 3: Wild Hunt
 CD Projekt
 7
-Action role-playing
+Action Role-Playing
 05/19/2015
 Embark on a dark fantasy adventure as Geralt of Rivia a monster hunter for hire in a vast open world full of rich storytelling and immersive gameplay.
 PC, PlayStation 4, Xbox One
@@ -71,7 +71,7 @@ $40.00
 The Legend of Zelda: Breath of the Wild
 Nintendo
 8
-Action-adventure
+Action-Adventure
 03/03/2017
 Embark on a grand adventure as Link in a vast open world filled with puzzles battles and exploration in this iconic Nintendo title.
 Nintendo Switch, Wii U
@@ -84,7 +84,6 @@ Rockstar Games
 Action-Adventure
 10/26/2018
 Explore the Wild West as outlaw Arthur Morgan in this critically acclaimed open-world epic from Rockstar Games.
-TODO
 $59.99
 25
 
@@ -94,7 +93,6 @@ Ubisoft Montreal
 Action RPG
 11/10/2020
 Forge your Viking legend as Eivor raiding conquering and building alliances in the stunning landscapes of Norway and England.
-TODO
 $59.99
 60
 
@@ -104,7 +102,6 @@ EA Vancouver
 Sports
 10/01/2021
 Experience the thrill of football with realistic gameplay stunning visuals and enhanced career modes in the latest installment of the FIFA series.
-TODO
 $59.99
 25
 
@@ -114,7 +111,6 @@ Innersloth
 Social Deduction
 06/15/2018
 Work together to complete tasks on a spaceship but beware of impostors among the crew in this popular multiplayer game of deception and strategy.
-TODO
 $4.99
 50
 
@@ -124,7 +120,5 @@ Nintendo
 Life Simulation
 03/20/2020
 Create your dream island paradise interact with adorable anthropomorphic villagers and customize your world in this relaxing life simulation game.
-TODO
 $59.99
 60
-
