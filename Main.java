@@ -222,6 +222,7 @@ public class Main {
                 int shippingSpeed = Integer.parseInt(scanner.nextLine());
 
                 Order newOrder = new Order(orderID, cus, datePlaced, products, shippingSpeed);
+                cus.addUnshippedOrder(newOrder);
                 orderByID.insert(newOrder, new IDComparator());
                 orderByName.insert(newOrder, new NameComparator());
                 unshippedOrders.insert(newOrder);
@@ -696,7 +697,7 @@ public class Main {
             if (choice == -1) {
                 return;
             }
-        } while(choice != 1 && choice != 2 && choice != 3 && choice != 4);
+        } while(choice != 1);
     }
 
 
