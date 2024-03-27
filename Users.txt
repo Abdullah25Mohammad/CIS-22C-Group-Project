@@ -28,11 +28,6 @@ ChahidB
 password123
 customer
 
-Michael Chen
-MChen
-michael123
-customer
-
 Bob Smith
 bobbob2
 b2b3b0
