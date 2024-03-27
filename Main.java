@@ -408,6 +408,7 @@ public class Main {
      * 
      * @author Chahid Bagdouri
      * @author Abdullah Mohammad
+     * @author Jacob L. Johnston
      * @param tempCustomer
      * @param isGuest
      */
