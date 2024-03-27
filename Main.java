@@ -275,8 +275,8 @@ public class Main {
 //        System.out.println(); // newline
 
         while(choice != 1 && choice != 2 && choice != 3) {
-            System.out.println("Please try again.");
-            System.out.println("Please select one of the following options by typing in the corresponding number:");
+            System.out.println("\nPlease try again.");
+            System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
             System.out.println("1. Make a new account");
             System.out.println("2. Login to an existing account.");
             System.out.println("3. Continue as a Guest.");
@@ -551,7 +551,7 @@ public class Main {
         int choice = 0;
 
         do {
-            System.out.println("Please select one of the following options by typing in the corresponding number:");
+            System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
             System.out.println("1. Display games by title.");
             System.out.println("2. Display games by developer.");
             System.out.println("3. Display games by price.");
@@ -605,8 +605,8 @@ public class Main {
 
         int choice = -1;
         do {
-            System.out.println("What type of shipping would you like?");
-            System.out.println("Please select one of the following options by typing in the corresponding number:");
+            System.out.println("\nWhat type of shipping would you like?");
+            System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
             System.out.println("1. Overnight Shipping.");
             System.out.println("2. Rush Shipping.");
             System.out.println("3. Standard Shipping.");
@@ -739,7 +739,7 @@ public class Main {
         int choice = 0;
 
         do {
-            System.out.println("Please select one of the following options by typing in the corresponding number:");
+            System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
             System.out.println("1. Search for a Order.");
             System.out.println("2. View Order with Highest Priority");
             System.out.println("3. View all Orders");
