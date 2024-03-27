@@ -1,9 +1,9 @@
 Half-Life 2
 Valve
 1
-First-person shooter
+First-Person Shooter
 11/16/2004
-[description goes here]
+Step into the shoes of a physicist in a dystopian world of science-fiction. Survival meets an immersive narrative featuring climatic gunfights, brain-scratching puzzles, and even love.
 PC
 $40.00
 80
@@ -11,9 +11,9 @@ $40.00
 Halo 3
 Microsoft Game Studios
 2
-First-person shooter
+First-Person Shooter
 11/26/2007
-[description goes here]
+Enter an interstellar war in a richly-detailed sci-fi universe and fight for humanity. Known for its multiplayer and co-op.
 Xbox 360
 $40.00
 75
@@ -23,7 +23,7 @@ Mojang
 3
 Sandbox
 11/18/2011
-Create explore and survive in a blocky world filled with endless possibilities and creative freedom.
+Create explore and survive in a block-y world filled with endless possibilities and creative freedom. Beware of night-time...
 PC, Mac, Linux
 $26.95
 120
@@ -31,9 +31,9 @@ $26.95
 Portal 2
 Valve
 4
-Puzzle-platformer
+Puzzle-Platformer
 4/18/2011
-[description goes here]
+Witty dialogue, ingenious puzzles, and an oddly compelling story. Manipulate portals and physics to navigate through a mind-bending laboratory named Aperture Science.
 PC, PlayStation 3, Xbox 360
 $30.00
 100
@@ -43,7 +43,7 @@ Psyonix
 5
 Sports
 07/07/2015
-[description goes here]
+It's car soccer in a physics-driven, action-packed arena. Offers a unique twist on team sports, blending high-speed driving with soccer strategy in a dynamic, rocket-powered universe.
 PC, PlayStation 4
 $20.00
 140
@@ -51,9 +51,9 @@ $20.00
 Undertale
 Toby Fox
 6
-Role-playing
+Role-Playing
 09/15/2015
-[description goes here]
+Every choice matters. Charm meets clever writing, quirky characters, and an innovative combat system that allows for nonviolent resolutions, challenging moral conventions of traditional RPGs.
 PC, Mac
 $10.00
 105
@@ -83,7 +83,7 @@ Rockstar Games
 9
 Action-Adventure
 10/26/2018
-Explore the Wild West as outlaw Arthur Morgan in this critically acclaimed open-world epic from Rockstar Games.
+Explore the unforgiving heartand of the Wild West as outlaw Arthur Morgan in this critically acclaimed, historically-detailed open-world epic from Rockstar Games.
 PlayStation 4, Xbox One
 $59.99
 25
