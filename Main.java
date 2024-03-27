@@ -3,13 +3,13 @@
  * 
  * @author Abdullah Mohammad
  * @author Chahid Bagdouri
- * @author [more names here]
+ * @author Jacob L. Johnston
+ * @author Michael Chen
  */
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -85,6 +85,8 @@ public class Main {
                 break;
         }
     }
+
+    /**** Technical Setup ****/
 
     /**
      * Reads the Users.txt file and creates the Customer and Employee objects
@@ -246,6 +248,8 @@ public class Main {
         }
     }
 
+    /**** Customer Methods ****/
+
     /**
      * Logs in as a Customer
      * 
@@ -396,6 +400,7 @@ public class Main {
      * Displays options to the Customer
      * 
      * @author Chahid Bagdouri
+     * @author Abdullah Mohammad
      * @param tempCustomer
      * @param isGuest
      */
@@ -442,6 +447,7 @@ public class Main {
     /**
      * Asks the user what game/developer to search for, and then performs the search
      * 
+     * @author Abdullah Mohammad
      * @author Chahid Bagdouri
      * @param tempCustomer
      * @param isGuest
@@ -555,6 +561,7 @@ public class Main {
      * Asks the user what game to order, and then orders it for the user
      * 
      * @author Chahid Bagdouri
+     * @author Abdullah Mohammad
      * @param tempCustomer
      */
     private static void CustomerPlaceOrder(Customer tempCustomer) {
@@ -622,11 +629,12 @@ public class Main {
         } while(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1);
     }
 
-    
     /**
      * Displays the game database
      * 
+     * @author Chahid Bagdouri
      * @author Abdullah Mohammad
+     * @param tempCustomer
      */
     private static void ViewPurchases(Customer tempCustomer) {
         int choice = 0;
@@ -649,7 +657,6 @@ public class Main {
         
         if(choice == 1) {
             System.out.println(tempCustomer.getShippedOrders());
-            System.out.println("HERE");
         }
         else if(choice == 2) {
             System.out.println(tempCustomer.getUnshippedOrders());
@@ -663,7 +670,7 @@ public class Main {
 
     }
 
-
+    /**** Employee Methods ****/
 
     /**
      * Logs in as an Employee
@@ -696,8 +703,6 @@ public class Main {
         }
         return tempEmployee;
     }
-
-
 
     /**
      * Displays options to the Employee
@@ -739,11 +744,11 @@ public class Main {
         } while(choice != 1);
     }
 
-
     /**
      * Asks the user what order to search for, and then performs the search
      *
      * @author Michael Chen
+     * @author Abdullah Mohammad
      */
     private static int searchForOrder() {
         int choice = 0;
@@ -820,55 +825,6 @@ public class Main {
             return -1;
         }
         return 0;
-
-        /*
-        if((choice == 1) || (choice == 2)) {
-            System.out.println("Please enter the name of the game/developer you would like to search for:");
-            String search = myScanner.nextLine();
-            System.out.println(); // newline
-
-            LinkedList<Game> searchResults = new LinkedList<Game>();
-
-            if(choice == 1) {
-                Game tempGame = new Game(search, "");
-
-                Game tempResult = gamesByTitle.search(tempGame, titleCMP);
-
-                while (tempResult != null) {
-                    searchResults.addLast(tempResult);
-                    gamesByTitle.remove(tempResult, titleCMP);
-                    tempResult = gamesByTitle.search(tempGame, titleCMP);
-                }
-            }
-            else if(choice == 2) {
-                Game tempGame = new Game("", search);
-
-                Game tempResult = gamesByDeveloper.search(tempGame, developerCMP);
-
-                while (tempResult != null) {
-                    searchResults.addLast(tempResult);
-                    gamesByDeveloper.remove(tempResult, developerCMP);
-                    tempResult = gamesByDeveloper.search(tempGame, developerCMP);
-                }
-            }
-
-            if(searchResults.isEmpty()) {
-                System.out.println("No results found.");
-            }
-            else {
-                // Print out the search results
-                System.out.println(searchResults.toString());
-            }
-        }
-
-        else if(choice == 3) {
-            return;
-        }
-        else if(choice == -1) {
-            System.exit(0);
-        }
-
-         */
     }
 
     /**
@@ -891,6 +847,12 @@ public class Main {
         return 0;
     }
 
+    /**
+     * Ships an order
+     * 
+     * @author Michael Chen
+     * @return 0
+     */
     private static int shipOrder()
     {
 
@@ -920,6 +882,7 @@ public class Main {
         return 0;
     }
 
+    /**** Manager Methods ****/
 
     /**
      * Handles the manager login process.
@@ -977,7 +940,7 @@ public class Main {
                     } else {
                         viewOrder(true); // View all unshipped orders
                     }
-//                    viewOrder(viewChoice != 2); // Shorter version of the 5 lines above, but much less readable
+                    // viewOrder(viewChoice != 2); // Shorter version of the 5 lines above, but much less readable
                     break;
             }
         } while (choice != -1);
@@ -1065,6 +1028,7 @@ public class Main {
         gamesByDeveloper.insert(newGame, developerCMP);
 
         System.out.println("New product added successfully.");
+        scanner.close();
     }
 
     /**
@@ -1081,6 +1045,9 @@ public class Main {
         String title = scanner.nextLine();
 
         Game game = gamesByTitle.search(new Game(title, ""), new TitleComparator());
+
+        scanner.close();
+
         if (game == null) {
             System.out.println("Product not found.");
             return;
@@ -1116,6 +1083,8 @@ public class Main {
 
         System.out.print("Enter the title of the product to remove: ");
         String title = scanner.nextLine();
+
+        scanner.close();
 
         Game game = gamesByTitle.search(new Game(title, ""), new TitleComparator());
         if (game == null) {
