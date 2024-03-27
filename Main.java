@@ -66,13 +66,13 @@ public class Main {
                 System.out.println("Please enter a valid number.");
             }
         }
-        System.out.println(); // newline
+//        System.out.println(); // newline
 
         while (choice < 1 || choice > 3) {
             System.out.println("Please try again.");
             System.out.println("Type '1' for Customer, '2' for Employee, and '3' for Manager.");
             choice = Integer.parseInt(myScanner.nextLine());
-            System.out.println(); // newline
+//            System.out.println(); // newline
         }
 
         switch (choice) {
@@ -266,12 +266,12 @@ public class Main {
      * @return logged in Customer object
      */
     public static Customer loginAsCustomer() {
-        System.out.println("Please select one of the following options by typing in the corresponding number:");
+        System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
         System.out.println("1. Make a new account");
         System.out.println("2. Login to an existing account.");
         System.out.println("3. Continue as a Guest.");
         int choice = Integer.parseInt(myScanner.nextLine());
-        System.out.println(); // newline
+//        System.out.println(); // newline
 
         while(choice != 1 && choice != 2 && choice != 3) {
             System.out.println("Please try again.");
@@ -312,7 +312,7 @@ public class Main {
      * @return logged in Customer object
      */
     private static Customer loginAsNewCustomer() {
-        System.out.print("Please enter your first name: ");
+        System.out.print("\nPlease enter your first name: ");
         String firstName = myScanner.next();
         System.out.print("Please enter your last name: ");
         String lastName = myScanner.next();
@@ -320,20 +320,22 @@ public class Main {
 
         System.out.print("Please enter a username: ");
         String username = myScanner.next();
+
+
         System.out.print("Please enter a password: ");
         String password = myScanner.next();
         myScanner.nextLine(); // Clear the buffer after reading the password
-        System.out.println(); // newline
+//        System.out.println(); // newline
 
         Customer tempCustomer = new Customer(firstName, lastName, username, password);
 
         if((customerTable.find(tempCustomer) != -1)) {
-            System.out.println("The user with the information that you provided already exists.");
+            System.out.println("\nThe user with the information that you provided already exists.");
             tempCustomer = customerTable.get(tempCustomer);
-            System.out.println("Successfully logged in as existing user " + tempCustomer.getFirstName() + " " + tempCustomer.getLastName());
+            System.out.println("Successfully logged in as existing user " + tempCustomer.getFirstName() + " " + tempCustomer.getLastName() + ".");
         } else {
             customerTable.add(tempCustomer);
-            System.out.println("Successfully created account for and logged in as " + tempCustomer.getFirstName() + " " + tempCustomer.getLastName());
+            System.out.println("Successfully created account for and logged in as " + tempCustomer.getFirstName() + " " + tempCustomer.getLastName() + ".");
         }
 
 
@@ -350,7 +352,7 @@ public class Main {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        System.out.println(); // newline
+//        System.out.println(); // newline
         return tempCustomer;
     }
     
@@ -367,14 +369,14 @@ public class Main {
         System.out.print("Please enter your password: ");
         String password = myScanner.next();
         myScanner.nextLine(); // clear the buffer
-        System.out.println(); // newline
+//        System.out.println(); // newline
 
         Customer tempCustomer = new Customer("", "", username, password);
 
         if((customerTable.find(tempCustomer) != -1)) {
             tempCustomer = customerTable.get(tempCustomer);
-            System.out.println("Successfully logged in as " + tempCustomer.getName());
-            System.out.println(); // newline
+            System.out.println("Successfully logged in as " + tempCustomer.getName() + ".");
+//            System.out.println(); // newline
         }
 
         else {
@@ -382,14 +384,14 @@ public class Main {
             System.out.println("Would you like to try again or make a new account?");
             System.out.println("Type '1' to try again or '2' for new account.");
             int choice = Integer.parseInt(myScanner.nextLine());
-            System.out.println(); // newline
+//            System.out.println(); // newline
 
             while(choice != 1 && choice != 2) {
                 System.out.println("Please try again.");
                 System.out.println("Type '1' to try again or '2' for new account.");
                 myScanner.nextLine(); // clear the buffer
                 choice = Integer.parseInt(myScanner.nextLine());
-                System.out.println(); // newline
+//                System.out.println(); // newline
             }
 
             if(choice == 1) {
@@ -414,7 +416,7 @@ public class Main {
      */
     public static void CustomerOptions(Customer tempCustomer, boolean isGuest) {
         while (true) {
-            System.out.println("Please select one of the following options by typing in the corresponding number:");
+            System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
             System.out.println("1. Search for a product.");
             System.out.println("2. List Database of Products.");
             if (!isGuest) {
@@ -475,17 +477,17 @@ public class Main {
     private static void SearchForGame(Customer tempCustomer, boolean isGuest) {
         int choice = 0;
 
-        System.out.println("How would you like to search for a game?");
+        System.out.println("\nHow would you like to search for a game?");
 
         do {
-            System.out.println("Please select one of the following options by typing in the corresponding number:");
+            System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
             System.out.println("1. Search by game title.");
             System.out.println("2. Search by game developer name.");
             System.out.println("3. Go back to main menu.");
             System.out.println("-1. Exit the program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
-            System.out.println(); // newline
+//            System.out.println(); // newline
 
             if(choice != 1 && choice != 2 && choice != 3 && choice != -1) {
                 System.out.println("Invalid input. Please try again.");
@@ -493,9 +495,9 @@ public class Main {
         } while(choice != 1 && choice != 2 && choice != 3 && choice != -1);
 
         if((choice == 1) || (choice == 2)) {
-            System.out.println("Please enter the name of the game/developer you would like to search for:");
+            System.out.println("\nPlease enter the name of the game/developer you would like to search for:");
             String search = myScanner.nextLine();
-            System.out.println(); // newline
+//            System.out.println(); // newline
 
             LinkedList<Game> searchResults = new LinkedList<Game>();
 
@@ -527,7 +529,7 @@ public class Main {
             }
             else {
                 // Print out the search results
-                System.out.println(searchResults.toString());
+                System.out.println("\n" + searchResults.toString());
             }
         }
 
@@ -555,7 +557,7 @@ public class Main {
             System.out.println("-1. Exit the program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
-            System.out.println(); // newline
+//            System.out.println(); // newline
 
             if(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1) {
                 System.out.println("Invalid input. Please try again.");
@@ -585,9 +587,9 @@ public class Main {
      * @param tempCustomer
      */
     private static void CustomerPlaceOrder(Customer tempCustomer) {
-        System.out.print("What would you like to order?: ");
+        System.out.print("\nWhat would you like to order?: ");
         String gameTitle = myScanner.nextLine();
-        System.out.println(); // newline
+//        System.out.println(); // newline
         Game result = gamesByTitle.search(new Game(gameTitle, ""), titleCMP);
 
         if(result == null) {
@@ -643,7 +645,7 @@ public class Main {
             orderByID.insert(newOrder, new IDComparator());
             orderByName.insert(newOrder, new NameComparator());
 
-            System.out.println(); // newline
+//            System.out.println(); // newline
             System.out.println("Order placed!");
             
         } while(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1);
@@ -660,14 +662,14 @@ public class Main {
         int choice = 0;
 
         do {
-            System.out.println("Please select one of the following options by typing in the corresponding number:");
+            System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
             System.out.println("1. View shipped orders.");
             System.out.println("2. View unshipped orders.");
             System.out.println("3. Go back to main menu.");
             System.out.println("-1. Exit the program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
-            System.out.println(); // newline
+//            System.out.println(); // newline
 
             if(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1) {
                 System.out.println("Invalid input. Please try again.");
@@ -704,18 +706,18 @@ public class Main {
         while(!isEmployee) {
             System.out.println("Please enter your username:");
             String username = myScanner.nextLine();
-            System.out.println(); // newline
+//            System.out.println(); // newline
             System.out.println("Please enter your password:");
             String password = myScanner.nextLine();
-            System.out.println(); // newline
+//            System.out.println(); // newline
 
             tempEmployee = new Employee("", "", username, password, false);
             isEmployee = (employeeTable.find(tempEmployee) != -1);
             
             if(isEmployee) {
                 tempEmployee = employeeTable.get(tempEmployee);
-                System.out.println("Successfully logged in as " + tempEmployee.getFirstName() + " " + tempEmployee.getLastName());
-                System.out.println(); // newline
+                System.out.println("Successfully logged in as " + tempEmployee.getFirstName() + " " + tempEmployee.getLastName() + ".");
+//                System.out.println(); // newline
             }
             else {
                 System.out.println("Login failed. Please try again.");
@@ -743,7 +745,7 @@ public class Main {
             System.out.println("-1. Exit the program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
-            System.out.println(); // newline
+//            System.out.println(); // newline
 
             if(choice == 1) {
                 choice = searchForOrder();
@@ -784,7 +786,7 @@ public class Main {
             System.out.println("-1. Exit the program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
-            System.out.println(); // newline
+//            System.out.println(); // newline
 
             if(choice != 1 && choice != 2 && choice != 3 && choice != -1) {
                 System.out.println("Invalid input. Please try again.");
@@ -795,7 +797,7 @@ public class Main {
         {
             System.out.println("Please enter the Order ID you are looking for: ");
             int ID = Integer.parseInt(myScanner.nextLine());
-            System.out.println(); // newline
+//            System.out.println(); // newline
 
 
             Order target = orderByID.search(new Order(ID), new IDComparator());
@@ -811,7 +813,7 @@ public class Main {
             System.out.println("Please enter the Customer you are looking for: ");
             String firstName = myScanner.next();
             String lastName = myScanner.next();
-            System.out.println(); // newline
+//            System.out.println(); // newline
             myScanner.nextLine(); // clear the buffer
             
             Order target = orderByName.search(
@@ -863,7 +865,7 @@ public class Main {
         {
             System.out.println(unshippedOrders.getMax());
         }
-        System.out.println(); // newline
+//        System.out.println(); // newline
         return 0;
     }
 
