@@ -1051,7 +1051,6 @@ public class Main {
 
         saveGame(newGame);
         System.out.println("New product added successfully.");
-        myScanner.close();
     }
 
     /**
