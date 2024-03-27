@@ -566,13 +566,13 @@ public class Main {
         } while(choice != 1 && choice != 2 && choice != 3 && choice != -1);
 
         if(choice == 1) {
-            System.out.println(gamesByTitle.inOrderString());
+            System.out.println("\n" + gamesByTitle.inOrderString());
         }
         else if(choice == 2) {
-            System.out.println(gamesByDeveloper.inOrderString());
+            System.out.println("\n" + gamesByDeveloper.inOrderString());
         }
         else if(choice == 3) {
-            System.out.println(gamesByPrice.inOrderString());
+            System.out.println("\n" + gamesByPrice.inOrderString());
         }
         else if(choice == -1) {
             exitProgram();
