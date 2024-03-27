@@ -743,14 +743,12 @@ public class Main {
         boolean manager = tempEmployee.isManager();
 //        System.out.println(manager);
 
-
-
         do {
             System.out.println("Please select one of the following options by typing in the corresponding number:");
-            System.out.println("1. Search for a Order.");
+            System.out.println("1. Search for an Order.");
             System.out.println("2. View Order with Highest Priority");
             System.out.println("3. View all Orders");
-            System.out.println("4. Ship a order.");
+            System.out.println("4. Ship an order.");
             if(manager)
                 System.out.println("5. Update Products Catalogue.");
             System.out.println("-1. Exit the program.");
@@ -770,7 +768,7 @@ public class Main {
             else if (choice == 4) {
                 shipOrder();
             }
-            else if( manager && choice == 5) {
+            else if(manager && choice == 5) {
                 updateProductsCatalogue();
             }
 
@@ -873,7 +871,9 @@ public class Main {
         if(all)
         {
             ArrayList<Order> temp = unshippedOrders.sort();
-            System.out.println(temp);
+            for (Order order : temp) {
+                System.out.println(order.toString() + "\n");
+            }
         }
         else
         {
@@ -1185,6 +1185,7 @@ public class Main {
      * Exits the program
      * 
      * @author Hari Prakash
+     * @author Abdullah Mohammad
      */
     private static void exitProgram() {
         System.out.println("Saving data...");
@@ -1250,10 +1251,10 @@ public class Main {
      * 
      * @author Hari Prakash
      * @author Michael Chen
+     * @author Abdullah Mohammad
      */
     private static void saveGames() {
         System.out.println();
-        System.out.println(gamesByTitle.inOrderString());
         try{
             FileWriter writer = new FileWriter("database.txt");
             writer.write(gamesByTitle.inOrderString());
