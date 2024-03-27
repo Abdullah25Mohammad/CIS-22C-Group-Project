@@ -889,13 +889,14 @@ public class Main {
             shippedOrders.insert(shippedOrder);
 
             Customer customer = shippedOrder.getCustomer();
-            System.out.println(customer.getUnshippedOrders());
+            // System.out.println(customer.getUnshippedOrders());
             customer.removeUnshippedOrder(shippedOrder);
 
             customer.addShippedOrder(shippedOrder);
 
             shippedOrders.insert(shippedOrder);
-
+            orderByID.remove(shippedOrder, new IDComparator());
+            orderByName.remove(shippedOrder, new NameComparator());
             System.out.println("Order " + shippedOrder.getOrderID() + " shipped!");
 
         } else {
@@ -1119,5 +1120,48 @@ public class Main {
         gamesByDeveloper.remove(game, developerCMP);
 
         System.out.println("Product removed successfully.");
+    }
+
+    /**
+     * Updates the Orders.txt file
+     * 
+     * @author Hari Prakash
+     */
+
+     private static void updateOrderFile(){
+        //               001    (orderID)
+        //               airi   (username)
+        //               1   (password)
+        //               3   (numGames)
+        //               Halo 3
+        //               Minecraft
+        //               Undertale
+        //               05/01/2005 (datePlaced)
+        //               3         (shippingSpeed)
+
+        try {
+            FileWriter writer = new FileWriter("orders.txt");
+            ArrayList<Order> allOrders = new ArrayList<>();
+            for (Order order : allOrders) {
+                writer.write(order.getOrderID() + "\n");
+                writer.write(order.getCustomer().getUsername() + "\n");
+                writer.write(order.getCustomer().getPassword() + "\n");
+                writer.write(order.getOrderContents().getLength() + "\n");
+
+                order.getOrderContents().positionIterator();
+                while (!order.getOrderContents().offEnd()) {
+                    Game game = order.getOrderContents().getIterator();
+                    writer.write(game.getTitle() + "\n");
+                    order.getOrderContents().advanceIterator();
+                }
+
+                writer.write(order.getDatePlaced().toString() + "\n");
+                writer.write(order.getShippingSpeed() + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 }
