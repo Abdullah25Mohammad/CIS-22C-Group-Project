@@ -1127,7 +1127,6 @@ public class Main {
         System.out.print("Enter the title of the product to remove: ");
         String title = scanner.nextLine();
 
-        scanner.close();
 
         Game game = gamesByTitle.search(new Game(title, ""), new TitleComparator());
         if (game == null) {
@@ -1250,6 +1249,7 @@ public class Main {
      * Saves a game to database.txt file
      * 
      * @author Hari Prakash
+     * @author Michael Chen
      */
     private static void saveGames() {
         System.out.println();
