@@ -84,7 +84,7 @@ Rockstar Games
 Action-Adventure
 10/26/2018
 Explore the Wild West as outlaw Arthur Morgan in this critically acclaimed open-world epic from Rockstar Games.
-TODO
+PlayStation 4, Xbox One
 $59.99
 25
 
@@ -94,7 +94,7 @@ Ubisoft Montreal
 Action RPG
 11/10/2020
 Forge your Viking legend as Eivor raiding conquering and building alliances in the stunning landscapes of Norway and England.
-TODO
+PlayStation 4, Xbox One, Xbox Series X, Xbox Series S
 $59.99
 60
 
@@ -104,7 +104,7 @@ EA Vancouver
 Sports
 10/01/2021
 Experience the thrill of football with realistic gameplay stunning visuals and enhanced career modes in the latest installment of the FIFA series.
-TODO
+Nintendo Switch, PlayStation 4, PlayStation 5, Xbox One, Xbox Series X, Xbox Series S
 $59.99
 25
 
@@ -114,7 +114,7 @@ Innersloth
 Social Deduction
 06/15/2018
 Work together to complete tasks on a spaceship but beware of impostors among the crew in this popular multiplayer game of deception and strategy.
-TODO
+Nintendo Switch, PlayStation 4, PlayStation 5, Xbox One, Xbox Series X, Xbox Series S
 $4.99
 50
 
@@ -124,7 +124,7 @@ Nintendo
 Life Simulation
 03/20/2020
 Create your dream island paradise interact with adorable anthropomorphic villagers and customize your world in this relaxing life simulation game.
-TODO
+Nintendo Switch, Wii U
 $59.99
 60
 
