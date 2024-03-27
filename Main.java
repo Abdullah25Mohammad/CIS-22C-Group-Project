@@ -1049,7 +1049,9 @@ public class Main {
         // Seperate BSTs
         gamesByTitle.insert(newGame, titleCMP);
         gamesByDeveloper.insert(newGame, developerCMP);
+        gamesByPrice.insert(newGame, priceCMP);
 
+        saveGame(newGame);
         System.out.println("New product added successfully.");
         scanner.close();
     }
@@ -1169,8 +1171,6 @@ public class Main {
     private static void exitProgram() {
         System.out.println("Saving data...");
         saveOrders();
-        saveUsers();
-        saveGames();
         
         System.out.println("Data saved. Exiting the program.");
         System.exit(0);
@@ -1212,21 +1212,13 @@ public class Main {
      * 
      * @author Hari Prakash
      */
-    private static void saveUsers() {
+    private static void addUser(Customer customer) {
         try {
             FileWriter writer = new FileWriter("users.txt");
-            for (Customer customer : customerTable) {
-                writer.write(customer.getName() + "\n");
-                writer.write(customer.getUsername() + "\n");
-                writer.write(customer.getPassword() + "\n");
-                writer.write("customer\n");
-            }
-            for (Employee employee : employeeTable) {
-                writer.write(employee.getName() + "\n");
-                writer.write(employee.getUsername() + "\n");
-                writer.write(employee.getPassword() + "\n");
-                writer.write(employee.isManager() ? "manager\n" : "employee\n");
-            } 
+            writer.write(customer.getName() + "\n");
+            writer.write(customer.getUsername() + "\n");
+            writer.write(customer.getPassword() + "\n");
+            writer.write("customer\n");
             writer.close();
         } catch (IOException e) {
             System.out.println("saveUsers(): An error occurred.");
@@ -1235,24 +1227,22 @@ public class Main {
     }
 
     /**
-     * Saves the games to database.txt file
+     * Saves a game to database.txt file
      * 
      * @author Hari Prakash
      */
-    private static void saveGames() {
+    private static void saveGame(Game game) {
         try {
             FileWriter writer = new FileWriter("database.txt");
-            for (Game game : gamesByTitle) {
-                writer.write(game.getTitle() + "\n");
-                writer.write(game.getDeveloper() + "\n");
-                writer.write(game.getId() + "\n");
-                writer.write(game.getGenre() + "\n");
-                writer.write(game.getReleaseDate().toString() + "\n");
-                writer.write(game.getSummary() + "\n");
-                writer.write(game.getPlatforms().toString() + "\n");
-                writer.write("$" + game.getPrice() + "\n");
-                writer.write(game.getStock() + "\n\n");
-            }
+            writer.write(game.getTitle() + "\n");
+            writer.write(game.getDeveloper() + "\n");
+            writer.write(game.getId() + "\n");
+            writer.write(game.getGenre() + "\n");
+            writer.write(game.getReleaseDate().toString() + "\n");
+            writer.write(game.getSummary() + "\n");
+            writer.write(game.getPlatforms().toString() + "\n");
+            writer.write("$" + game.getPrice() + "\n");
+            writer.write(game.getStock() + "\n\n");
             writer.close();
         } catch (IOException e) {
             System.out.println("saveGames(): An error occurred.");
