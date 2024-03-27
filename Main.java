@@ -4,6 +4,7 @@
  * @author Abdullah Mohammad
  * @author Chahid Bagdouri
  * @author Jacob L. Johnston
+ * @author Hari Prakash
  * @author Michael Chen
  */
 import java.io.File;
@@ -647,6 +648,7 @@ public class Main {
 
 //            System.out.println(); // newline
             System.out.println("Order placed!");
+            updateOrderFile(newOrder);
             
         } while(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1);
     }
@@ -1127,8 +1129,7 @@ public class Main {
      * 
      * @author Hari Prakash
      */
-
-     private static void updateOrderFile(){
+    private static void updateOrderFile(Order newOrder){
         //               001    (orderID)
         //               airi   (username)
         //               1   (password)
@@ -1138,29 +1139,25 @@ public class Main {
         //               Undertale
         //               05/01/2005 (datePlaced)
         //               3         (shippingSpeed)
-
         try {
-            FileWriter writer = new FileWriter("orders.txt");
-            ArrayList<Order> allOrders = new ArrayList<>();
-            for (Order order : allOrders) {
-                writer.write(order.getOrderID() + "\n");
-                writer.write(order.getCustomer().getUsername() + "\n");
-                writer.write(order.getCustomer().getPassword() + "\n");
-                writer.write(order.getOrderContents().getLength() + "\n");
-
-                order.getOrderContents().positionIterator();
-                while (!order.getOrderContents().offEnd()) {
-                    Game game = order.getOrderContents().getIterator();
-                    writer.write(game.getTitle() + "\n");
-                    order.getOrderContents().advanceIterator();
-                }
-
-                writer.write(order.getDatePlaced().toString() + "\n");
-                writer.write(order.getShippingSpeed() + "\n");
+            FileWriter writer = new FileWriter("orders.txt", true);
+            writer.write(newOrder.getOrderID() + "\n");
+            writer.write(newOrder.getCustomer().getUsername() + "\n");
+            writer.write(newOrder.getCustomer().getPassword() + "\n");
+            writer.write(newOrder.getOrderContents().getLength() + "\n");
+    
+            newOrder.getOrderContents().positionIterator();
+            while (!newOrder.getOrderContents().offEnd()) {
+                Game game = newOrder.getOrderContents().getIterator();
+                writer.write(game.getTitle() + "\n");
+                newOrder.getOrderContents().advanceIterator();
             }
+    
+            writer.write(newOrder.getDatePlaced().toString() + "\n");
+            writer.write(newOrder.getShippingSpeed() + "\n");
             writer.close();
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            System.out.println("updateOrderFile(): An error occurred.");
             e.printStackTrace();
         }
     }
