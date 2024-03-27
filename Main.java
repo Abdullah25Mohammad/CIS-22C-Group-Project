@@ -597,6 +597,7 @@ public class Main {
             }
             else {
                 System.out.println("Invalid input. Please try again.");
+                break;
             }
 
             tempCustomer.addUnshippedOrder(newOrder);
