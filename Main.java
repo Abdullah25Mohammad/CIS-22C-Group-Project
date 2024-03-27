@@ -275,8 +275,8 @@ public class Main {
 //        System.out.println(); // newline
 
         while(choice != 1 && choice != 2 && choice != 3) {
-            System.out.println("\nPlease try again.");
-            System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
+            System.out.println("Please try again.");
+            System.out.println("Please select one of the following options by typing in the corresponding number:");
             System.out.println("1. Make a new account");
             System.out.println("2. Login to an existing account.");
             System.out.println("3. Continue as a Guest.");
@@ -551,7 +551,7 @@ public class Main {
         int choice = 0;
 
         do {
-            System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
+            System.out.println("Please select one of the following options by typing in the corresponding number:");
             System.out.println("1. Display games by title.");
             System.out.println("2. Display games by developer.");
             System.out.println("3. Display games by price.");
@@ -605,8 +605,8 @@ public class Main {
 
         int choice = -1;
         do {
-            System.out.println("\nWhat type of shipping would you like?");
-            System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
+            System.out.println("What type of shipping would you like?");
+            System.out.println("Please select one of the following options by typing in the corresponding number:");
             System.out.println("1. Overnight Shipping.");
             System.out.println("2. Rush Shipping.");
             System.out.println("3. Standard Shipping.");
@@ -739,7 +739,7 @@ public class Main {
         int choice = 0;
 
         do {
-            System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
+            System.out.println("Please select one of the following options by typing in the corresponding number:");
             System.out.println("1. Search for a Order.");
             System.out.println("2. View Order with Highest Priority");
             System.out.println("3. View all Orders");
@@ -1164,10 +1164,100 @@ public class Main {
     /**
      * Exits the program
      * 
-     * @author Abdullah Mohammad
+     * @author Hari Prakash
      */
     private static void exitProgram() {
-        System.out.println("Exiting the program.");
+        System.out.println("Saving data...");
+        saveOrders();
+        saveUsers();
+        saveGames();
+        
+        System.out.println("Data saved. Exiting the program.");
         System.exit(0);
     }
+
+    /**
+     * Saves the orders to orders.txt file
+     * 
+     * @author Hari Prakash
+     */
+    private static void saveOrders() {
+        try {
+            FileWriter writer = new FileWriter("orders.txt");
+            for (Order order : unshippedOrders.sort()) {
+                writer.write(order.getOrderID() + "\n");
+                writer.write(order.getCustomer().getUsername() + "\n");
+                writer.write(order.getCustomer().getPassword() + "\n");
+                writer.write(order.getOrderContents().getLength() + "\n");
+    
+                order.getOrderContents().positionIterator();
+                while (!order.getOrderContents().offEnd()) {
+                    Game game = order.getOrderContents().getIterator();
+                    writer.write(game.getTitle() + "\n");
+                    order.getOrderContents().advanceIterator();
+                }
+    
+                writer.write(order.getDatePlaced().toString() + "\n");
+                writer.write(order.getShippingSpeed() + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("saveOrders(): An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Saves the users to users.txt file
+     * 
+     * @author Hari Prakash
+     */
+    private static void saveUsers() {
+        try {
+            FileWriter writer = new FileWriter("users.txt");
+            for (Customer customer : customerTable) {
+                writer.write(customer.getName() + "\n");
+                writer.write(customer.getUsername() + "\n");
+                writer.write(customer.getPassword() + "\n");
+                writer.write("customer\n");
+            }
+            for (Employee employee : employeeTable) {
+                writer.write(employee.getName() + "\n");
+                writer.write(employee.getUsername() + "\n");
+                writer.write(employee.getPassword() + "\n");
+                writer.write(employee.isManager() ? "manager\n" : "employee\n");
+            } 
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("saveUsers(): An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Saves the games to database.txt file
+     * 
+     * @author Hari Prakash
+     */
+    private static void saveGames() {
+        try {
+            FileWriter writer = new FileWriter("database.txt");
+            for (Game game : gamesByTitle) {
+                writer.write(game.getTitle() + "\n");
+                writer.write(game.getDeveloper() + "\n");
+                writer.write(game.getId() + "\n");
+                writer.write(game.getGenre() + "\n");
+                writer.write(game.getReleaseDate().toString() + "\n");
+                writer.write(game.getSummary() + "\n");
+                writer.write(game.getPlatforms().toString() + "\n");
+                writer.write("$" + game.getPrice() + "\n");
+                writer.write(game.getStock() + "\n\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("saveGames(): An error occurred.");
+            e.printStackTrace();
+        }
+    }
+    
 }
