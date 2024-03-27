@@ -598,6 +598,14 @@ public class Main {
             else {
                 System.out.println("Invalid input. Please try again.");
             }
+
+            tempCustomer.addUnshippedOrder(newOrder);
+            unshippedOrders.insert(newOrder);
+            orderByID.insert(newOrder, new IDComparator());
+            orderByName.insert(newOrder, new NameComparator());
+
+            System.out.println("Order placed!");
+            
         } while(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1);
     }
 
