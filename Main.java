@@ -365,7 +365,7 @@ public class Main {
      * @return logged in Customer object
      */
     private static Customer loginAsExistingCustomer() {
-        System.out.print("Please enter your username: ");
+        System.out.print("\nPlease enter your username: ");
         String username = myScanner.next();
         System.out.print("Please enter your password: ");
         String password = myScanner.next();
@@ -551,7 +551,7 @@ public class Main {
         int choice = 0;
 
         do {
-            System.out.println("Please select one of the following options by typing in the corresponding number:");
+            System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
             System.out.println("1. Display games by title.");
             System.out.println("2. Display games by developer.");
             System.out.println("3. Display games by price.");
@@ -708,12 +708,11 @@ public class Main {
         boolean isEmployee = false;
         Employee tempEmployee = null;
         while(!isEmployee) {
-            System.out.println("Please enter your username:");
-            String username = myScanner.nextLine();
-//            System.out.println(); // newline
-            System.out.println("Please enter your password:");
-            String password = myScanner.nextLine();
-//            System.out.println(); // newline
+            System.out.print("\nPlease enter your username: ");
+            String username = myScanner.next();
+            System.out.print("Please enter your password: ");
+            String password = myScanner.next();
+            myScanner.nextLine(); // clear the buffer
 
             tempEmployee = new Employee("", "", username, password, false);
             isEmployee = (employeeTable.find(tempEmployee) != -1);
@@ -721,9 +720,9 @@ public class Main {
             if(isEmployee) {
                 tempEmployee = employeeTable.get(tempEmployee);
                 if (tempEmployee.isManager()) {
-                    System.out.println("Successfully logged in as manager " + tempEmployee.getFirstName() + " " + tempEmployee.getLastName() + ".");
+                    System.out.println("\nSuccessfully logged in as manager " + tempEmployee.getFirstName() + " " + tempEmployee.getLastName() + ".");
                 } else {
-                    System.out.println("Successfully logged in as " + tempEmployee.getFirstName() + " " + tempEmployee.getLastName() + ".");
+                    System.out.println("\nSuccessfully logged in as " + tempEmployee.getFirstName() + " " + tempEmployee.getLastName() + ".");
 
                 }
 //                System.out.println(); // newline
@@ -748,7 +747,7 @@ public class Main {
 //        System.out.println(manager);
 
         do {
-            System.out.println("Please select one of the following options by typing in the corresponding number:");
+            System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
             System.out.println("1. Search for an Order.");
             System.out.println("2. View Order with Highest Priority");
             System.out.println("3. View all Orders");
@@ -792,7 +791,7 @@ public class Main {
         int choice = 0;
 
 
-        System.out.println("How would you like to search for a order?");
+        System.out.println("\nHow would you like to search for a order?");
 
         do {
             System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
@@ -811,14 +810,14 @@ public class Main {
 
         if(choice == 1)
         {
-            System.out.println("Please enter the Order ID you are looking for: ");
+            System.out.println("\nPlease enter the Order ID you are looking for: ");
             int ID = Integer.parseInt(myScanner.nextLine());
 //            System.out.println(); // newline
 
 
             Order target = orderByID.search(new Order(ID), new IDComparator());
             if( target != null) {
-                System.out.println(target + "\n");
+                System.out.println("\n" + target + "\n");
             }
             else {
                 System.out.println("No results found.");
@@ -826,8 +825,9 @@ public class Main {
         }
         if(choice == 2)
         {
-            System.out.println("Please enter the Customer you are looking for: ");
+            System.out.println("\nPlease enter the Customer you are looking for's first name: ");
             String firstName = myScanner.next();
+            System.out.println("Please enter the Customer you are looking for's last name: ");
             String lastName = myScanner.next();
 //            System.out.println(); // newline
             myScanner.nextLine(); // clear the buffer
@@ -848,8 +848,8 @@ public class Main {
                 new NameComparator()
             );
 
-            if( target != null) {
-                System.out.println(target + "\n");
+            if(target != null) {
+                System.out.println("\n" + target + "\n");
             }
             else {
                 System.out.println("No results found.");
@@ -881,7 +881,7 @@ public class Main {
         }
         else
         {
-            System.out.println(unshippedOrders.getMax());
+            System.out.println("\n" + unshippedOrders.getMax() + "\n");
         }
 //        System.out.println(); // newline
         return 0;
@@ -1001,7 +1001,7 @@ public class Main {
     public static void updateProductsCatalogue() {
         int choice;
         do {
-            System.out.println("Update Products Catalogue: ");
+            System.out.println("\nUpdate Products Catalogue: ");
             System.out.println("1. Add New Product");
             System.out.println("2. Update Existing Product");
             System.out.println("3. Remove Product");
@@ -1028,7 +1028,7 @@ public class Main {
      * @author Jacob L. Johnston
      */
     private static void addNewProduct() {
-        System.out.println("Adding a new product.");
+        System.out.println("\nAdding a new product.");
 
         System.out.print("Title: ");
         String title = myScanner.nextLine();
@@ -1073,7 +1073,7 @@ public class Main {
         gamesByPrice.insert(newGame, priceCMP);
 
 
-        System.out.println("New product added successfully.");
+        System.out.println("\nNew product added successfully.");
     }
 
     /**
@@ -1115,7 +1115,7 @@ public class Main {
         }
 
 
-        System.out.println("Product updated successfully.");
+        System.out.println("\nProduct updated successfully.");
     }
 
     /**
@@ -1143,7 +1143,7 @@ public class Main {
         gamesByDeveloper.remove(game, developerCMP);
         gamesByPrice.remove(game, priceCMP);
 
-        System.out.println("Product removed successfully.");
+        System.out.println("\nProduct removed successfully.");
     }
 
     /**
