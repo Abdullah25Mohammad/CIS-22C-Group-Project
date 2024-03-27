@@ -55,17 +55,8 @@ public class Main {
 
         System.out.println("Welcome to the Video Games Store!");
         System.out.println("Would you like to login as a Customer, Employee, or Manager?");
-        int choice = 0;
-        while (true) {
-            try {
-                System.out.println("Type '1' for Customer, '2' for Employee, and '3' for Manager.");
-                choice = Integer.parseInt(myScanner.nextLine());
-                if (choice >= 1 && choice <= 3) break;
-                System.out.println("Invalid choice. Please try again.");
-            } catch (NumberFormatException e) {
-                System.out.println("Please enter a valid number.");
-            }
-        }
+        System.out.println("Type '1' for Customer and '2' for Employee, and '3' for Manager.");
+        int choice = Integer.parseInt(myScanner.nextLine());
         System.out.println(); // newline
 
         while (choice < 1 || choice > 3) {
