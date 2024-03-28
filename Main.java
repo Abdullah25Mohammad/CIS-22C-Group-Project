@@ -62,7 +62,7 @@ public class Main {
                 System.out.println("Type '1' for Customer, '2' for Employee.");
                 choice = Integer.parseInt(myScanner.nextLine());
                 if (choice >= 1 && choice <= 2) break;
-                System.out.println("Invalid choice. Please try again.");
+                System.out.println("a Invalid choice. Please try again.");
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid number.");
             }
@@ -263,7 +263,6 @@ public class Main {
      * Logs in as a Customer
      *
      * @author Chahid Bagdouri
-     * @author Jacob L. Johnston
      * @return logged in Customer object
      */
     public static Customer loginAsCustomer() {
@@ -271,44 +270,36 @@ public class Main {
         System.out.println("1. Make a new account");
         System.out.println("2. Login to an existing account.");
         System.out.println("3. Continue as a Guest.");
+        int choice = Integer.parseInt(myScanner.nextLine());
+//        System.out.println(); // newline
+
+        while(choice != 1 && choice != 2 && choice != 3) {
+            System.out.println("Please try again.");
+            System.out.println("Please select one of the following options by typing in the corresponding number:");
+            System.out.println("1. Make a new account");
+            System.out.println("2. Login to an existing account.");
+            System.out.println("3. Continue as a Guest.");
+            choice = Integer.parseInt(myScanner.nextLine());
+        }
 
         Customer tempCustomer = null;
 
-        while (true) {
-            String input = myScanner.nextLine().trim();
-            if (input.isEmpty()) {
-                System.out.println("Input cannot be empty. Please enter a number.");
-                continue;  // Go back to the beginning of the loop and prompt again
-            }
-
-            try {
-                int choice = Integer.parseInt(input);
-                switch (choice) {
-                    case 1:
-                        tempCustomer = loginAsNewCustomer();
-                        CustomerOptions(tempCustomer, false);
-                        break;
-                    case 2:
-                        tempCustomer = loginAsExistingCustomer();
-                        CustomerOptions(tempCustomer, false);
-                        break;
-                    case 3:
-                        tempCustomer = new Customer();  // Guest customer
-                        CustomerOptions(tempCustomer, true);
-                        break;
-                    default:
-                        System.out.println("Invalid choice. Please try again.");
-                        break;
-                }
-
-                if (tempCustomer != null) {
-                    return tempCustomer; // Exit the loop and method once a valid choice is made and processed
-                }
-
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a number.");
-            }
+        if (choice == 1) {
+            tempCustomer = loginAsNewCustomer();
+            CustomerOptions(tempCustomer, false);
         }
+
+        else if(choice == 2) {
+            tempCustomer = loginAsExistingCustomer();
+            CustomerOptions(tempCustomer, false);
+        }
+
+        else if(choice == 3) {
+            tempCustomer = new Customer();
+            CustomerOptions(tempCustomer, true);
+        }
+
+        return tempCustomer;
     }
 
     /**
@@ -482,21 +473,21 @@ public class Main {
                     if (!isGuest) {
                         CustomerPlaceOrder(tempCustomer);
                     } else {
-                        System.out.println("Invalid choice. Please try again.");
+                        System.out.println("c Invalid choice. Please try again.");
                     }
                     break;
                 case 4:
                     if (!isGuest) {
                         ViewPurchases(tempCustomer);
                     } else {
-                        System.out.println("Invalid choice. Please try again.");
+                        System.out.println("d Invalid choice. Please try again.");
                     }
                     break;
                 case -1:
                     exitProgram();
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println("e Invalid choice. Please try again.");
                     break;
             }
         }
