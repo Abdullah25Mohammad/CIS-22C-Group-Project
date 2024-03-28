@@ -481,10 +481,10 @@ public class Main {
 
         do {
             System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
-            System.out.println("1. Search by game title.");
-            System.out.println("2. Search by game developer name.");
-            System.out.println("3. Go back to main menu.");
-            System.out.println("-1. Exit the program.");
+            System.out.println("1. Search by Game Title.");
+            System.out.println("2. Search by Game Developer Name.");
+            System.out.println("3. Go Back to Main Menu.");
+            System.out.println("-1. Exit the Program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
 //            System.out.println(); // newline
@@ -495,7 +495,7 @@ public class Main {
         } while(choice != 1 && choice != 2 && choice != 3 && choice != -1);
 
         if((choice == 1) || (choice == 2)) {
-            System.out.println("\nPlease enter the name of the game/developer you would like to search for:");
+            System.out.print("\nPlease enter the name of the game/developer you would like to search for:");
             String search = myScanner.nextLine();
 //            System.out.println(); // newline
 
@@ -537,11 +537,12 @@ public class Main {
             }
 
             if(searchResults.isEmpty()) {
-                System.out.println("No results found.");
+                System.out.print("No results found.");
             }
             else {
                 // Print out the search results
-                System.out.println("\n" + searchResults.toString());
+//                System.out.print("\n" + searchResults.toString());
+                System.out.print(searchResults.toString());
             }
         }
 
@@ -742,9 +743,9 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
 
         do {
             System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
-            System.out.println("1. View shipped orders.");
-            System.out.println("2. View unshipped orders.");
-            System.out.println("3. Go back to main menu.");
+            System.out.println("1. View Shipped Orders.");
+            System.out.println("2. View Unshipped Orders.");
+            System.out.println("3. Go Back to Main Menu.");
             System.out.println("-1. Exit the program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
@@ -757,10 +758,10 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
         } while(choice != 1 && choice != 2 && choice != 3 && choice != -1);
 
         if(choice == 1) {
-            System.out.println(tempCustomer.getShippedOrders());
+            System.out.print(tempCustomer.getShippedOrders());
         }
         else if(choice == 2) {
-            System.out.println(tempCustomer.getUnshippedOrders());
+            System.out.print(tempCustomer.getUnshippedOrders());
         }
         else if(choice == 3) {
             CustomerOptions(tempCustomer, false);
@@ -827,7 +828,7 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
             System.out.println("1. Search for an Order.");
             System.out.println("2. View Order with Highest Priority");
             System.out.println("3. View all Orders");
-            System.out.println("4. Ship an order.");
+            System.out.println("4. Ship an Order.");
             if(manager)
                 System.out.println("5. Update Products Catalogue.");
             System.out.println("-1. Exit the program.");
@@ -873,8 +874,8 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
             System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
             System.out.println("1. Search by Order ID.");
             System.out.println("2. Search by Customer first and last name");
-            System.out.println("3. Go back to Main Menu.");
-            System.out.println("-1. Exit the program.");
+            System.out.println("3. Go Back to Main Menu.");
+            System.out.println("-1. Exit the Program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
 //            System.out.println(); // newline
@@ -948,18 +949,15 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
      * @param all whether to display most prioritized or all orders
      */
     private static int viewOrder(boolean all) {
-        if(all)
-        {
+        if (all) {
             ArrayList<Order> temp = unshippedOrders.sort();
             for (Order order : temp) {
-                System.out.println(order.toString() + "\n");
+                System.out.print("\n" + order.toString());
             }
         }
-        else
-        {
-            System.out.println("\n" + unshippedOrders.getMax() + "\n");
+        else {
+            System.out.print("\n" + unshippedOrders.getMax());
         }
-//        System.out.println(); // newline
         return 0;
     }
 
