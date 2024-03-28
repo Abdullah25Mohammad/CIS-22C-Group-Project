@@ -1,3 +1,4 @@
+import java.util.Calendar;
 import java.util.Comparator;
 
 /**
@@ -5,6 +6,7 @@ import java.util.Comparator;
  * Represents a date with a month, day, and year
  * 
  * @author Michael
+ * @author Abdullah Mohammad
  */
 
 // import java.util.Comparator;
@@ -20,9 +22,14 @@ public class Date {
     //     Integer.compare(d1.day, d2.day);
 
     public Date() {
-        this.month = 1;
-        this.day = 1;
-        this.year = 2000;
+        Calendar today = Calendar.getInstance();
+        this.month = today.get(Calendar.MONTH) + 1;
+        this.day = today.get(Calendar.DAY_OF_MONTH);
+        this.year = today.get(Calendar.YEAR);
+
+        // this.month = 1;
+        // this.day = 1;
+        // this.year = 2000;
     }
 
     public Date(int month, int day, int year) {
