@@ -1,5 +1,6 @@
 /**
  * @author Jennifer Parrish
+ * Based on starter code from De Anza College CIS 22C, Jennifer Parrish
  * CIS 22C, Lab 3
  * IMPORTANT: DO NOT ALTER THIS FILE
  */

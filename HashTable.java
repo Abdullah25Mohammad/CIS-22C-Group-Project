@@ -1,6 +1,6 @@
 /**
  * HashTable.java
- * @author Hari Prakash
+ * Based on starter code from De Anza College CIS 22C, Jennifer Parrish
  * @author Hari Prakash
  * CIS 22C, Lab 14
  */

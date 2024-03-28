@@ -1,5 +1,6 @@
 /**
  * The Queue class definition
+ * Based on starter code from De Anza College CIS 22C, Jennifer Parrish
  *
  * @author Michael
  * CIS 22C, Lab 5

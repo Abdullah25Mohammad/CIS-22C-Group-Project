@@ -1,5 +1,6 @@
 /**
  * Defines a doubly-linked list class
+ * Based on starter code from De Anza College CIS 22C, Jennifer Parrish
  * @author Jacob L. Johnston
  */
 import java.util.NoSuchElementException;

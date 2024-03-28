@@ -1,5 +1,6 @@
 /**
  * BST.java
+ * Based on starter code from De Anza College CIS 22C, Jennifer Parrish
  * @author Abdullah Mohammad
  * @author Chahid Bagdouri
  * CIS 22C Lab 12
