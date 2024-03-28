@@ -954,6 +954,11 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
      * @param all whether to display most prioritized or all orders
      */
     private static int viewOrder(boolean all) {
+        if (unshippedOrders.getHeapSize() == 0) {
+            System.out.println("There are no unshipped orders to display.");
+            return 0;
+        }
+
         if (all) {
             ArrayList<Order> temp = unshippedOrders.sort();
             for (Order order : temp) {
