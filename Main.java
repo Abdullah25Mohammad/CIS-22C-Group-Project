@@ -719,12 +719,12 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
             System.out.println("Order placed!");
             break;
         } else if(choice == 4) {
-            System.out.println("Order canceled.");
+            System.out.println("\nOrder canceled.");
             return;
         } else if(choice == -1) {
             exitProgram();
         } else {
-            System.out.println("Invalid input. Please try again.");
+            System.out.println("\nInvalid input. Please try again.");
         }
     } while(true);
 }
