@@ -54,7 +54,7 @@ public class Main {
         // System.out.println("Employee Table:");
         // System.err.println(employeeTable.toString());
 
-        System.out.println("Welcome to the Video Games Store!");
+        System.out.println("Welcome to the Game Vault!");
         System.out.println("Would you like to login as a Customer or Employee?");
         int choice = 0;
         while (true) {
