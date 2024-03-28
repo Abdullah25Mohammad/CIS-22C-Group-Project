@@ -1273,6 +1273,9 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
         } catch (IOException e) {
             System.out.println("saveOrders(): An error occurred.");
             e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred.");
+            e.printStackTrace();
         }
     }
 
