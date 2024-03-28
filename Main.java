@@ -529,7 +529,6 @@ public class Main {
         if((choice == 1) || (choice == 2)) {
             System.out.println("\nPlease enter the name of the game/developer you would like to search for:");
             String search = myScanner.nextLine();
-//            System.out.println(); // newline
 
             LinkedList<Game> searchResults = new LinkedList<Game>();
 
@@ -573,11 +572,10 @@ public class Main {
             }
             else {
                 // Print out the search results
-//                System.out.print("\n" + searchResults.toString());
                 System.out.print(searchResults.toString());
             }
         }
-
+   
         else if(choice == 3) {
             return;
         }
