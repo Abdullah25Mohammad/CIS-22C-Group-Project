@@ -673,7 +673,7 @@ public class Main {
 //     }
 
 private static void CustomerPlaceOrder(Customer tempCustomer) {
-    System.out.print("\nWhat would you like to order?: ");
+    System.out.println("\nWhat would you like to order?: ");
     String gameTitle = myScanner.nextLine();
     Game result = gamesByTitle.search(new Game(gameTitle, ""), titleCMP);
 
