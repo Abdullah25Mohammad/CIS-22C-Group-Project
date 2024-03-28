@@ -596,79 +596,139 @@ public class Main {
      *
      * @author Chahid Bagdouri
      * @author Abdullah Mohammad
+     * @author Hari Prakash
      * @param tempCustomer
      */
-    private static void CustomerPlaceOrder(Customer tempCustomer) {
-        System.out.print("\nWhat would you like to order?: ");
-        String gameTitle = myScanner.nextLine();
-        Game result = gamesByTitle.search(new Game(gameTitle, ""), titleCMP);
+//     private static void CustomerPlaceOrder(Customer tempCustomer) {
+//         System.out.print("\nWhat would you like to order?: ");
+//         String gameTitle = myScanner.nextLine();
+//         Game result = gamesByTitle.search(new Game(gameTitle, ""), titleCMP);
 
-        if(result == null) {
-            System.out.println("Game not found.");
+//         if(result == null) {
+//             System.out.println("Game not found.");
+//             return;
+//         }
+//         else {
+//             if(result.getStock() <= 0) {
+//                 System.out.println(result.getTitle() + " is out of stock.");
+//                 return;
+//             }
+//             else {
+//                 System.out.println(result);
+//                 result.addStock(-1);
+//             }
+//         }
+
+//         LinkedList<Game> orderContents = new LinkedList<Game>();
+//         orderContents.addLast(result);
+
+//         int choice = -1;
+//         do {
+//             System.out.println("What type of shipping would you like?");
+//             System.out.println("Please select one of the following options by typing in the corresponding number:");
+//             System.out.println("1. Overnight Shipping.");
+//             System.out.println("2. Rush Shipping.");
+//             System.out.println("3. Standard Shipping.");
+//             System.out.println("4. Cancel order and go back to main menu.");
+//             System.out.println("-1. Exit the program.");
+
+//             choice = Integer.parseInt(myScanner.nextLine());
+
+//             Order newOrder = new Order(
+//                     tempCustomer,
+//                     new Date(),
+//                     orderContents,
+//                     0
+//             );
+//             if(choice == 1) {
+//                 newOrder.setShippingSpeed(1);
+//             }
+//             else if (choice == 2) {
+//                 newOrder.setShippingSpeed(2);
+//             }
+//             else if (choice == 3) {
+//                 newOrder.setShippingSpeed(3);
+//             }
+//             else if(choice == 4) {
+//                 return;
+//             }
+//             else if(choice == -1) {
+//                 exitProgram();
+//             }
+//             else {
+//                 System.out.println("Invalid input. Please try again.");
+//                 break;
+//             }
+
+//             tempCustomer.addUnshippedOrder(newOrder);
+//             unshippedOrders.insert(newOrder);
+//             orderByID.insert(newOrder, new IDComparator());
+//             orderByName.insert(newOrder, new NameComparator());
+
+// //            System.out.println(); // newline
+//             System.out.println("Order placed!");
+
+//         } while(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1);
+//     }
+
+private static void CustomerPlaceOrder(Customer tempCustomer) {
+    System.out.print("\nWhat would you like to order?: ");
+    String gameTitle = myScanner.nextLine();
+    Game result = gamesByTitle.search(new Game(gameTitle, ""), titleCMP);
+
+    if(result == null) {
+        System.out.println("Game not found.");
+        return;
+    } else {
+        if(result.getStock() <= 0) {
+            System.out.println(result.getTitle() + " is out of stock.");
             return;
+        } else {
+            System.out.println(result);
         }
-        else {
-            if(result.getStock() <= 0) {
-                System.out.println(result.getTitle() + " is out of stock.");
-                return;
-            }
-            else {
-                System.out.println(result);
-                result.addStock(-1);
-            }
-        }
+    }
 
-        LinkedList<Game> orderContents = new LinkedList<Game>();
-        orderContents.addLast(result);
+    LinkedList<Game> orderContents = new LinkedList<Game>();
+    orderContents.addLast(result);
 
-        int choice = -1;
-        do {
-            System.out.println("What type of shipping would you like?");
-            System.out.println("Please select one of the following options by typing in the corresponding number:");
-            System.out.println("1. Overnight Shipping.");
-            System.out.println("2. Rush Shipping.");
-            System.out.println("3. Standard Shipping.");
-            System.out.println("4. Cancel order and go back to main menu.");
-            System.out.println("-1. Exit the program.");
+    int choice = -1;
+    do {
+        System.out.println("What type of shipping would you like?");
+        System.out.println("Please select one of the following options by typing in the corresponding number:");
+        System.out.println("1. Overnight Shipping.");
+        System.out.println("2. Rush Shipping.");
+        System.out.println("3. Standard Shipping.");
+        System.out.println("4. Cancel order and go back to main menu.");
+        System.out.println("-1. Exit the program.");
 
-            choice = Integer.parseInt(myScanner.nextLine());
+        choice = Integer.parseInt(myScanner.nextLine());
 
+        if (choice == 1 || choice == 2 || choice == 3) {
+            result.addStock(-1);
             Order newOrder = new Order(
                     tempCustomer,
                     new Date(),
                     orderContents,
-                    0
+                    choice
             );
-            if(choice == 1) {
-                newOrder.setShippingSpeed(1);
-            }
-            else if (choice == 2) {
-                newOrder.setShippingSpeed(2);
-            }
-            else if (choice == 3) {
-                newOrder.setShippingSpeed(3);
-            }
-            else if(choice == 4) {
-                return;
-            }
-            else if(choice == -1) {
-                exitProgram();
-            }
-            else {
-                System.out.println("Invalid input. Please try again.");
-                break;
-            }
-
             tempCustomer.addUnshippedOrder(newOrder);
             unshippedOrders.insert(newOrder);
             orderByID.insert(newOrder, new IDComparator());
             orderByName.insert(newOrder, new NameComparator());
-
-//            System.out.println(); // newline
             System.out.println("Order placed!");
+            break;
+        } else if(choice == 4) {
+            System.out.println("Order canceled.");
+            return;
+        } else if(choice == -1) {
+            exitProgram();
+        } else {
+            System.out.println("Invalid input. Please try again.");
+        }
+    } while(true);
+}
 
-        } while(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1);
-    }
+
 
     /**
      * Displays the game database
