@@ -461,21 +461,21 @@ public class Main {
                     if (!isGuest) {
                         CustomerPlaceOrder(tempCustomer);
                     } else {
-                        System.out.println("c Invalid choice. Please try again.");
+                        System.out.println("Invalid choice. Please try again.");
                     }
                     break;
                 case 4:
                     if (!isGuest) {
                         ViewPurchases(tempCustomer);
                     } else {
-                        System.out.println("d Invalid choice. Please try again.");
+                        System.out.println("Invalid choice. Please try again.");
                     }
                     break;
                 case -1:
                     exitProgram();
                     break;
                 default:
-                    System.out.println("e Invalid choice. Please try again.");
+                    System.out.println("Invalid choice. Please try again.");
                     break;
             }
         }
