@@ -495,7 +495,7 @@ public class Main {
         } while(choice != 1 && choice != 2 && choice != 3 && choice != -1);
 
         if((choice == 1) || (choice == 2)) {
-            System.out.print("\nPlease enter the name of the game/developer you would like to search for:");
+            System.out.println("\nPlease enter the name of the game/developer you would like to search for:");
             String search = myScanner.nextLine();
 //            System.out.println(); // newline
 
