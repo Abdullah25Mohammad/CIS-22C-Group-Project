@@ -309,50 +309,77 @@ public class Main {
      * Appends the Customer's information to Users.txt
      *
      * @author Chahid Bagdouri
+     * @author Jacob L. Johnston
      * @return logged in Customer object
      */
     private static Customer loginAsNewCustomer() {
-        System.out.print("\nPlease enter your first name: ");
-        String firstName = myScanner.next();
-        System.out.print("Please enter your last name: ");
-        String lastName = myScanner.next();
-        myScanner.nextLine(); // Clear the buffer after reading the last name
+        String firstName = "", lastName = "", username = "", password = "";
+        Customer tempCustomer = null;
 
-        System.out.print("Please enter a username: ");
-        String username = myScanner.next();
+        while (true) {
+            if (firstName.isEmpty()) {
+                System.out.print("\nPlease enter your first name: ");
+                firstName = myScanner.nextLine().trim();
+                if (firstName.isEmpty()) {
+                    System.out.println("First name cannot be empty.");
+                    continue;
+                }
+            }
 
+            if (lastName.isEmpty()) {
+                System.out.print("Please enter your last name: ");
+                lastName = myScanner.nextLine().trim();
+                if (lastName.isEmpty()) {
+                    System.out.println("Last name cannot be empty.");
+                    continue;
+                }
+            }
 
-        System.out.print("Please enter a password: ");
-        String password = myScanner.next();
-        myScanner.nextLine(); // Clear the buffer after reading the password
-//        System.out.println(); // newline
+            if (username.isEmpty()) {
+                System.out.print("Please enter a username: ");
+                username = myScanner.nextLine().trim();
+                if (username.isEmpty()) {
+                    System.out.println("Username cannot be empty.");
+                    continue;
+                }
+            }
 
-        Customer tempCustomer = new Customer(firstName, lastName, username, password);
+            if (password.isEmpty()) {
+                System.out.print("Please enter a password: ");
+                password = myScanner.nextLine().trim();
+                if (password.isEmpty()) {
+                    System.out.println("Password cannot be empty.");
+                    continue;
+                }
+            }
 
-        if((customerTable.find(tempCustomer) != -1)) {
-            System.out.println("\nThe user with the information that you provided already exists.");
-            tempCustomer = customerTable.get(tempCustomer);
-            System.out.println("Successfully logged in as existing user " + tempCustomer.getFirstName() + " " + tempCustomer.getLastName() + ".");
-        } else {
-            customerTable.add(tempCustomer);
-            System.out.println("Successfully created account for and logged in as " + tempCustomer.getFirstName() + " " + tempCustomer.getLastName() + ".");
+            tempCustomer = new Customer(firstName, lastName, username, password);
+
+            if((customerTable.find(tempCustomer) != -1)) {
+                System.out.println("\nThe user with the information that you provided already exists.");
+                tempCustomer = customerTable.get(tempCustomer);
+                System.out.println("Successfully logged in as existing user " + tempCustomer.getFirstName() + " " + tempCustomer.getLastName() + ".");
+                break;
+            } else {
+                customerTable.add(tempCustomer);
+                System.out.println("Successfully created account for and logged in as " + tempCustomer.getFirstName() + " " + tempCustomer.getLastName() + ".");
+
+                try {
+                    FileWriter myWriter = new FileWriter("Users.txt", true);
+                    myWriter.append("\n");
+                    myWriter.append(tempCustomer.getName() + "\n");
+                    myWriter.append(tempCustomer.getUsername() + "\n");
+                    myWriter.append(tempCustomer.getPassword() + "\n");
+                    myWriter.append("customer\n");
+
+                    myWriter.close();
+                } catch (IOException e) {
+                    System.out.println("An error occurred.");
+                    e.printStackTrace();
+                }
+                break;
+            }
         }
-
-
-        try {
-            FileWriter myWriter = new FileWriter("Users.txt", true);
-            myWriter.append("\n");
-            myWriter.append(tempCustomer.getName() + "\n");
-            myWriter.append(tempCustomer.getUsername() + "\n");
-            myWriter.append(tempCustomer.getPassword() + "\n");
-            myWriter.append("customer\n");
-
-            myWriter.close();
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-//        System.out.println(); // newline
         return tempCustomer;
     }
 
