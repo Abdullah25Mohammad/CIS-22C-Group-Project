@@ -513,8 +513,13 @@ public class Main {
             System.out.println("3. Go Back to Main Menu.");
             System.out.println("-1. Exit the Program.");
 
-            choice = Integer.parseInt(myScanner.nextLine());
-//            System.out.println(); // newline
+            String input = myScanner.nextLine();
+            try {
+                choice = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                continue; // Go back to the beginning of the loop and prompt again
+            }
 
             if(choice != 1 && choice != 2 && choice != 3 && choice != -1) {
                 System.out.println("Invalid input. Please try again.");
