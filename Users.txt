@@ -1,7 +1,7 @@
 Abdullah Mohammad
 amohammad
 iLoveDataStructures
-employee
+customer
 
 Hari Prakash
 HariP
@@ -10,23 +10,18 @@ employee
 
 Airi Koko
 airi
-1
+Kokomi
 employee
 
 Sango Koko
 koko
-a
+abc
 customer
 
 Jacob Johnston
 JacobJ
-JacobJ
+abc123
 manager
-
-Chahid Bagdouri
-ChahidB
-password123
-customer
 
 Bob Smith
 bobbob2
