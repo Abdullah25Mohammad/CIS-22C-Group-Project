@@ -49,11 +49,6 @@ public class Main {
         createDatabase();
         createOrders();
 
-        // System.out.println("Customer Table:");
-        // System.err.println(customerTable.toString());
-        // System.out.println("Employee Table:");
-        // System.err.println(employeeTable.toString());
-
         System.out.println("Welcome to the Game Vault!");
         System.out.println("Would you like to login as a Customer or Employee?");
         int choice = 0;
@@ -67,13 +62,11 @@ public class Main {
                 System.out.println("Please enter a valid number.");
             }
         }
-//        System.out.println(); // newline
 
         while (choice < 1 || choice > 2) {
             System.out.println("Please try again.");
             System.out.println("Type '1' for Customer, '2' for Employee.");
             choice = Integer.parseInt(myScanner.nextLine());
-//            System.out.println(); // newline
         }
 
         switch (choice) {
@@ -271,7 +264,6 @@ public class Main {
         System.out.println("2. Login to an existing account.");
         System.out.println("3. Continue as a Guest.");
         int choice = Integer.parseInt(myScanner.nextLine());
-//        System.out.println(); // newline
 
         while(choice != 1 && choice != 2 && choice != 3) {
             System.out.println("Please try again.");
@@ -396,14 +388,12 @@ public class Main {
         System.out.print("Please enter your password: ");
         String password = myScanner.next();
         myScanner.nextLine(); // clear the buffer
-//        System.out.println(); // newline
 
         Customer tempCustomer = new Customer("", "", username, password);
 
         if((customerTable.find(tempCustomer) != -1)) {
             tempCustomer = customerTable.get(tempCustomer);
             System.out.println("Successfully logged in as " + tempCustomer.getName() + ".");
-//            System.out.println(); // newline
         }
 
         else {
@@ -411,14 +401,12 @@ public class Main {
             System.out.println("Would you like to try again or make a new account?");
             System.out.println("Type '1' to try again or '2' for new account.");
             int choice = Integer.parseInt(myScanner.nextLine());
-//            System.out.println(); // newline
 
             while(choice != 1 && choice != 2) {
                 System.out.println("Please try again.");
                 System.out.println("Type '1' to try again or '2' for new account.");
                 myScanner.nextLine(); // clear the buffer
                 choice = Integer.parseInt(myScanner.nextLine());
-//                System.out.println(); // newline
             }
 
             if(choice == 1) {
@@ -600,7 +588,6 @@ public class Main {
             System.out.println("-1. Exit the program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
-//            System.out.println(); // newline
 
             if(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1) {
                 System.out.println("Invalid input. Please try again.");
@@ -630,81 +617,11 @@ public class Main {
      * @author Hari Prakash
      * @param tempCustomer
      */
-//     private static void CustomerPlaceOrder(Customer tempCustomer) {
-//         System.out.print("\nWhat would you like to order?: ");
-//         String gameTitle = myScanner.nextLine();
-//         Game result = gamesByTitle.search(new Game(gameTitle, ""), titleCMP);
-
-//         if(result == null) {
-//             System.out.println("Game not found.");
-//             return;
-//         }
-//         else {
-//             if(result.getStock() <= 0) {
-//                 System.out.println(result.getTitle() + " is out of stock.");
-//                 return;
-//             }
-//             else {
-//                 System.out.println(result);
-//                 result.addStock(-1);
-//             }
-//         }
-
-//         LinkedList<Game> orderContents = new LinkedList<Game>();
-//         orderContents.addLast(result);
-
-//         int choice = -1;
-//         do {
-//             System.out.println("What type of shipping would you like?");
-//             System.out.println("Please select one of the following options by typing in the corresponding number:");
-//             System.out.println("1. Overnight Shipping.");
-//             System.out.println("2. Rush Shipping.");
-//             System.out.println("3. Standard Shipping.");
-//             System.out.println("4. Cancel order and go back to main menu.");
-//             System.out.println("-1. Exit the program.");
-
-//             choice = Integer.parseInt(myScanner.nextLine());
-
-//             Order newOrder = new Order(
-//                     tempCustomer,
-//                     new Date(),
-//                     orderContents,
-//                     0
-//             );
-//             if(choice == 1) {
-//                 newOrder.setShippingSpeed(1);
-//             }
-//             else if (choice == 2) {
-//                 newOrder.setShippingSpeed(2);
-//             }
-//             else if (choice == 3) {
-//                 newOrder.setShippingSpeed(3);
-//             }
-//             else if(choice == 4) {
-//                 return;
-//             }
-//             else if(choice == -1) {
-//                 exitProgram();
-//             }
-//             else {
-//                 System.out.println("Invalid input. Please try again.");
-//                 break;
-//             }
-
-//             tempCustomer.addUnshippedOrder(newOrder);
-//             unshippedOrders.insert(newOrder);
-//             orderByID.insert(newOrder, new IDComparator());
-//             orderByName.insert(newOrder, new NameComparator());
-
-// //            System.out.println(); // newline
-//             System.out.println("Order placed!");
-
-//         } while(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1);
-//     }
 
 private static void CustomerPlaceOrder(Customer tempCustomer) {
-    System.out.println("\nWhat would you like to order?: ");
+    System.out.print("\nWhat would you like to order?: ");
     String gameTitle = myScanner.nextLine();
+    System.out.println("\n");
     Game result = gamesByTitle.search(new Game(gameTitle, ""), titleCMP);
 
     if(result == null) {
@@ -760,7 +677,6 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
 }
 
 
-
     /**
      * Displays the game database
      *
@@ -779,7 +695,6 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
             System.out.println("-1. Exit the program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
-//            System.out.println(); // newline
 
             if (choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1) {
                 System.out.println("Invalid input. Please try again.");
@@ -819,7 +734,6 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
      * @return logged in Employee object
      */
     public static Employee loginAsEmployee() {
-//        System.out.println(employeeTable.toString());
         boolean isEmployee = false;
         Employee tempEmployee = null;
         while(!isEmployee) {
@@ -840,7 +754,6 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
                     System.out.println("\nSuccessfully logged in as " + tempEmployee.getFirstName() + " " + tempEmployee.getLastName() + ".");
 
                 }
-//                System.out.println(); // newline
             }
             else {
                 System.out.println("Login failed. Please try again.");
@@ -859,7 +772,6 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
     public static void EmployeeOptions(Employee tempEmployee) {
         int choice = 0;
         boolean manager = tempEmployee.isManager();
-//        System.out.println(manager);
 
         do {
             System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
@@ -872,7 +784,6 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
             System.out.println("-1. Exit the program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
-//            System.out.println(); // newline
 
             if(choice == 1) {
                 choice = searchForOrder();
@@ -916,7 +827,6 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
             System.out.println("-1. Exit the Program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
-//            System.out.println(); // newline
 
             if(choice != 1 && choice != 2 && choice != 3 && choice != -1) {
                 System.out.println("Invalid input. Please try again.");
@@ -1033,79 +943,7 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
         }
         return 0;
     }
-
-
-    /**** Manager Methods ****/
-
-
-    /**
-     * Handles the manager login process.
-     * Asks for username and password, verifies the credentials, and returns a logged-in manager.
-     *
-     * @author Jacob L. Johnston
-     * @return manager The logged-in manager for whom the options are displayed
-     */
-    /*
-    public static Employee loginAsManager() {
-        boolean isManager = false;
-        Employee manager = null;
-        while (!isManager) {
-            System.out.println("Please enter your username:");
-            String username = myScanner.nextLine();
-            System.out.println("Please enter your password:");
-            String password = myScanner.nextLine();
-            manager = new Employee("", "", username, password, true);
-            isManager = employeeTable.find(manager) != -1 && manager.isManager();
-            if (isManager) {
-                System.out.println("Successfully logged in as manager " + manager.getFirstName());
-            } else {
-                System.out.println("Login failed. Please try again.");
-            }
-        }
-        return manager;
-    }
-
-     */
-
-    /**
-     * Presents/handles the manager's operational options.
-     * Allows managers to update the products catalogue and view orders.
-     *
-     * @author Jacob L. Johnston
-     * @param manager The logged-in manager for whom the options are displayed.
-     */
-    /*
-    public static void managerOptions(Employee manager) {
-        int choice;
-        do {
-            System.out.println("Manager Options:");
-            System.out.println("1. Update Products Catalogue");
-            System.out.println("2. View Orders");
-            System.out.println("-1. Exit");
-            choice = Integer.parseInt(myScanner.nextLine());
-
-            switch (choice) {
-                case 1:
-                    updateProductsCatalogue();
-                    break;
-                case 2:
-                    System.out.println("View Orders:");
-                    System.out.println("1. View all unshipped orders");
-                    System.out.println("2. View order with highest priority");
-                    int viewChoice = Integer.parseInt(myScanner.nextLine());
-                    if (viewChoice == 2) {
-                        viewOrder(false); // Only view the highest priority order
-                    } else {
-                        viewOrder(true); // View all unshipped orders
-                    }
-                    // viewOrder(viewChoice != 2); // Shorter version of the 5 lines above, but much less readable
-                    break;
-            }
-        } while (choice != -1);
-    }
-
-     */
-
+    
     /**
      * Displays and handles the options for updating the products catalogue.
      * Allows adding new products, updating existing products, and removing products.
@@ -1320,11 +1158,10 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
      * @author Jacob L. Johnston
      */
     private static void removeProduct() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Removing a product.");
 
         System.out.print("Enter the title of the product to remove: ");
-        String title = scanner.nextLine();
+        String title = myScanner.nextLine();
 
 
         Game game = gamesByTitle.search(new Game(title, ""), new TitleComparator());
@@ -1411,5 +1248,4 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
             e.printStackTrace();
         }
     }
-
 }
