@@ -952,11 +952,11 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
         if (all) {
             ArrayList<Order> temp = unshippedOrders.sort();
             for (Order order : temp) {
-                System.out.print("\n" + order.toString());
+                System.out.println("\n" + order.toString());
             }
         }
         else {
-            System.out.print("\n" + unshippedOrders.getMax());
+            System.out.println("\n" + unshippedOrders.getMax());
         }
         return 0;
     }
