@@ -751,25 +751,33 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
             choice = Integer.parseInt(myScanner.nextLine());
 //            System.out.println(); // newline
 
-            if(choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1) {
+            if (choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != -1) {
                 System.out.println("Invalid input. Please try again.");
             }
-            // } while(choice != -1);
         } while(choice != 1 && choice != 2 && choice != 3 && choice != -1);
 
-        if(choice == 1) {
-            System.out.print(tempCustomer.getShippedOrders());
+        switch (choice) {
+            case 1:
+                if (tempCustomer.getShippedOrders().isEmpty()) {
+                    System.out.println("\nNo shipped orders found.");
+                } else {
+                    System.out.print(tempCustomer.getShippedOrders());
+                }
+                break;
+            case 2:
+                if (tempCustomer.getUnshippedOrders().isEmpty()) {
+                    System.out.println("\nNo unshipped orders found.");
+                } else {
+                    System.out.print(tempCustomer.getUnshippedOrders());
+                }
+                break;
+            case 3:
+                CustomerOptions(tempCustomer, false);
+                break;
+            case -1:
+                exitProgram();
+                break;
         }
-        else if(choice == 2) {
-            System.out.print(tempCustomer.getUnshippedOrders());
-        }
-        else if(choice == 3) {
-            CustomerOptions(tempCustomer, false);
-        }
-        else if(choice == -1) {
-            exitProgram();
-        }
-
     }
 
     /**** Employee Methods ****/
