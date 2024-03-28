@@ -418,10 +418,10 @@ public class Main {
         while (true) {
             System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
             System.out.println("1. Search for a product.");
-            System.out.println("2. List Database of Products.");
+            System.out.println("2. List database of products.");
             if (!isGuest) {
-                System.out.println("3. Place an Order.");
-                System.out.println("4. View Purchases.");
+                System.out.println("3. Place an order.");
+                System.out.println("4. View purchases.");
             }
             System.out.println("-1. Exit the program.");
 
@@ -577,13 +577,13 @@ public class Main {
         } while(choice != 1 && choice != 2 && choice != 3 && choice != -1);
 
         if(choice == 1) {
-            System.out.println("\n" + gamesByTitle.inOrderString());
+            System.out.print("\n" + gamesByTitle.inOrderString());
         }
         else if(choice == 2) {
-            System.out.println("\n" + gamesByDeveloper.inOrderString());
+            System.out.print("\n" + gamesByDeveloper.inOrderString());
         }
         else if(choice == 3) {
-            System.out.println("\n" + gamesByPrice.inOrderString());
+            System.out.print("\n" + gamesByPrice.inOrderString());
         }
         else if(choice == -1) {
             exitProgram();
