@@ -417,13 +417,13 @@ public class Main {
     public static void CustomerOptions(Customer tempCustomer, boolean isGuest) {
         while (true) {
             System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
-            System.out.println("1. Search for a product.");
-            System.out.println("2. List database of products.");
+            System.out.println("1. Search for a Product.");
+            System.out.println("2. List Database of Products.");
             if (!isGuest) {
-                System.out.println("3. Place an order.");
-                System.out.println("4. View purchases.");
+                System.out.println("3. Place an Order.");
+                System.out.println("4. View Purchases.");
             }
-            System.out.println("-1. Exit the program.");
+            System.out.println("-1. Exit the Program.");
 
             String input = myScanner.nextLine().trim();
             int choice1;
@@ -812,8 +812,8 @@ public class Main {
         do {
             System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
             System.out.println("1. Search by Order ID.");
-            System.out.println("2. Search by customer first and last name");
-            System.out.println("3. Go back to main menu.");
+            System.out.println("2. Search by Customer first and last name");
+            System.out.println("3. Go back to Main Menu.");
             System.out.println("-1. Exit the program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
