@@ -6,7 +6,7 @@ Social Deduction
 Work together to complete tasks on a spaceship but beware of impostors among the crew in this popular multiplayer game of deception and strategy.
 Nintendo Switch, PlayStation 4, PlayStation 5, Xbox One, Xbox Series X, Xbox Series S
 $4.99
-8
+10
 
 Animal Crossing: New Horizons
 Nintendo
@@ -56,7 +56,7 @@ First-Person Shooter
 Enter an interstellar war in a richly-detailed sci-fi universe and fight for humanity. Known for its multiplayer and co-op.
 Xbox 360
 $40.00
-71
+70
 
 Minecraft
 Mojang
@@ -66,7 +66,7 @@ Sandbox
 Create explore and survive in a block-y world filled with endless possibilities and creative freedom. Beware of night-time...
 PC, Mac, Linux
 $26.95
-111
+110
 
 Portal 2
 Valve
@@ -126,5 +126,5 @@ Role-Playing
 Every choice matters. Charm meets clever writing, quirky characters, and an innovative combat system that allows for nonviolent resolutions, challenging moral conventions of traditional RPGs.
 PC, Mac
 $10.00
-101
+100
 
