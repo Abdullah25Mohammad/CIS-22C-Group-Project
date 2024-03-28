@@ -57,7 +57,7 @@ public class Main {
                 System.out.println("Type '1' for Customer, '2' for Employee.");
                 choice = Integer.parseInt(myScanner.nextLine());
                 if (choice >= 1 && choice <= 2) break;
-                System.out.println("a Invalid choice. Please try again.");
+                System.out.println("Invalid choice. Please try again.");
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid number.");
             }
