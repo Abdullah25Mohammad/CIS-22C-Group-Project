@@ -1148,52 +1148,136 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
      * @author Jacob L. Johnston
      */
     private static void addNewProduct() {
+        String title = "", developer = "", id = "", genre = "", releaseDateString = "", summary = "", platformsString = "";
+        double price = -1;
+        int stock = -1;
+        ArrayList<String> platforms = new ArrayList<>();
+        Date releaseDate = null;
+
         System.out.println("\nAdding a new product.");
 
-        System.out.print("Title: ");
-        String title = myScanner.nextLine();
+        while (true) {
+            if (title.isEmpty()) {
+                System.out.print("Title: ");
+                title = myScanner.nextLine().trim();
+                if (title.isEmpty()) {
+                    System.out.println("Title cannot be empty.");
+                    continue;
+                }
+            }
 
-        System.out.print("Developer: ");
-        String developer = myScanner.nextLine();
+            if (developer.isEmpty()) {
+                System.out.print("Developer: ");
+                developer = myScanner.nextLine().trim();
+                if (developer.isEmpty()) {
+                    System.out.println("Developer cannot be empty.");
+                    continue;
+                }
+            }
 
-        System.out.print("ID: ");
-        String id = myScanner.nextLine();
+            if (id.isEmpty()) {
+                System.out.print("ID: ");
+                id = myScanner.nextLine().trim();
+                if (id.isEmpty()) {
+                    System.out.println("ID cannot be empty.");
+                    continue;
+                }
+            }
 
-        System.out.print("Genre: ");
-        String genre = myScanner.nextLine();
+            if (genre.isEmpty()) {
+                System.out.print("Genre: ");
+                genre = myScanner.nextLine().trim();
+                if (genre.isEmpty()) {
+                    System.out.println("Genre cannot be empty.");
+                    continue;
+                }
+            }
 
-        System.out.print("Release Date (MM/DD/YYYY): ");
-        String dateString = myScanner.nextLine();
-        Date releaseDate = new Date(dateString); // Do we have a comparator for this?
+            if (releaseDateString.isEmpty()) {
+                System.out.print("Release Date (MM/DD/YYYY): ");
+                releaseDateString = myScanner.nextLine().trim();
+                if (releaseDateString.isEmpty()) {
+                    System.out.println("Release date cannot be empty.");
+                    continue;
+                }
+                try {
+                    releaseDate = new Date(releaseDateString);
+                } catch (Exception e) {
+                    System.out.println("Invalid date format.");
+                    releaseDateString = "";
+                    continue;
+                }
+            }
 
-        System.out.print("Summary: ");
-        String summary = myScanner.nextLine();
+            if (summary.isEmpty()) {
+                System.out.print("Summary: ");
+                summary = myScanner.nextLine().trim();
+                if (summary.isEmpty()) {
+                    System.out.println("Summary cannot be empty.");
+                    continue;
+                }
+            }
 
-        System.out.print("Platforms (comma-separated): ");
-        String platformsString = myScanner.nextLine();
+            if (platformsString.isEmpty()) {
+                System.out.print("Platforms (comma-separated): ");
+                platformsString = myScanner.nextLine();
+                if (platformsString.isEmpty()) {
+                    System.out.println("Platforms cannot be empty.");
+                    continue;
+                }
+                // Split the string into an array and trim whitespace from each platform
+                String[] platformsArray = platformsString.split(",");
+                platforms.clear(); // Ensure the list is empty before adding new elements
+                for (String platform : platformsArray) {
+                    platforms.add(platform.trim()); // Add trimmed platform to the list
+                }
 
-        // Create an ArrayList from split string
-        String[] platformsArray = platformsString.split(",");
-        ArrayList<String> platforms = new ArrayList<>();
-        for (String platform : platformsArray) {
-            platforms.add(platform.trim()); // leading or trailing spaces
+                // Check if platforms list is still empty after trimming
+                if (platforms.isEmpty()) {
+                    System.out.println("Invalid platforms. Please enter at least one platform.");
+                    platformsString = ""; // Reset the platformsString to trigger the prompt again
+                    continue;
+                }
+            }
+
+            if (price < 0) {
+                System.out.print("Price: ");
+                try {
+                    price = Double.parseDouble(myScanner.nextLine().trim());
+                    if (price < 0) {
+                        System.out.println("Price cannot be negative.");
+                        continue;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid price format.");
+                    continue;
+                }
+            }
+
+            if (stock < 0) {
+                System.out.print("Stock: ");
+                try {
+                    stock = Integer.parseInt(myScanner.nextLine().trim());
+                    if (stock < 0) {
+                        System.out.println("Stock cannot be negative.");
+                        continue;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid stock format.");
+                    continue;
+                }
+            }
+
+            Game newGame = new Game(title, developer, id, genre, releaseDate, summary, platforms, price, stock);
+
+            // Insert game into BSTs
+            gamesByTitle.insert(newGame, titleCMP);
+            gamesByDeveloper.insert(newGame, developerCMP);
+            gamesByPrice.insert(newGame, priceCMP);
+
+            System.out.println("\nNew product added successfully.");
+            break;
         }
-
-        System.out.print("Price: ");
-        double price = Double.parseDouble(myScanner.nextLine());
-
-        System.out.print("Stock: ");
-        int stock = Integer.parseInt(myScanner.nextLine());
-
-        Game newGame = new Game(title, developer, id, genre, releaseDate, summary, platforms, price, stock);
-
-        // Seperate BSTs
-        gamesByTitle.insert(newGame, titleCMP);
-        gamesByDeveloper.insert(newGame, developerCMP);
-        gamesByPrice.insert(newGame, priceCMP);
-
-
-        System.out.println("\nNew product added successfully.");
     }
 
     /**
