@@ -1,7 +1,7 @@
 /**
  * Heap.java
- * @author Abdullah Mohammad
  * @author Chahid Bagdouri
+ * @author Abdullah Mohammad
  * CIS 22C, Lab 19
  */
 import java.util.ArrayList;
