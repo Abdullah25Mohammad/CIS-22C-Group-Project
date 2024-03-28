@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class HashTable<T> {
 
     private int numElements;
-    private ArrayList<LinkedList<T> > table;
+    private ArrayList<LinkedList<T>> table;
 
     /**
      * Constructor for the HashTable class. Initializes the Table to be sized
