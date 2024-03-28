@@ -564,9 +564,9 @@ public class Main {
 
         do {
             System.out.println("\nPlease select one of the following options by typing in the corresponding number:");
-            System.out.println("1. Display games by title.");
-            System.out.println("2. Display games by developer.");
-            System.out.println("3. Display games by price.");
+            System.out.println("1. Display Games by Title.");
+            System.out.println("2. Display Games by Developer.");
+            System.out.println("3. Display Games by Price.");
             System.out.println("-1. Exit the program.");
 
             choice = Integer.parseInt(myScanner.nextLine());
@@ -889,8 +889,6 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
         {
             System.out.println("\nPlease enter the Order ID you are looking for: ");
             int ID = Integer.parseInt(myScanner.nextLine());
-//            System.out.println(); // newline
-
 
             Order target = orderByID.search(new Order(ID), new IDComparator());
             if( target != null) {
@@ -906,7 +904,6 @@ private static void CustomerPlaceOrder(Customer tempCustomer) {
             String firstName = myScanner.next();
             System.out.println("Please enter the Customer you are looking for's last name: ");
             String lastName = myScanner.next();
-//            System.out.println(); // newline
             myScanner.nextLine(); // clear the buffer
 
             Order target = orderByName.search(
